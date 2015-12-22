@@ -1,0 +1,20 @@
+{
+  "name": "Sagittarius",
+  "version": "0.0.1",
+  "description": "Chatwork のデスクトップ通知が来ないつらい",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuyuno/Sagittarius.git"
+  },
+  "keywords": [],
+  "author": "Mikazuki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fuyuno/Sagittarius/issues"
+  },
+  "homepage": "https://github.com/fuyuno/Sagittarius#readme"
+}
