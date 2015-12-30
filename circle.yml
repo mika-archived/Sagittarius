@@ -10,6 +10,7 @@ dependencies:
     - npm install
     - npm install typescript
     - npm install tsd
+    - npm install electron-packager
 deployment:
   master:
     branch: master
