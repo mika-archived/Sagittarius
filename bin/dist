@@ -1,0 +1,4 @@
+#!/bin/sh
+cp package.json ./app
+cd ./src
+find . -name '*.html' -or -name '*.css' | cpio -pdmu ../app
