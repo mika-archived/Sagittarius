@@ -1,14 +1,15 @@
 {
   "name": "Sagittarius",
   "version": "0.0.1",
-  "description": "Chatwork のデスクトップ通知が来ないつらい",
-  "main": "src/main.js",
+  "description": "Desktop application for ChatWork.",
+  "main": "js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p src/",
+    "build": "tsc -p src/ && bin/dist",
     "prestart": "npm run build",
-    "start": "electron .",
-    "pack": "electron-packager ./ Sagittarius --platform=darwin --arch=x64 --version=0.36.1 --out=dist"
+    "start": "electron ./app",
+    "prepack": "npm run build",
+    "pack": "electron-packager ./app Sagittarius --platform=all --arch=x64 --version=0.36.1 --out=dist"
   },
   "repository": {
     "type": "git",
