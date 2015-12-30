@@ -16,11 +16,15 @@ deployment:
     branch: master
     commands:
       - npm run build
-      - npm run pack
+      - electron-packager ./ Sagittarius --platform=darwin --arch=x64 --version=0.36.1 --out=dist
       - tar cfvz dist/Sagittarius-darwin-x64.tar.gz dist/Sagittarius-darwin-x64
+      - cp dist/Sagittarius-darwin-x64.tar.gz $CIRCLE_ARTIFACTS
+      - rm -r dist
+      - electron-packager ./ Sagittarius --platform=linux --arch=x64 --version=0.36.1 --out=dist
       - tar cfvz dist/Sagittarius-linux-x64.tar.gz dist/Sagittarius-linux-x64
+      - cp dist/Sagittarius-linux-x64.tar.gz $CIRCLE_ARTIFACTS
+      - rm -r dist      
+      - electron-packager ./ Sagittarius --platform=win32 --arch=x64 --version=0.36.1 --out=dist
       - zip -r dist/Sagittarius-win32-x64.zip dist/Sagittarius-win32-x64
-      - cp -r dist $CIRCLE_ARTIFACTS/
-      - ./bin/release dist/Sagittarius-darwin-x64.tar.gz
-      - ./bin/release dist/Sagittarius-linux-x64.tar.gz
-      - ./bin/release dist/Sagittarius-win32-x64.zip
+      - cp dist/Sagittarius-win32-x64.zip $CIRCLE_ARTIFACTS
+      - rm -r dist
