@@ -1,3 +1,12 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        // Compiled JS and JS.MAP
+        "**/*.js": true,
+        "**/*.js.map": true,
+        // ?
+        "**/*.tgz": true
+    }
 }

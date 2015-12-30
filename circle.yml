@@ -1,0 +1,20 @@
+machine:
+  timezone: Asia/Tokyo
+  node:
+    version: 4.2.1
+test:
+  override:
+    - echo 'Tests does not exists yet.'
+deployment:
+  master:
+    branch: master
+    commands:
+      - npm run build
+      - npm run pack
+      - tar cfvz dist/Sagittarius-darwin-x64.tar.gz dist/Sagittarius-darwin-x64
+      - tar cfvz dist/Sagittarius-linux-x64.tar.gz dist/Sagittarius-linux-x64
+      - zip -r dist/Sagittarius-win32-x64.zip dist/Sagittarius-win32-x64
+      - cp -r dist $CIRCLE_ARTIFACTS/
+      - ./bin/release dist/Sagittarius-darwin-x64.tar.gz
+      - ./bin/release dist/Sagittarius-linux-x64.tar.gz
+      - ./bin/release dist/Sagittarius-win32-x64.zip
