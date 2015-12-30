@@ -5,6 +5,11 @@ machine:
 test:
   override:
     - echo 'Tests does not exists yet.'
+dependencies:
+  override:
+    - npm install
+    - npm install typescript
+    - npm install tsd
 deployment:
   master:
     branch: master
