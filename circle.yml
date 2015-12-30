@@ -19,4 +19,5 @@ deployment:
       - tar cfvz dist/Sagittarius-darwin-x64.tar.gz dist/Sagittarius-darwin-x64
       - tar cfvz dist/Sagittarius-linux-x64.tar.gz dist/Sagittarius-linux-x64
       - zip -r dist/Sagittarius-win32-x64.zip dist/Sagittarius-win32-x64
+      - rm -r dist/Sagittarius-darwin-x64 dist/Sagittarius-linux-x64 dist/Sagittarius-win32-x64
       - cp -r dist $CIRCLE_ARTIFACTS/
