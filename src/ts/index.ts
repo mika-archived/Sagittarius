@@ -1,17 +1,7 @@
-import * as electron from 'electron'; 
-import {remote} from 'electron'; 
-const app = remote.require('app');
-const BrowserWindow = remote.require('browser-window');
-const dialog = remote.require('dialog');
+/// <reference path="../typings/tsd.d.ts" />
 
-function hello(){
-    var options = {
-        title: 'ダイアログのタイトル',
-        type: 'info',
-        buttons: ['OK', 'Cancel'],
-        message: 'メッセージ',
-        detail: 'hello'
-    };
-    var win = BrowserWindow.getFocusedWindow();
-    dialog.showMessageBox(win, options);
-}
+import * as React from 'react';
+import * as ReactDom from 'react-dom';
+import Hello = require('./hello');
+
+// ReactDom.render(React.createElement(), document.getElementById('content'));

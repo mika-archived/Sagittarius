@@ -3,12 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Sagittarius</title>
-  <script src="js/index.js"></script>
+  
+  <!-- External -->
+  <script src="../node_modules/react/dist/react.min.js"></script>
+  <script src="../node_modules/react-dom/dist/react-dom.min.js"></script>
 </head>
 <body>
   <h1>Hello World!</h1>
   <hr/>
-  <button onclick="hello()">Show Message</button>
+  <div id="content"></div>
+  
+  <script>require('electron-connect').client.create()</script>
+  <script src="js/hello.js"></script>
 </body>
 </html>
 

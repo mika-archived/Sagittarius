@@ -5,13 +5,13 @@
 			"name": "Launch",
 			"type": "node",
 			"request": "launch",
-			"program": "src/js/main.js",
+			"program": "app/js/main.js",
 			"stopOnEntry": false,
 			"args": [],
 			"cwd": ".",
 			"runtimeExecutable": "/usr/local/bin/electron",
 			"runtimeArgs": [
-				"src/js/main.js"
+				"."
 			],
 			"env": {
 				"NODE_ENV": "development"
