@@ -8,9 +8,10 @@ test:
 dependencies:
   override:
     - npm install
-    - npm install typescript
-    - npm install tsd
-    - npm install electron-packager
+    - npm install -g gulp
+    - npm install -g typescript
+    - npm install -g tsd
+    - npm install -g electron-packager
 deployment:
   master:
     branch: master
