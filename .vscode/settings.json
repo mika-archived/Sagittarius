@@ -6,5 +6,7 @@
         "app/**": true,
         "src/js/**": true,
         "dist/**": true
-    }
+    },
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
 }

@@ -56,7 +56,7 @@ gulp.task('serve', function () {
     electron.start();
 
     // BrowserProcess(MainProcess)が読み込むリソースが変更されたら, Electron自体を再起動
-    gulp.watch(['./app/**/app.js'], electron.restart);
+    gulp.watch(['./app/**/main.js'], electron.restart);
 
     // RendererProcessが読み込むリソースが変更されたら, RendererProcessにreloadさせる
     gulp.watch(['./app/**/*.css', './app/**/*.js', './app/**/*.html'], electron.reload);

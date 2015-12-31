@@ -26,7 +26,8 @@
   "homepage": "https://github.com/fuyuno/Sagittarius#readme",
   "dependencies": {
     "react": "^0.14.5",
-    "react-dom": "^0.14.5"
+    "react-dom": "^0.14.5",
+    "semantic-ui": "^2.1.7"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
