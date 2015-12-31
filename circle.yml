@@ -16,6 +16,7 @@ deployment:
   master:
     branch: master
     commands:
+      - cd vendor/semantic; gulp build; cd ../..
       - npm run pack
       - tar cfvz dist/Sagittarius-darwin-x64.tar.gz dist/Sagittarius-darwin-x64
       - tar cfvz dist/Sagittarius-linux-x64.tar.gz dist/Sagittarius-linux-x64
