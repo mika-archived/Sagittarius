@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var typescript = require('gulp-typescript');
 var babel = require('gulp-babel');
 var rename = require('gulp-rename');
+var sass = require('gulp-sass');
 
 var merge = require('event-stream').merge;
 var runSequence = require('run-sequence');
@@ -22,22 +23,29 @@ gulp.task('copy', function() {
 
 // TypeScript -> ES6 -> ES5
 gulp.task('ts:compile', function() {
-  var tsResult = gulp.src(['./src/ts/**/*.tsx', './src/ts/**/*.ts'])
+  var tsResult = gulp.src(['./src/**/*.tsx', './src/**/*.ts'])
                    .pipe(typescript(tsProject));
   return merge([
     tsResult.pipe(babel())
-      .pipe(rename(function(path) { path.dirname = path.dirname.replace('ts', '')}))
-      .pipe(gulp.dest('./app/js')),
+      .pipe(rename(function(path) { path.dirname = path.dirname.replace('typescripts', 'javascripts')}))
+      .pipe(gulp.dest('./app/')),
       
     tsResult.dts
-      .pipe(gulp.dest('./src/ts'))
+      .pipe(gulp.dest('./src/'))
   ]);
+});
+
+// SASS -> CSS
+gulp.task('sass:compile', function() {
+  gulp.src(['./src/**/*.sass', './src/**/*.scss'])
+    .pipe(sass())
+    .pipe(gulp.dest('./app'));
 });
 
 // Auto compile
 gulp.task('watch', function() {
   // *.ts, *.tsx(TypeScript React) -> compile
-  gulp.watch('./src/ts/**/*.{ts,tsx}', function(){
+  gulp.watch('./src/**/*.{ts,tsx}', function(){
     gulp.run('ts:compile'); 
   });
   // *.html, *.css -> copy
@@ -47,9 +55,13 @@ gulp.task('watch', function() {
 });
 
 // Build
-gulp.task('build', function() {
-  gulp.start('ts:compile');
-  gulp.start('copy');
+gulp.task('build', function(callback) {
+  return runSequence(
+    'ts:compile',
+    'sass:compile',
+    'copy',
+    callback
+  );
 });
 
 gulp.task('serve', function () {
@@ -57,15 +69,20 @@ gulp.task('serve', function () {
   electron.start();
 
   // BrowserProcess(MainProcess)が読み込むリソースが変更されたら, Electron自体を再起動
-  gulp.watch(['./app/**/main.js'], electron.restart);
+  gulp.watch(['./app/main.js', './app/browser/application.js'], function() {
+    // 再起動せずに増える
+    gulp.pipe(function() { electron.stop() })
+      .pipe(function() { electron.start() });
+  });
 
   // RendererProcessが読み込むリソースが変更されたら, RendererProcessにreloadさせる
-  gulp.watch(['./app/**/*.css', './app/**/*.js', './app/**/*.html'], electron.reload);
+  gulp.watch(['./app/renderer/*.css', './app/renderer/*.js', './app/**/*.html'], electron.reload);
 });
 
 gulp.task('default', function(callback) {
   return runSequence(
     'ts:compile',
+    'sass:compile',
     'copy',
     'watch',
     'serve',
