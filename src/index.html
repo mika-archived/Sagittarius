@@ -18,9 +18,8 @@
 </head>
 <body>
   
-  <div id="sidebar"></div>
-  <div id="chatlog"></div>
-  <div id="message"></div>
+  <div class="ui sidebar vertical menu visible" id="sidebar"></div>
+  <div class="pusher" id="content"></div>
   
   <script>require('electron-connect').client.create()</script>
   <script src="renderer/app.js"></script>
