@@ -1,11 +1,14 @@
 'use strict';
 
 var gulp = require('gulp');
-var typescript = require('gulp-typescript');
 var babel = require('gulp-babel');
 var rename = require('gulp-rename');
+var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
+var typescript = require('gulp-typescript');
+var watch = require('gulp-watch');
 
+var del = require('del');
 var merge = require('event-stream').merge;
 var runSequence = require('run-sequence');
 var electron = require('electron-connect').server.create();
@@ -14,6 +17,11 @@ var tsProject = typescript.createProject('./src/tsconfig.json');
 var srcDir = 'src';
 var appDir = 'app';
 var distDir = 'dist';
+
+// Clean project
+gulp.task('clean', function() {
+  del.bind(null, ['app', 'dist']);
+});
 
 // Copy to app
 gulp.task('copy', function() {
@@ -24,7 +32,9 @@ gulp.task('copy', function() {
 // TypeScript -> ES6 -> ES5
 gulp.task('ts:compile', function() {
   var tsResult = gulp.src(['./src/**/*.tsx', './src/**/*.ts'])
+                   .pipe(plumber())
                    .pipe(typescript(tsProject));
+
   return merge([
     tsResult.pipe(babel())
       .pipe(rename(function(path) { path.dirname = path.dirname.replace('typescripts', 'javascripts')}))
@@ -38,6 +48,7 @@ gulp.task('ts:compile', function() {
 // SASS -> CSS
 gulp.task('sass:compile', function() {
   gulp.src(['./src/**/*.sass', './src/**/*.scss'])
+    .pipe(plumber())
     .pipe(sass())
     .pipe(gulp.dest('./app'));
 });
@@ -45,11 +56,11 @@ gulp.task('sass:compile', function() {
 // Auto compile
 gulp.task('watch', function() {
   // *.ts, *.tsx(TypeScript React) -> compile
-  gulp.watch('./src/**/*.{ts,tsx}', function(){
+  watch('./src/**/*.{ts,tsx}', function(){
     gulp.run('ts:compile'); 
   });
   // *.html, *.css -> copy
-  gulp.watch('./src/**/*.{html,css}', function() {
+  watch('./src/**/*.{html,css}', function() {
     gulp.start(['copy']);
   });
 });
@@ -57,6 +68,7 @@ gulp.task('watch', function() {
 // Build
 gulp.task('build', function(callback) {
   return runSequence(
+    'clean',
     'ts:compile',
     'sass:compile',
     'copy',
@@ -69,18 +81,18 @@ gulp.task('serve', function () {
   electron.start();
 
   // BrowserProcess(MainProcess)が読み込むリソースが変更されたら, Electron自体を再起動
-  gulp.watch(['./app/main.js', './app/browser/application.js'], function() {
+  watch(['./app/main.js', './app/browser/*.js'], function() {
     // 再起動せずに増える
-    gulp.pipe(function() { electron.stop() })
-      .pipe(function() { electron.start() });
+    // electron.restart();
   });
 
   // RendererProcessが読み込むリソースが変更されたら, RendererProcessにreloadさせる
-  gulp.watch(['./app/renderer/*.css', './app/renderer/*.js', './app/**/*.html'], electron.reload);
+  watch(['./app/renderer/**/*.css', './app/renderer/**/*.js', './app/**/*.html'], electron.reload);
 });
 
 gulp.task('default', function(callback) {
   return runSequence(
+    'clean',
     'ts:compile',
     'sass:compile',
     'copy',
