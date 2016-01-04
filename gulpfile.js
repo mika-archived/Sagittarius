@@ -18,6 +18,10 @@ var srcDir = 'src';
 var appDir = 'app';
 var distDir = 'dist';
 
+var tsFiles = './src/**/*.{ts,tsx}';
+var ssFiles = './src/**/*.{sass,scss}';
+var rsFiles = './src/**/*.{png,otf,html,css}';
+
 // Clean project
 gulp.task('clean', function() {
   del.bind(null, ['app', 'dist']);
@@ -25,13 +29,13 @@ gulp.task('clean', function() {
 
 // Copy to app
 gulp.task('copy', function() {
-  gulp.src(['./src/**/*.{html,css}'], {base: 'src'})
+  gulp.src(rsFiles, {base: 'src'})
     .pipe(gulp.dest('./app'));
 });
 
 // TypeScript -> ES6 -> ES5
 gulp.task('ts:compile', function() {
-  var tsResult = gulp.src(['./src/**/*.tsx', './src/**/*.ts'])
+  var tsResult = gulp.src(tsFiles)
                    .pipe(plumber())
                    .pipe(typescript(tsProject));
 
@@ -56,11 +60,11 @@ gulp.task('sass:compile', function() {
 // Auto compile
 gulp.task('watch', function() {
   // *.ts, *.tsx(TypeScript React) -> compile
-  watch('./src/**/*.{ts,tsx}', function(){
+  watch(tsFiles, function(){
     gulp.run('ts:compile'); 
   });
   // *.html, *.css -> copy
-  watch('./src/**/*.{html,css}', function() {
+  watch(rsFiles, function() {
     gulp.start(['copy']);
   });
 });
@@ -87,7 +91,7 @@ gulp.task('serve', function () {
   });
 
   // RendererProcessが読み込むリソースが変更されたら, RendererProcessにreloadさせる
-  watch(['./app/renderer/**/*.css', './app/renderer/**/*.js', './app/**/*.html'], electron.reload);
+  watch(['./app/renderer/**/*.css', './app/renderer/**/*.js', './app/**/*.html', './app/**/*.png', './app/**/*.otf'], electron.reload);
 });
 
 gulp.task('default', function(callback) {

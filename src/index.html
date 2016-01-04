@@ -6,7 +6,8 @@
   
   <!-- External -->
   <link rel="stylesheet" type="text/css" href="renderer/stylesheets/vendor.css">
-
+  <link rel="stylesheet" type="text/css" href="renderer/stylesheets/application.css">
+  
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="../node_modules/react/dist/react.min.js"></script>
   <script src="../node_modules/react-dom/dist/react-dom.min.js"></script>
@@ -20,6 +21,7 @@
   
   <div class="ui sidebar vertical menu visible" id="sidebar"></div>
   <div class="pusher" id="content"></div>
+  <div id="root"></div>
   
   <script>require('electron-connect').client.create()</script>
   <script src="renderer/app.js"></script>

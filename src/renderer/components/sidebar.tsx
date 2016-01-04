@@ -3,21 +3,18 @@
 import * as React from 'react';
 import * as $ from 'jquery';
 
-export module Components {
-  export class Sidebar extends React.Component<any, any> {
+export class Sidebar extends React.Component<any, any> {
     
-    constructor() {
-      super();
-    }
+  constructor() {
+    super();
+  }
     
-    componentDidMount() {
-
-    }
+  componentDidMount() {    
+  }
     
-    render() {
-      return (
-         <a className="item">Room 1</a>
-      );
-    }
+  render() {
+    return (
+       <a className="item">Room 1</a>
+    );
   }
 }

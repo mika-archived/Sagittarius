@@ -6,11 +6,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import c_sidebar = require('./renderer/components/sidebar');
-import Sidebar = c_sidebar.Components.Sidebar;
+import c_dialog = require('./renderer/components/auth_dialog');
 
 class App {
   constructor() {
-    ReactDOM.render(React.createElement(Sidebar, null), document.getElementById('sidebar'));
+    ReactDOM.render(React.createElement(c_sidebar.Sidebar, null), document.getElementById('sidebar'));
+    ReactDOM.render(React.createElement(c_dialog.AuthDialog, null), document.getElementById('root'));
   }
 }
 
