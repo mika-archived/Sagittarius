@@ -65,8 +65,8 @@ export class Root extends React.Component<IRootProps, IRoomState> {
       );
     });
     return (
-      <div>
-        <div className="ui sidebar vertical left inverted menu visible">
+      <div className="filled">
+        <div className="ui sidebar vertical left menu visible">
           <User avatarImageUrl={this.props.user.avatarImageUrl} name={this.props.user.name} />
           <div className="item">
             <div className="active header">
@@ -77,8 +77,8 @@ export class Root extends React.Component<IRootProps, IRoomState> {
             </div>
           </div>
         </div>
-        <div className="pusher">
-          <div className="ui basic segment">
+        <div className="pusher filled">
+          <div className="ui basic custom segment">
             <Chatroom room={this.getRoom(this.state.selectedRoom)}/>
           </div>
         </div>

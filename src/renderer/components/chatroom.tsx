@@ -20,9 +20,13 @@ export class Chatroom extends React.Component<IChatroomProps, any> {
   render() {
     if(this.props.room instanceof DummyRoom) {
       return (
-        <div className="ui active dimmer">
+        <div className="ui active inverted dimmer">
           <div className="content">
-            <div className="center">No chatroom selected.</div>
+            <div className="center centering">
+              <h2 className="ui header">
+                Not chatroom selected.
+              </h2>
+            </div>
           </div>
         </div>
       );

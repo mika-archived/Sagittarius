@@ -51,7 +51,7 @@ gulp.task('ts:compile', function() {
 
 // SASS -> CSS
 gulp.task('sass:compile', function() {
-  gulp.src(['./src/**/*.sass', './src/**/*.scss'])
+  gulp.src(ssFiles)
     .pipe(plumber())
     .pipe(sass())
     .pipe(gulp.dest('./app'));
@@ -60,9 +60,15 @@ gulp.task('sass:compile', function() {
 // Auto compile
 gulp.task('watch', function() {
   // *.ts, *.tsx(TypeScript React) -> compile
-  watch(tsFiles, function(){
+  watch(tsFiles, function() {
     gulp.run('ts:compile'); 
   });
+  
+  // *.sass, *.scss -> compile
+  watch(ssFiles, function() {
+    gulp.run('sass:compile');
+  });
+  
   // *.html, *.css -> copy
   watch(rsFiles, function() {
     gulp.start(['copy']);
