@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 import {Global} from '../global';
 import {Account} from '../models/account';
 
-export interface IUserProps {
+interface IUserProps {
   avatarImageUrl: string;
   name: string;
 }
