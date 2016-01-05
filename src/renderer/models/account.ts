@@ -1,11 +1,21 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-class Account {
+export class Account {
   token: string;
-  
-  // Username
+  accountId: number;
   name: string;
+  avatarImageUrl: string;
   
-  // Chatwork ID
-  chatworkId: string;
+  constructor(token, json?) {
+    this.token = token;
+    if(json) {
+      this.merge(json);
+    }
+  }
+  
+  merge(json) {
+    this.accountId = json.account_id;
+    this.name = json.name;
+    this.avatarImageUrl = json.avatar_image_url;
+  }
 }

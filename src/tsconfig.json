@@ -1,8 +1,12 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "jsx": "react",
-        "sourceMap": true
+		"module": "commonjs",
+		"noImplicitAny": false,
+		"removeComments": false,
+		"preserveConstEnums": true,
+		"target": "es2015",
+		"sourceMap": false,
+		"experimentalDecorators": true,
+    "jsx": "react"
     }
 }
