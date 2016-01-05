@@ -29,15 +29,20 @@ export class Root extends React.Component<IRootProps, IRoomState> {
     } as IRoomState;
     
     Global.Chatwork.rooms().then((r) => {
-      console.log(r);
       this.setState({ rooms: r });
     });
   }
   
+  onItemClick(id: number): React.EventHandler<React.MouseEvent> {
+    console.log(id);
+    return null;
+  }
+  
   render() {
     var rooms = this.state.rooms.map((room) => {
+      var onClick = this.onItemClick.bind(this, room.roomId);
       return (
-        <a className="item" id={room.roomId.toString()}>
+        <a key={room.roomId} className="item" onClick={onClick}>
           <img className="ui avatar image" src={room.iconPath} />
           <span>{room.name}</span>
         </a>
@@ -45,7 +50,7 @@ export class Root extends React.Component<IRootProps, IRoomState> {
     });
     return (
       <div>
-        <div className="ui sidebar vertical menu visible">
+        <div className="ui sidebar vertical inverted menu visible">
           <User avatarImageUrl={this.props.user.avatarImageUrl} name={this.props.user.name} />
           <div className="item">
             <div className="active header">

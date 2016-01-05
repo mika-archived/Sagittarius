@@ -8,3 +8,4 @@
 /// <reference path="rx/rx.d.ts" />
 /// <reference path="jquery/jquery.d.ts" />
 /// <reference path="semantic-ui/semantic-ui.d.ts" />
+/// <reference path="linq/linq.d.ts" />
