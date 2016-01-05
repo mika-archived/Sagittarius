@@ -8,8 +8,9 @@ import * as ReactDOM from 'react-dom';
 import * as $ from 'jquery';
 
 import {Account} from '../models/account';
+import {Chatroom} from './chatroom';
 import {Global} from '../global';
-import {Room} from '../models/room';
+import {Room, DummyRoom} from '../models/room';
 import {User} from './user';
 
 interface IRootProps {
@@ -18,6 +19,7 @@ interface IRootProps {
 
 interface IRoomState {
   rooms: Room[];
+  selectedRoom: number;
 }
 
 export class Root extends React.Component<IRootProps, IRoomState> {
@@ -29,16 +31,30 @@ export class Root extends React.Component<IRootProps, IRoomState> {
     } as IRoomState;
     
     Global.Chatwork.rooms().then((r) => {
-      this.setState({ rooms: r });
+      this.setState({ rooms: r, selectedRoom: 0 });
     });
+    this.getRoom.bind(this);
   }
   
   onItemClick(id: number): React.EventHandler<React.MouseEvent> {
-    console.log(id);
+    this.setState({ rooms: this.state.rooms, selectedRoom: id});
     return null;
   }
   
+  public getRoom(roomId: number): Room {
+    if(this.state.rooms.length == 0) {
+      return new DummyRoom();
+    }
+    var temp = this.state.rooms.filter((item, index, array) => item.roomId == roomId);
+    if(temp.length > 0) {
+      return temp[0];
+    } else {
+      return new DummyRoom();
+    }
+  }
+  
   render() {
+    console.log(this.state.rooms);
     var rooms = this.state.rooms.map((room) => {
       var onClick = this.onItemClick.bind(this, room.roomId);
       return (
@@ -50,7 +66,7 @@ export class Root extends React.Component<IRootProps, IRoomState> {
     });
     return (
       <div>
-        <div className="ui sidebar vertical inverted menu visible">
+        <div className="ui sidebar vertical left inverted menu visible">
           <User avatarImageUrl={this.props.user.avatarImageUrl} name={this.props.user.name} />
           <div className="item">
             <div className="active header">
@@ -62,6 +78,9 @@ export class Root extends React.Component<IRootProps, IRoomState> {
           </div>
         </div>
         <div className="pusher">
+          <div className="ui basic segment">
+            <Chatroom room={this.getRoom(this.state.selectedRoom)}/>
+          </div>
         </div>
       </div>
     );

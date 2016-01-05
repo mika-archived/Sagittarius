@@ -11,3 +11,13 @@ export class Room {
     this.iconPath = json.icon_path;
   }
 }
+
+export class DummyRoom extends Room {
+  constructor() {
+    super({
+      room_id: 0,
+      name: '',
+      icon_path: ''
+    });
+  }
+}
