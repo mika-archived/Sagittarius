@@ -32,10 +32,14 @@ export class Chatwork {
    */
   async rooms(): Promise<Room[]> {
     var json = await this.get('/rooms');
-    return new Promise<Room[]>((resolve) => {
-      json.map((element) => {
-        return new Room(json);
-      });
+    return new Promise<Room[]>((resolve, reject) => {
+      if(json == '') {
+        reject('Response does not json format.');
+      } else {
+        resolve(json.map((element) => {
+          return new Room(element);
+        }));
+      }
     });
   }
   

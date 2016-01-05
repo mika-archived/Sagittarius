@@ -6,6 +6,7 @@ export class Room {
   iconPath: string;
   
   constructor(json) {
+    console.log(json);
     this.roomId = json.room_id;
     this.name = json.name;
     this.iconPath = json.icon_path;
