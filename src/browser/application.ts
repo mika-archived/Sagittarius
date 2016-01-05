@@ -5,9 +5,9 @@ import * as electron from 'electron';
 import {app} from 'electron';
 import {BrowserWindow} from 'electron';
 
+import {Global} from '../renderer/global';
+
 export class Application {
-  
-  static MainWindow: GitHubElectron.BrowserWindow = null;
   
   constructor() {
     electron.crashReporter.start();
@@ -29,9 +29,9 @@ export class Application {
       minWidth: 500
     });
     window.loadURL('file://' + __dirname + '/../index.html');
-    window.on('closed', () => { Application.MainWindow = null; });
+    window.on('closed', () => { Global.MainWindow = null; });
     
-    Application.MainWindow = window;
+    Global.MainWindow = window;
   }
   
 }

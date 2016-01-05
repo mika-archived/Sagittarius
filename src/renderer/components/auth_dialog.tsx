@@ -8,19 +8,19 @@ import * as $ from 'jquery';
 import {Global} from '../global';
 import {Chatwork} from '../network/chatwork';
 
-interface AuthDialogState {
+interface IAuthDialogState {
   isDialogOpen: boolean;
   isApproving: boolean;
 }
 
-export class AuthDialog extends React.Component<any, AuthDialogState> {
+export class AuthDialog extends React.Component<any, IAuthDialogState> {
     
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isDialogOpen: true,
       isApproving: false
-    } as AuthDialogState;
+    } as IAuthDialogState;
       
     // ES6 classes no longer autobind 'this' to non React methods.
     this.onApprove = this.onApprove.bind(this);
@@ -30,6 +30,7 @@ export class AuthDialog extends React.Component<any, AuthDialogState> {
       $('.ui.modal')
         .modal('setting', 'closable', false)
         .modal('setting', 'onApprove', this.onApprove)
+        .modal('setting', 'onHidden', this.onHidden)
         .modal('show');
     }
   }
@@ -49,6 +50,10 @@ export class AuthDialog extends React.Component<any, AuthDialogState> {
       // fail
     });
     return false;
+  }
+  
+  onHidden() {
+    location.reload();
   }
     
   render() {
