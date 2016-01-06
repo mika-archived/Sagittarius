@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import * as $ from 'jquery';
+import * as Rx from 'rx';
 
 import {Global} from '../../global';
 import {Message} from '../../models/message';
@@ -19,11 +20,27 @@ export class ChatMessage extends React.Component<IChatMessagsProps, any> {
   }
   
   componentDidMount() {
-
+    this.register();
+  }
+  
+  componentWillUnmount() {
+    this.unregister();
+  }
+  
+  componentWillUpdate() {
+    this.unregister();
   }
   
   componentDidUpdate() {
+    this.register();
+  }
+  
+  private register(): void {
 
+  }
+  
+  private unregister(): void {
+    
   }
   
   render() {
