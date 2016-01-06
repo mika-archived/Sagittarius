@@ -69,12 +69,13 @@ export class DocumentFormatter {
       }
       if(match[1].indexOf('[download') >= 0) {
         var match2 = new RegExp('\\[download:([0-9]+)\\](.*)?\\[/download\\]').exec(raw);
-        text = '<div class="ui attached segment">' + match2[2] + '</div>';
+        text = '<div class="ui attached segment">';
+        text += '<a href="https://www.chatwork.com/gateway.php?cmd=download_file&bin=1&file_id=' + match2[1] + '">';
+        text += match2[2] + '</div>';
         match[1] = match[1].replace(match2[0], '');
       } 
       else if(match[1].indexOf('[task') >= 0) {
         var match3 = new RegExp('\\[task aid=([0-9,]+) st=(.*) lt=([0-9]+)\\](.*)?\\[/task\\]').exec(raw);
-                console.log(match3);
         var clas = 'ui bottom attached segment';
         text = '<div class="ui attached segment">' + match3[4] + '</div>';
         if(match3[2] == 'done') {
