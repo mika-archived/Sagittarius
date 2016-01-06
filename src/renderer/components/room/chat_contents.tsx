@@ -5,6 +5,7 @@
 import * as React from 'react';
 import * as $ from 'jquery';
 
+import {ChatMessage} from './chat_message';
 import {Global} from '../../global';
 import {Message} from '../../models/message';
 import {Room} from '../../models/room';
@@ -31,25 +32,12 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
   }
   
   render() {
+    var messages = this.state.messages.map((m) => {
+      <ChatMessage message={m} />
+    });
     return (
       <div className="ui comments fixed-top scrollable">
-        <div className="comment">
-          <a className="avatar">
-            <img src={this.props.room.iconPath} />
-          </a>
-          <div className="content">
-            <a className="author">Matt</a>
-            <div className="metadata">
-              <span className="date">Today at 5:42PM</span>
-            </div>
-            <div className="text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dolor orci, porttitor eu efficitur at, fermentum id dui. Nullam eget fermentum ante, a hendrerit metus. Aenean ac ante et felis finibus bibendum. Nulla orci est, semper nec lectus eget, hendrerit imperdiet tellus. Cras convallis egestas mi, non lacinia ipsum. Donec nisl mi, semper nec varius in, cursus eget sem. Mauris elementum ornare tristique. Donec vel neque sit amet erat luctus porttitor quis ac dolor.
-            </div>
-            <div className="actions">
-              <a className="reply">Reply</a>
-            </div>
-          </div>
-        </div>
+          {messages}
       </div>
     );
   }

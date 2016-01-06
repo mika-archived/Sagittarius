@@ -12,33 +12,9 @@ body{
   min-height: 100%;
 }
 
-.ui.custom.segment {
-  position: inherit;
-  max-height: 100%;
-}
-
 .filled-width {
   max-width: calc(100% - 260px);
   width: calc(100% - 260px);
-}
-
-.ui.menu .item.filled-item {
-  width: 100%;
-}
-
-.ui.form.filled {
-  width: 100%;
-}
-
-.ui.comments.fixed-top {
-  position: absolute;
-  top: 55px;
-  bottom: 65px;
-  margin: 1px 0;
-  width: calc(100% - 20px);
-  max-width: calc(100% - 20px);
-  max-height: calc(100% - 120px);
-  overflow:auto;
 }
 
 .srcollable {
