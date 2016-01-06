@@ -32,7 +32,14 @@ export class Chatroom extends React.Component<IChatroomProps, any> {
       );
     } else {
       return (
-        <p>Chatroom {this.props.room.name}</p>
+        <div>
+          <div className="ui top fixed borderless menu">
+            <div className="item">
+              {this.props.room.name}
+            </div>
+          </div>
+          <div className="ui bottom fixed menu">Button after grid</div>
+        </div>
       );
     }
   }

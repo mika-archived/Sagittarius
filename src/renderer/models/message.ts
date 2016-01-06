@@ -12,4 +12,10 @@ export class Message {
     this.account = new Account(json.account);
     this.body = json.body;
   }
+  
+  toHtml(): string {
+    var html = '';
+    html += this.body;
+    return html;
+  }
 }
