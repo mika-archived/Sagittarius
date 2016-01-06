@@ -5,6 +5,7 @@
 import * as React from 'react';
 import * as $ from 'jquery';
 
+import {ChatContents} from './room/chat_contents';
 import {Global} from '../global';
 import {MessageBox} from './room/message_box';
 import {Room, DummyRoom} from '../models/room';
@@ -37,6 +38,7 @@ export class Chatroom extends React.Component<IChatroomProps, any> {
       return (
         <div>
           <RoomInfo room={this.props.room} />
+          <ChatContents room={this.props.room} />
           <MessageBox room={this.props.room} />
         </div>
       );
