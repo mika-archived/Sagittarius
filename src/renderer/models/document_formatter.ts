@@ -70,7 +70,7 @@ export class DocumentFormatter {
       if(match[1].indexOf('[download') >= 0) {
         var match2 = new RegExp('\\[download:([0-9]+)\\](.*)?\\[/download\\]').exec(raw);
         text = '<div class="ui attached segment">';
-        text += '<a href="https://www.chatwork.com/gateway.php?cmd=download_file&bin=1&file_id=' + match2[1] + '">';
+        text += '<a href="#" onClick="openLink(\'https://www.chatwork.com/gateway.php?cmd=download_file&bin=1&file_id=' + match2[1] + '\');">';
         text += match2[2] + '</div>';
         match[1] = match[1].replace(match2[0], '');
       } 
