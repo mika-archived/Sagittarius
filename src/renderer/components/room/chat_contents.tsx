@@ -36,6 +36,10 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
     this.register();
   }
   
+  componentDidUpdate() {
+    $('#chatMessages').animate({scrollTop: $('#chatMessages')[0].scrollHeight}, 'fast');
+  }
+  
   componentWillUnmount() {
     this.unregister();
     this.isFirst = true;
@@ -72,7 +76,7 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
       return (<ChatMessage message={m} key={m.messageId} />);
     });
     return (
-      <div className="ui comments fixed-top scrollable">
+      <div className="ui comments fixed-top scrollable" id="chatMessages">
           {messages}
       </div>
     );
