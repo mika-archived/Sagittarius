@@ -21,6 +21,10 @@ export class RoomInfo extends React.Component<IRoomInfoProp, any> {
     $('.jq-popup').popup();
   }
   
+  componentDidUpdate() {
+    $('.jq-popup').popup();
+  }
+  
   render() {
     var members = this.props.room.members.map((v) => {
       return (
