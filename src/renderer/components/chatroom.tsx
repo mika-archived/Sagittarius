@@ -37,7 +37,7 @@ export class Chatroom extends React.Component<IChatroomProps, any> {
       return (
         <div>
           <RoomInfo room={this.props.room} />
-          <MessageBox />
+          <MessageBox room={this.props.room} />
         </div>
       );
     }
