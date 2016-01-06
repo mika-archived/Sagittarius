@@ -6,7 +6,10 @@ import * as React from 'react';
 import * as $ from 'jquery';
 
 import {Global} from '../global';
+import {MessageBox} from './room/message_box';
 import {Room, DummyRoom} from '../models/room';
+import {RoomInfo} from './room/room_info';
+
 
 interface IChatroomProps {
   room: Room;
@@ -22,7 +25,7 @@ export class Chatroom extends React.Component<IChatroomProps, any> {
       return (
         <div className="ui active inverted dimmer">
           <div className="content">
-            <div className="center centering">
+            <div className="center">
               <h2 className="ui header">
                 Not chatroom selected.
               </h2>
@@ -33,12 +36,8 @@ export class Chatroom extends React.Component<IChatroomProps, any> {
     } else {
       return (
         <div>
-          <div className="ui top fixed borderless menu">
-            <div className="item">
-              {this.props.room.name}
-            </div>
-          </div>
-          <div className="ui bottom fixed menu">Button after grid</div>
+          <RoomInfo room={this.props.room} />
+          <MessageBox />
         </div>
       );
     }

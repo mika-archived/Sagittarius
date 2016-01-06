@@ -85,7 +85,7 @@ export class Root extends React.Component<IRootProps, IRoomState> {
             </div>
           </div>
         </div>
-        <div className="pusher filled">
+        <div className="pusher filled filled-width">
           <div className="ui basic custom segment">
             <Chatroom room={this.getRoom(this.state.selectedRoom)}/>
           </div>

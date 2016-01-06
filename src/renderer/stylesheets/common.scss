@@ -14,9 +14,7 @@ body{
   position: inherit;
 }
 
-.centering {
+.filled-width {
   max-width: calc(100% - 260px);
   width: calc(100% - 260px);
-  position: relative;
-  left: -130px;
 }

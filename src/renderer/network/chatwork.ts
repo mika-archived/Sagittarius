@@ -6,6 +6,7 @@ var querystring = require('querystring');
 import {Account} from '../models/account';
 import {Message} from '../models/message';
 import {Room} from '../models/room';
+import {User} from '../models/user';
 
 // とりあえず使うものだけピックアップ
 export class Chatwork {
@@ -54,14 +55,14 @@ export class Chatwork {
   /**
    * チャットのメンバー一覧を取得
    */
-  async roomMembers(id: number): Promise<Account[]> {
+  async roomMembers(id: number): Promise<User[]> {
     var json = await this.get('/rooms/' + id + '/members');
-    return new Promise<Account[]>((resolve, reject) => {
+    return new Promise<User[]>((resolve, reject) => {
       if(json == '') {
         reject('Response does not json format.');
       } else {
         resolve(json.map((element) => {
-          return new Account(element);
+          return new User(element);
         }));
       }
     });
