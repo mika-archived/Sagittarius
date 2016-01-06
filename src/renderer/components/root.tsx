@@ -62,7 +62,6 @@ export class Root extends React.Component<IRootProps, IRoomState> {
   }
   
   render() {
-    console.log(this.state.rooms);
     var rooms = this.state.rooms.map((room) => {
       var onClick = this.onItemClick.bind(this, room.roomId);
       return (

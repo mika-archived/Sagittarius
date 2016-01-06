@@ -18,7 +18,6 @@ interface ILoginUserProps {
 export class LoginUser extends React.Component<ILoginUserProps, any> {
   constructor(props) {
     super(props);
-    console.log(this.props);
   }
   
   render() {
