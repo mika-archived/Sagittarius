@@ -4,7 +4,9 @@
 
 import * as React from 'react';
 import * as $ from 'jquery';
+import * as Rx from 'rx';
 
+import {API} from '../../models/api';
 import {ChatMessage} from './chat_message';
 import {Global} from '../../global';
 import {Message} from '../../models/message';
@@ -19,21 +21,58 @@ interface IChatContentsStates {
 }
 
 export class ChatContents extends React.Component<IChatContentsProps, IChatContentsStates> {
+  disposable: Rx.IDisposable;
+  isFirst: boolean;
+  
   constructor(props) {
     super(props);
+    this.isFirst = true;
+    this.state = {
+      messages: []
+    } as IChatContentsStates;
   }
   
   componentDidMount() {
-
+    this.register();
   }
   
-  componentDidUpdate() {
-
+  componentWillUnmount() {
+    this.unregister();
+    this.isFirst = true;
+  }
+  
+  componentWillUpdate() {
+    this.unregister();
+    this.isFirst = true;
+  }
+  
+  componentWillReceiveProps() {
+    this.register();
+  }
+  
+  private register(): void {
+    this.disposable = Rx.Observable.interval(API.messages)
+      .timeInterval()
+      .subscribe(w => {
+        console.log(this.isFirst);
+        Global.Chatwork.roomMessages(this.props.room.roomId, this.isFirst).then((v) => {
+          this.isFirst = false;
+          var messages = this.state.messages;
+          v.forEach((e) => {
+            messages.push(e);
+          });
+          this.setState({messages: messages});
+      });
+    });
+  }
+  
+  private unregister(): void {
+    this.disposable.dispose();
   }
   
   render() {
     var messages = this.state.messages.map((m) => {
-      <ChatMessage message={m} />
+      return (<ChatMessage message={m} key={m.messageId} />);
     });
     return (
       <div className="ui comments fixed-top scrollable">

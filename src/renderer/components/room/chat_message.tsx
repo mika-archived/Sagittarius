@@ -4,7 +4,6 @@
 
 import * as React from 'react';
 import * as $ from 'jquery';
-import * as Rx from 'rx';
 
 import {Global} from '../../global';
 import {Message} from '../../models/message';
@@ -12,37 +11,14 @@ import {Room} from '../../models/room';
 
 interface IChatMessagsProps {
   message: Message;
+  key: any; // Upper component error 
 }
 
 export class ChatMessage extends React.Component<IChatMessagsProps, any> {
   constructor(props) {
     super(props);
   }
-  
-  componentDidMount() {
-    this.register();
-  }
-  
-  componentWillUnmount() {
-    this.unregister();
-  }
-  
-  componentWillUpdate() {
-    this.unregister();
-  }
-  
-  componentDidUpdate() {
-    this.register();
-  }
-  
-  private register(): void {
 
-  }
-  
-  private unregister(): void {
-    
-  }
-  
   render() {
     return (
       <div className="comment">

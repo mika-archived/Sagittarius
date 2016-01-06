@@ -130,8 +130,11 @@ export class Chatwork {
     };
     return new Promise((resolve, reject) => {
       request.get(options, (error, response, body) => {
+        console.log(options);
+        console.log(response);
+        console.log(body);
         console.log('X-RateLimit-Remaining: ' + response.headers['x-ratelimit-remaining']);
-        console.log('X-ReteLimit-Reset' + new Date(+response.headers['x-ratelimit-reset'] * 1000).toLocaleString());
+        console.log('X-ReteLimit-Reset: ' + new Date(+response.headers['x-ratelimit-reset'] * 1000).toLocaleString());
         if (!error && response.statusCode == 200) {
           resolve(body);
         } else {
