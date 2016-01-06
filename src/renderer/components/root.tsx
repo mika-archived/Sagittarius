@@ -38,6 +38,14 @@ export class Root extends React.Component<IRootProps, IRoomState> {
   
   onItemClick(id: number): React.EventHandler<React.MouseEvent> {
     this.setState({ rooms: this.state.rooms, selectedRoom: id});
+    this.state.rooms.forEach((r) => {
+      if(r.roomId == id) {
+        $('#' + r.roomId).addClass('active');
+      } else {
+        $('#' + r.roomId).removeClass('active');
+      }
+    });
+    
     return null;
   }
   
@@ -58,7 +66,7 @@ export class Root extends React.Component<IRootProps, IRoomState> {
     var rooms = this.state.rooms.map((room) => {
       var onClick = this.onItemClick.bind(this, room.roomId);
       return (
-        <a key={room.roomId} className="item" onClick={onClick}>
+        <a key={room.roomId} className="item" onClick={onClick} id={room.roomId.toString()}>
           <img className="ui avatar image" src={room.iconPath} />
           <span>{room.name}</span>
         </a>
