@@ -24,7 +24,14 @@ export class MessageBox extends React.Component<IMessageBoxProps, any> {
   componentDidMount() {
     $('#chatText').keypress(e => {
       if(e.keyCode == 13 /* ENTER */) {
-        console.log($('#chatText').val());
+        $('#formRoot').addClass('loading');
+        Global.Chatwork.newRoomMessage(this.props.room.roomId, $('#chatText').val()).then(() => {
+          $('#chatText').val('');
+          $('#formRoot').removeClass('loading');
+        }).catch(() => {
+          $('#chatText').popup('toggle');
+          $('#formRoot').removeClass('loading');
+        });
         return false;
       }
     });
@@ -50,9 +57,9 @@ export class MessageBox extends React.Component<IMessageBoxProps, any> {
     return (
       <div className="ui bottom fixed menu">
         <div className="item filled-item">
-          <div className="ui form filled">
+          <div className="ui form filled" id="formRoot">
             <div className="sixteen wide field">
-              <input type="text" id="chatText"/>
+              <input type="text" id="chatText" data-content="Error occurred during sending message."/>
             </div>
           </div>
         </div>
