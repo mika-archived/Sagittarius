@@ -16,10 +16,4 @@ export class Message {
     this.createdAt = new Date(+json.send_time * 1000);
     this.updatedAt = new Date(+json.update_time * 1000);
   }
-  
-  toHtml(): string {
-    var html = '';
-    html += this.body;
-    return html;
-  }
 }

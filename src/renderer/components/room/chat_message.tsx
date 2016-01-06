@@ -5,12 +5,14 @@
 import * as React from 'react';
 import * as $ from 'jquery';
 
+import {DocumentFormatter} from '../../models/document_formatter';
 import {Global} from '../../global';
 import {Message} from '../../models/message';
 import {Room} from '../../models/room';
 
 interface IChatMessagsProps {
   message: Message;
+  room: Room;
   key: any; // Upper component error 
 }
 
@@ -30,8 +32,7 @@ export class ChatMessage extends React.Component<IChatMessagsProps, any> {
           <div className="metadata">
             <span className="date">{this.props.message.createdAt.toLocaleString()}</span>
           </div>
-          <div className="text">
-            {this.props.message.toHtml()}
+          <div className="text" dangerouslySetInnerHTML={{__html: new DocumentFormatter(this.props.message, this.props.room).format()}}>
           </div>
           <div className="actions">
             <a className="reply">Reply</a>

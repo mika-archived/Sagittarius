@@ -73,7 +73,7 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
   
   render() {
     var messages = this.state.messages.map((m) => {
-      return (<ChatMessage message={m} key={m.messageId} />);
+      return (<ChatMessage message={m} room={this.props.room} key={m.messageId} />);
     });
     return (
       <div className="ui comments fixed-top scrollable" id="chatMessages">
