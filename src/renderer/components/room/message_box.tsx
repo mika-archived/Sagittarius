@@ -15,8 +15,12 @@ export class MessageBox extends React.Component<any, any> {
   render() {
     return (
       <div className="ui bottom fixed menu">
-        <div className="item">
-          Hello?
+        <div className="item filled-item">
+          <div className="ui form filled">
+            <div className="sixteen wide field">
+              <input type="text" />
+            </div>
+          </div>
         </div>
       </div>
     );
