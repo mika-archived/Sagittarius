@@ -51,6 +51,25 @@ export class Chatwork {
     return new Promise<Room>((resolve) => resolve(new Room(json)));
   }
   
+  /**
+   * チャットのメンバー一覧を取得
+   */
+  async roomMembers(id: number): Promise<Account[]> {
+    var json = await this.get('/rooms/' + id + '/members');
+    return new Promise<Account[]>((resolve, reject) => {
+      if(json == '') {
+        reject('Response does not json format.');
+      } else {
+        resolve(json.map((element) => {
+          return new Account(element);
+        }));
+      }
+    });
+  }
+  
+  /**
+   * チャットのメッセージ一覧を取得。パラメータ未指定だと前回取得分からの差分のみを返します。(最大100件まで取得)
+   */
   async roomMessages(id: number, isForce: boolean): Promise<Message> {
     var json = await this.get('/rooms/' + id + '/messages', { force: isForce ? 1 : 0});
     return new Promise<Message>((resolve) => resolve(json));

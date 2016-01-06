@@ -11,7 +11,7 @@ import {Account} from '../models/account';
 import {Chatroom} from './chatroom';
 import {Global} from '../global';
 import {Room, DummyRoom} from '../models/room';
-import {User} from './user';
+import {LoginUser} from './login_user';
 
 interface IRootProps {
   user: Account;
@@ -75,7 +75,7 @@ export class Root extends React.Component<IRootProps, IRoomState> {
     return (
       <div className="filled">
         <div className="ui sidebar vertical left menu visible">
-          <User avatarImageUrl={this.props.user.avatarImageUrl} name={this.props.user.name} />
+          <LoginUser avatarImageUrl={this.props.user.avatarImageUrl} name={this.props.user.name} />
           <div className="item">
             <div className="active header">
               Chatrooms

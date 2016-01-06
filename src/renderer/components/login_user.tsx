@@ -10,12 +10,12 @@ import * as $ from 'jquery';
 import {Global} from '../global';
 import {Account} from '../models/account';
 
-interface IUserProps {
+interface ILoginUserProps {
   avatarImageUrl: string;
   name: string;
 }
 
-export class User extends React.Component<IUserProps, any> {
+export class LoginUser extends React.Component<ILoginUserProps, any> {
   constructor(props) {
     super(props);
     console.log(this.props);
