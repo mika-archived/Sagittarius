@@ -1,3 +1,3 @@
-# Sagittarius
-
-うっすらできているけど、そのうち書きなおすべき。
+Sagittarius
+----
+[Chatwork](http://www.chatwork.com/) desktop application like Slack.
