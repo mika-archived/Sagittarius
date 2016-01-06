@@ -41,12 +41,10 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
     this.isFirst = true;
   }
   
-  componentWillUpdate() {
+  componentWillReceiveProps() {
     this.unregister();
     this.isFirst = true;
-  }
-  
-  componentWillReceiveProps() {
+    this.state.messages = [];
     this.register();
   }
   
@@ -54,7 +52,6 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
     this.disposable = Rx.Observable.interval(API.messages)
       .timeInterval()
       .subscribe(w => {
-        console.log(this.isFirst);
         Global.Chatwork.roomMessages(this.props.room.roomId, this.isFirst).then((v) => {
           this.isFirst = false;
           var messages = this.state.messages;
