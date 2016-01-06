@@ -49,7 +49,7 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
   }
   
   private register(): void {
-    this.disposable = Rx.Observable.interval(API.messages)
+    this.disposable = Rx.Observable.timer(0, API.messages)
       .timeInterval()
       .subscribe(w => {
         Global.Chatwork.roomMessages(this.props.room.roomId, this.isFirst).then((v) => {
