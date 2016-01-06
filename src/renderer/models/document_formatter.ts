@@ -22,7 +22,6 @@ export class DocumentFormatter {
     raw = this.parseChatworkDocumentCode(raw);
     raw = this.parseChatworkDocumentInfo(raw);
     raw = this.parseChatworkDocumentQuote(raw);
-    raw = this.parseChatworkDocumentTask(raw);
     raw = this.parseChatworkDocumentTo(raw);
     raw = this.parseChatworkDocumentReply(raw);
     raw = this.parseChatworkDocumentPicon(raw);
@@ -58,16 +57,44 @@ export class DocumentFormatter {
   
   // [info]hoge[/info], [info][title]foo[/title]bar[/info], [info][title]foo[/title][download:{file_id}]...[/download][/info]
   private parseChatworkDocumentInfo(raw: string): string {
+    var regex = new RegExp('\\[info\\](.*)?\\[/info\\]');
+    while(regex.test(raw)) {
+      var match = regex.exec(raw);
+      var html = '';
+      var title = '', task = '', text = '';
+      if(match[1].indexOf('[title]') >= 0) {
+        var match1 = new RegExp('\\[title\\](.*)?\\[/title\\]').exec(raw);
+        title = '<div class="ui top attached header">' + match1[1] + '</div>'; 
+        match[1] = match[1].replace(match1[0], '');
+      }
+      if(match[1].indexOf('[download') >= 0) {
+        var match2 = new RegExp('\\[download:([0-9]+)\\](.*)?\\[/download\\]').exec(raw);
+        text = '<div class="ui attached segment">' + match2[2] + '</div>';
+        match[1] = match[1].replace(match2[0], '');
+      } 
+      else if(match[1].indexOf('[task') >= 0) {
+        var match3 = new RegExp('\\[task aid=([0-9,]+) st=(.*) lt=([0-9]+)\\](.*)?\\[/task\\]').exec(raw);
+                console.log(match3);
+        var clas = 'ui bottom attached segment';
+        text = '<div class="ui attached segment">' + match3[4] + '</div>';
+        if(match3[2] == 'done') {
+          clas += ' secondary';
+        }
+        task = '<div class="' + clas + '">期限:' + new Date(+match3[3] * 1000).toLocaleDateString() + 'まで</div>';
+        match[1] = match[1].replace(match3[0], '');
+      } else {
+        text = '<div class="ui attached segment">' + match[1] + '</div>';
+      }
+      html += title;
+      html += text;
+      html += task;
+      raw = raw.replace(regex, html);
+    }
     return raw;
   }
   
   // [qt][qtmeta aid={account_id} time={timestamp}]...[/qt], [qt][qtmeta aid={account_id}]...[/qt]
   private parseChatworkDocumentQuote(raw: string): string {
-    return raw;
-  }
-  
-  // [task aid={account_id} st={status} lt={???}]...[/task]
-  private parseChatworkDocumentTask(raw: string): string {
     return raw;
   }
   
