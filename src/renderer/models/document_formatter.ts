@@ -11,7 +11,7 @@ export class DocumentFormatter {
   constructor(private message: Message, private room: Room) {
   }
   
-   format(): string {
+  format(): string {
     var html = this.message.body;
     html = html.replace(/&/g, '&amp;');
     html = html.replace(/</g, '&lt;');
@@ -103,6 +103,30 @@ export class DocumentFormatter {
   
   // [qt][qtmeta aid={account_id} time={timestamp}]...[/qt], [qt][qtmeta aid={account_id}]...[/qt]
   private parseChatworkDocumentQuote(raw: string): string {
+    var regex = new RegExp('\\[qt\\](.*)?\\[/qt\\]');
+    while(regex.test(raw)) {
+      var match = regex.exec(raw);
+      var html = '<blockquote>', cite = '';
+      if(match[0].indexOf('[qtmeta') >= 0) {
+        var match1 = new RegExp('\\[qtmeta aid=([0-9]+)?( time=([0-9]+)?)?\\]').exec(raw);
+        var name = '';
+        this.room.members.some((w) => {
+          if(w.userId == +match1[1]) {
+            name = w.name;
+            return true;
+          }
+          return false;
+        });
+        cite = '<br><cite>' + name;
+        if(match1[3] != null) {
+          cite += ' - ' + new Date(+match1[3] * 1000).toLocaleDateString();
+        }
+        cite += '</cite>'; 
+        match[1] = match[1].replace(match1[0], '');
+      }
+      html += match[1] + cite + '</blockquote>';
+      raw = raw.replace(regex, html);
+    }
     return raw;
   }
   

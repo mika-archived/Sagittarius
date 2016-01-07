@@ -6,6 +6,41 @@ body{
   overflow-x: hidden;
 }
 
+blockquote {
+  display:block;
+  background: #eeeeee;
+  padding: 10px 15px 20px 25px;
+  margin: 0 0 20px;
+  position: relative;
+  border-left: 5px solid #767676;
+}
+
+blockquote::before{
+  content: "\201C"; /*Unicode for Left Double Quote*/
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #999;
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+blockquote::after{
+  content: "";
+}
+
+cite {
+  display: block;
+  position: absolute;
+  right: 10px;
+}
+
+cite::before {
+  position: relative;
+}
+
+
 #root, .filled {
   height: 100%!important;
   max-height: 100%;
