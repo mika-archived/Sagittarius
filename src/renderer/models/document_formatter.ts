@@ -16,7 +16,7 @@ export class DocumentFormatter {
     html = html.replace(/&/g, '&amp;');
     html = html.replace(/</g, '&lt;');
     html = html.replace(/>/g, '&gt;');
-    html = html.replace(/\r?\n/g, '<br />');
+    html = html.replace(/\r?\n/g, '<br/>');
     return this.parseChatworkDocument(html);
   }
 
@@ -33,7 +33,7 @@ export class DocumentFormatter {
     raw = this.parseChatworkDocumentHr(raw);
     raw = this.parseChatworkDocumentDeleted(raw);
     raw = this.parseChatworkDocumentDtext(raw);
-    return raw;
+    return raw.trim();
   }
   
   // [code]...[/code]
@@ -51,6 +51,7 @@ export class DocumentFormatter {
       var f = raw.substr(0, first);
       var c = raw.substring(first + 6, end);
       c = c.replace(/\[code\]/g, '&#x5b;code&#x5d;');
+      c = c.replace(/\x20/g, '&nbsp;');
       var e = raw.substr(end + 7);
       raw = f + '<code>' + c + '</code>' + e;
       position = end;
