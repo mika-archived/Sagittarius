@@ -34,10 +34,12 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
   
   componentDidMount() {
     this.register();
+    $('.jq-popup').popup();
   }
   
   componentDidUpdate() {
     $('#chatMessages').animate({scrollTop: $('#chatMessages')[0].scrollHeight}, 'fast');
+    $('.jq-popup').popup();
   }
   
   componentWillUnmount() {

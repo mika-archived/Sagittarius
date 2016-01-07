@@ -23,6 +23,7 @@ export class DocumentFormatter {
   private parseChatworkDocument(raw: string): string {
     // TODO: いい感じに
     raw = this.parseChatworkDocumentCode(raw);
+    raw = this.parseChatworkDocumentUrl(raw);
     raw = this.parseChatworkDocumentInfo(raw);
     raw = this.parseChatworkDocumentQuote(raw);
     raw = this.parseChatworkDocumentTo(raw);
@@ -66,7 +67,6 @@ export class DocumentFormatter {
       var match = regex.exec(raw);
       var html = '';
       var title = '', task = '', text = '';
-      console.log(match);
       if(match[1].indexOf('[title]') >= 0) {
         var match1 = new RegExp('\\[title\\](.*)?\\[/title\\]').exec(raw);
         title = '<div class="ui top attached header">' + match1[1] + '</div>'; 
@@ -236,6 +236,10 @@ export class DocumentFormatter {
     return raw.replace(/\[deleted\]/g, '<i>Deleted message</i>');
   };
   
+  // =============================================
+  // Chatwork dtext: translation
+  // ---------------------------------------------
+  
   private texts = {
     'chatroom_added'             : '」を追加しました。',
     'chatroom_chatname_is'       : 'チャット名を「',
@@ -262,7 +266,18 @@ export class DocumentFormatter {
     return raw;
   }
   
-  private insert(obj: string, idx: number, s: string): string {
-    return (obj.slice(0, idx) + s + obj.slice(idx + Math.abs(0)));
+  // =============================================
+  // URL Parse
+  // ---------------------------------------------
+    
+  private parseChatworkDocumentUrl(raw: string): string {
+    var regex = /s?https?:\/\/[-_.!~*'()a-zA-Z0-9;\/?:@&=+$,%#]+/;
+    var domainRegex = /s?https?:\/\/[-_.!~*'()a-zA-Z0-9;?:@&=+$,%#]+/;
+    if(regex.test(raw)) {
+      raw = raw.replace(
+        /s?(https?:\/\/([-_.!~*'()a-zA-Z0-9;:@&=+$,%#]+)(\/[-_.!~*'()a-zA-Z0-9;\/?:@&=+$,%#]+)?)/g,
+        '<a href="#" onClick="openLink(\'$1\')" data-content="$1" data-variation="very wide" class="jq-popup">$2</a>');
+    }
+    return raw;
   }
 }
