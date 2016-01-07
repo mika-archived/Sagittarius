@@ -3,6 +3,9 @@
 import {Message} from './message';
 import {Room} from './room';
 
+/**
+ * Chatwork 記法を HTML にするやつ
+ */
 export class DocumentFormatter {
   
   constructor(private message: Message, private room: Room) {
@@ -81,7 +84,11 @@ export class DocumentFormatter {
         if(match3[2] == 'done') {
           clas += ' secondary';
         }
-        task = '<div class="' + clas + '">期限:' + new Date(+match3[3] * 1000).toLocaleDateString() + 'まで</div>';
+        var date = new Date(+match3[3] * 1000).toLocaleDateString() + 'まで';
+        if(+match3[3] == 0) {
+          date = '未設定';
+        }
+        task = '<div class="' + clas + '">期限:' + date + '</div>';
         match[1] = match[1].replace(match3[0], '');
       } else {
         text = '<div class="ui attached segment">' + match[1] + '</div>';
