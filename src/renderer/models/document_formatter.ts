@@ -3,6 +3,8 @@
 import {Message} from './message';
 import {Room} from './room';
 
+var punycode = require('punycode');
+
 /**
  * Chatwork 記法を HTML にするやつ
  */
@@ -275,8 +277,12 @@ export class DocumentFormatter {
     var domainRegex = /s?https?:\/\/[-_.!~*'()a-zA-Z0-9;?:@&=+$,%#]+/;
     if(regex.test(raw)) {
       raw = raw.replace(
-        /s?(https?:\/\/([-_.!~*'()a-zA-Z0-9;:@&=+$,%#]+)(\/[-_.!~*'()a-zA-Z0-9;\/?:@&=+$,%#]+)?)/g,
-        '<a href="#" onClick="openLink(\'$1\')" data-content="$1" data-variation="very wide" class="jq-popup">$2</a>');
+        /s?((https?:\/\/)([-_.!~*'()a-zA-Z0-9;:@&=+$,%#]+)(\/[-_.!~*'()a-zA-Z0-9;\/?:@&=+$,%#]+)?)/g,
+        (input, $1, $2, $3, $4) => {
+          return '<a href="#" onClick="openLink(\'' + $1 + '\')" data-content="' + $2 + punycode.toUnicode($3) + $4 +  
+            '" data-variation="very wide" class="jq-popup">' + punycode.toUnicode($3) + '</a>';
+        }
+      );
     }
     return raw;
   }

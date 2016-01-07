@@ -9,7 +9,7 @@
     "prestart": "npm run build",
     "start": "electron .",
     "prepack": "npm run build",
-    "pack": "electron-packager . Sagittarius --platform=all --arch=x64 --version=0.36.1 --out=dist --ignore={.vscode,bin,dist,src}/*"
+    "pack": "electron-packager . Sagittarius --platform=all --arch=x64 --version=0.36.1 --out=dist --ignore={.vscode,bin,dist,src}/* --prune=true --asar=true"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "babel-polyfill": "^6.3.14",
     "jquery": "^2.1.4",
     "node-notifier": "^4.4.0",
+    "punycode": "^1.4.0",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
     "rx": "^4.0.7",
