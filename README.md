@@ -1,6 +1,19 @@
 Sagittarius
 ----
-[Chatwork](http://www.chatwork.com/) desktop application like Slack.
+Slack ぽい UI の [Chatwork](http://www.chatwork.com/) デスクトップアプリ。
 
-### Screen Shot
-![alt](./screenshots/2311a40.png)
+### スクリーン
+![alt](./screenshots/aa1e5ba.png)
+
+
+### 機能
+
+* チャット(閲覧、送信)
+* デスクトップ通知
+
+
+### 予定
+
+* タスク管理
+* ルーム作成
+* ルーム管理
