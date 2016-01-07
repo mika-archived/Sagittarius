@@ -24,3 +24,5 @@
 /// <reference path="rx/rx.time-lite.d.ts" />
 /// <reference path="rx/rx.time.d.ts" />
 /// <reference path="rx/rx.virtualtime.d.ts" />
+/// <reference path="node-notifier/node-notifier.d.ts" />
+
