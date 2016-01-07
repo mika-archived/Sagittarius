@@ -134,6 +134,21 @@ export class DocumentFormatter {
   
   // [To:{account_id}]
   private parseChatworkDocumentTo(raw: string): string {
+    var regex = new RegExp('\\[To:([0-9]+)\\]');
+    while(regex.test(raw)) {
+      var match = regex.exec(raw);
+      var icon = '';
+      this.room.members.some((w) => {
+        if(w.userId == +match[1]) {
+          icon = w.avatarImageUrl;
+          return true;
+        }
+        return false;
+      });
+      var html = '<div class="ui green horizontal small label">To</div>';
+      html += '<img class="picon" src="' + icon + '">';
+      raw = raw.replace(match[0], html);
+    }
     return raw;
   }
   
