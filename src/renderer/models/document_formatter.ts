@@ -65,6 +65,7 @@ export class DocumentFormatter {
       var match = regex.exec(raw);
       var html = '';
       var title = '', task = '', text = '';
+      console.log(match);
       if(match[1].indexOf('[title]') >= 0) {
         var match1 = new RegExp('\\[title\\](.*)?\\[/title\\]').exec(raw);
         title = '<div class="ui top attached header">' + match1[1] + '</div>'; 
@@ -183,6 +184,14 @@ export class DocumentFormatter {
     
   // [preview id=****** ht=150]
   private parseChatworkDocumentPreview(raw: string): string {
+    var regex = new RegExp('\\[preview id=([0-9]+)(.*)\\]');
+    while(regex.test(raw)) {
+      var match = regex.exec(raw);
+      var html = '<i>Preview unavailable: ';
+      html += '<a href="#" onClick="openLink(\'https://www.chatwork.com/gateway.php?cmd=download_file&bin=1&file_id=' + match[1] + '\');">';
+      html += 'Download Link</a></i>';
+      raw = raw.replace(match[0], html);
+    }
     return raw;
   }
   
