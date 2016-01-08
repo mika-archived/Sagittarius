@@ -4,8 +4,11 @@
 import * as electron from 'electron';
 import {app} from 'electron';
 import {BrowserWindow} from 'electron';
+import * as Notifier from 'node-notifier';
 
 import {Global} from '../renderer/global';
+
+var ipc = require('ipc');
 
 export class Application {
   
@@ -14,6 +17,7 @@ export class Application {
     
     app.on('window-all-closed', this.onWindowAllClosed); 
     app.on('ready', this.onReady);
+    ipc.on('desktop-notification', this.desktopNotification);
   }
   
   private onWindowAllClosed() {
@@ -32,6 +36,12 @@ export class Application {
     window.on('closed', () => { Global.MainWindow = null; });
     
     Global.MainWindow = window;
+  }
+  
+  private desktopNotification(e, arg) {
+    if(!Global.MainWindow.isFocused) {
+      Notifier.notify(arg, () => {});
+    }
   }
   
 }

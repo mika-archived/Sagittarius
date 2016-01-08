@@ -6,12 +6,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as $ from 'jquery';
+import * as Rx from 'rx';
 
 import {Account} from '../models/account';
+import {API} from '../models/api';
 import {Chatroom} from './chatroom';
 import {Global} from '../global';
-import {Room, DummyRoom} from '../models/room';
 import {LoginUser} from './login_user';
+import {Room, DummyRoom} from '../models/room';
+import {Status} from '../models/status';
+
+var ipc = require('ipc');
 
 interface IRootProps {
   user: Account;
@@ -23,6 +28,9 @@ interface IRoomState {
 }
 
 export class Root extends React.Component<IRootProps, IRoomState> {
+  
+  private oldNotice: Status;
+  
   constructor(props) {
     super(props);
     
@@ -34,6 +42,31 @@ export class Root extends React.Component<IRootProps, IRoomState> {
       this.setState({ rooms: r, selectedRoom: 0 });
     });
     this.getRoom.bind(this);
+    
+    Rx.Observable.timer(0, API.status).subscribe(() => {
+      Global.Chatwork.myStatus().then((w) => {
+        console.log('Unread check: ' + w.unreadNum);
+        if(w.unreadNum != this.oldNotice.unreadNum && w.unreadNum > 0) {
+          this.notify();
+        };
+      });
+    });
+  }
+  
+  private notify() {
+    this.state.rooms.forEach((w) => {
+      if(w.roomId != this.state.selectedRoom) {
+        Global.Chatwork.roomInfo(w.roomId).then((r) => {
+          if(r.unreadNum > 0) {
+            ipc.send('desktop-notification', {
+              title: 'New Messages!',
+              message: 'Unread messages in "' + r.name + '"',
+              sound: 'Pop'
+            });
+          }
+        });
+      }
+    });
   }
   
   onItemClick(id: number): React.EventHandler<React.MouseEvent> {

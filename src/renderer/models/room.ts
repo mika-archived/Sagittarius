@@ -8,12 +8,14 @@ export class Room {
   name: string;
   iconPath: string;
   members: User[];
+  unreadNum: number;
   
   constructor(json) {
     this.roomId = json.room_id;
     this.name = json.name;
     this.iconPath = json.icon_path;
-    
+    this.unreadNum = json.unread_num;
+
     if(this.roomId == 0) {
       return;
     }

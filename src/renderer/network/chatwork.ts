@@ -6,6 +6,7 @@ var querystring = require('querystring');
 import {Account} from '../models/account';
 import {Message} from '../models/message';
 import {Room} from '../models/room';
+import {Status} from '../models/status';
 import {User} from '../models/user';
 
 // とりあえず使うものだけピックアップ
@@ -24,6 +25,20 @@ export class Chatwork {
         reject('Response does not json format.');
       } else {
         resolve(new Account(this.token, json));
+      }
+    });
+  }
+  
+  /**
+   * 自分の未読数、未読To数、未完了タスク数を返す
+   */
+  async myStatus(): Promise<Status> {
+    var json = await this.get('/my/status');
+    return new Promise<Status>((resolve, reject) => {
+      if(json == '') {
+        reject('Response does not json format.');
+      } else {
+        resolve(new Status(json));
       }
     });
   }
