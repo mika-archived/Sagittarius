@@ -14,6 +14,7 @@ import {Room} from '../../models/room';
 
 interface IChatContentsProps {
   room: Room;
+  onReply(message: string): void;
 }
 
 interface IChatContentsStates {
@@ -23,10 +24,12 @@ interface IChatContentsStates {
 export class ChatContents extends React.Component<IChatContentsProps, IChatContentsStates> {
   disposable: Rx.IDisposable;
   isFirst: boolean;
+  isUpdate: boolean;
   
   constructor(props) {
     super(props);
     this.isFirst = true;
+    this.isUpdate = true;
     this.state = {
       messages: []
     } as IChatContentsStates;
@@ -54,6 +57,14 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
     this.register();
   }
   
+  shouldComponentUpdate(): boolean {
+    if(this.isUpdate) {
+      return true;
+    }
+    this.isUpdate = true;
+    return false;
+  }
+  
   private register(): void {
     this.disposable = Rx.Observable.timer(0, API.messages)
       .timeInterval()
@@ -73,9 +84,23 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
     this.disposable.dispose();
   }
   
+  private onReply(id: number): React.EventHandler<React.MouseEvent> {
+    this.state.messages.some((v) => {
+      if(v.messageId == id) {
+        this.props.onReply(
+          '[rp aid=' + v.account.userId + ' to=' + this.props.room.roomId + '-' + v.messageId + '] ' + v.account.name + 'さん'
+        );
+      }
+      return false;
+    });
+    this.isUpdate = false;
+    return null;
+  }
+  
   render() {
     var messages = this.state.messages.map((m) => {
-      return (<ChatMessage message={m} room={this.props.room} key={m.messageId} />);
+      var onReplyClick = this.onReply.bind(this);
+      return (<ChatMessage message={m} room={this.props.room} key={m.messageId} onReply={onReplyClick}/>);
     });
     return (
       <div className="ui comments fixed-top scrollable" id="chatMessages">

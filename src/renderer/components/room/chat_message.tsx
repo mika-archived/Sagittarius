@@ -14,14 +14,21 @@ interface IChatMessagsProps {
   message: Message;
   room: Room;
   key: any; // Upper component error 
+  onReply(id: number): void;
 }
 
 export class ChatMessage extends React.Component<IChatMessagsProps, any> {
   constructor(props) {
     super(props);
   }
+  
+  onReplyClick(id: number): React.EventHandler<React.MouseEvent> {
+    this.props.onReply(id);
+    return null;
+  }
 
   render() {
+    var onReplyClick = this.onReplyClick.bind(this, this.props.message.messageId);
     return (
       <div className="comment">
         <a className="avatar">
@@ -35,7 +42,7 @@ export class ChatMessage extends React.Component<IChatMessagsProps, any> {
           <div className="text" dangerouslySetInnerHTML={{__html: new DocumentFormatter(this.props.message, this.props.room).format()}}>
           </div>
           <div className="actions">
-            <a className="reply">Reply</a>
+            <a className="reply" onClick={onReplyClick}>Reply</a>
             <a className="quote">Quote</a>
           </div>
         </div>

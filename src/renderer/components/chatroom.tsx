@@ -16,9 +16,20 @@ interface IChatroomProps {
   room: Room;
 }
 
-export class Chatroom extends React.Component<IChatroomProps, any> {
+interface IChatroomState {
+  content: string;
+}
+
+export class Chatroom extends React.Component<IChatroomProps, IChatroomState> {
   constructor(props) {
     super(props);
+    this.state = {
+      content: ''
+    } as IChatroomState;
+  }
+  
+  private onReply(message: string) {
+    this.setState({content: message});
   }
   
   render() {
@@ -35,11 +46,12 @@ export class Chatroom extends React.Component<IChatroomProps, any> {
         </div>
       );
     } else {
+      var onReplyClick = this.onReply.bind(this);
       return (
         <div>
           <RoomInfo room={this.props.room} />
-          <ChatContents room={this.props.room} />
-          <MessageBox room={this.props.room} />
+          <ChatContents room={this.props.room} onReply={onReplyClick} />
+          <MessageBox room={this.props.room} message={this.state.content} />
         </div>
       );
     }

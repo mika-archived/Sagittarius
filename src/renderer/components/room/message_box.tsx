@@ -10,6 +10,7 @@ import {Room} from '../../models/room';
 
 interface IMessageBoxProps {
   room: Room;
+  message: string;
 }
 
 export class MessageBox extends React.Component<IMessageBoxProps, any> {
@@ -51,6 +52,10 @@ export class MessageBox extends React.Component<IMessageBoxProps, any> {
       localStorage.removeItem(this.getKey());
       $('#chatText').val(text);
     }
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    $('#chatText').val(nextProps.message + '¥n');
   }
   
   render() {
