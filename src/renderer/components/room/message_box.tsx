@@ -64,7 +64,7 @@ export class MessageBox extends React.Component<IMessageBoxProps, any> {
         <div className="item filled-item">
           <div className="ui form filled" id="formRoot">
             <div className="sixteen wide field">
-              <input type="text" id="chatText" data-content="Error occurred during sending message."/>
+              <textarea rows={2} type="text" id="chatText" data-content="Error occurred during sending message."></textarea>
             </div>
           </div>
         </div>
