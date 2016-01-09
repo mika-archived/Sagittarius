@@ -24,6 +24,10 @@ export class MessageBox extends React.Component<IMessageBoxProps, any> {
   
   componentDidMount() {
     $('#chatText').keypress(e => {
+      if(e.altKey && e.keyCode == 13) {
+        $('#chatText').val($('#chatText').val() + '\n');
+        return false;
+      }
       if(e.keyCode == 13 /* ENTER */) {
         $('#formRoot').addClass('loading');
         Global.Chatwork.newRoomMessage(this.props.room.roomId, $('#chatText').val()).then(() => {
