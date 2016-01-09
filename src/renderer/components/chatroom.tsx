@@ -32,6 +32,10 @@ export class Chatroom extends React.Component<IChatroomProps, IChatroomState> {
     this.setState({content: message});
   }
   
+  private onQuote(message: string) {
+    this.setState({content: message});
+  }
+  
   render() {
     if(this.props.room instanceof DummyRoom) {
       return (
@@ -47,10 +51,11 @@ export class Chatroom extends React.Component<IChatroomProps, IChatroomState> {
       );
     } else {
       var onReplyClick = this.onReply.bind(this);
+      var onQuoteClick = this.onQuote.bind(this);
       return (
         <div>
           <RoomInfo room={this.props.room} />
-          <ChatContents room={this.props.room} onReply={onReplyClick} />
+          <ChatContents room={this.props.room} onReply={onReplyClick} onQuote={onQuoteClick}/>
           <MessageBox room={this.props.room} message={this.state.content} />
         </div>
       );

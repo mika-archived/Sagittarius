@@ -15,6 +15,7 @@ import {Room} from '../../models/room';
 interface IChatContentsProps {
   room: Room;
   onReply(message: string): void;
+  onQuote(message: string): void;
 }
 
 interface IChatContentsStates {
@@ -97,10 +98,24 @@ export class ChatContents extends React.Component<IChatContentsProps, IChatConte
     return null;
   }
   
+  private onQuote(id: number): React.EventHandler<React.MouseEvent> {
+    this.state.messages.some((v) => {
+      if(v.messageId == id) {
+        this.props.onQuote(
+          '[qt][qtmeta aid=' + v.account.userId + ' time=' + Math.round(v.createdAt.getTime() / 1000) + ']' + v.body + '[/qt]'
+        );
+      }
+      return false;
+    });
+    this.isUpdate = false;
+    return null;
+  }
+  
   render() {
     var messages = this.state.messages.map((m) => {
       var onReplyClick = this.onReply.bind(this);
-      return (<ChatMessage message={m} room={this.props.room} key={m.messageId} onReply={onReplyClick}/>);
+      var onQuoteClick = this.onQuote.bind(this);
+      return (<ChatMessage message={m} room={this.props.room} key={m.messageId} onReply={onReplyClick} onQuote={onQuoteClick} />);
     });
     return (
       <div className="ui comments fixed-top scrollable" id="chatMessages">

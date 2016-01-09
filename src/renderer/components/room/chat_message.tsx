@@ -15,6 +15,7 @@ interface IChatMessagsProps {
   room: Room;
   key: any; // Upper component error 
   onReply(id: number): void;
+  onQuote(id: number): void;
 }
 
 export class ChatMessage extends React.Component<IChatMessagsProps, any> {
@@ -26,9 +27,15 @@ export class ChatMessage extends React.Component<IChatMessagsProps, any> {
     this.props.onReply(id);
     return null;
   }
+  
+  onQuoteClick(id: number): React.EventHandler<React.MouseEvent> {
+    this.props.onQuote(id);
+    return null;
+  }
 
   render() {
     var onReplyClick = this.onReplyClick.bind(this, this.props.message.messageId);
+    var onQuoteClick = this.onQuoteClick.bind(this, this.props.message.messageId);
     return (
       <div className="comment">
         <a className="avatar">
@@ -43,7 +50,7 @@ export class ChatMessage extends React.Component<IChatMessagsProps, any> {
           </div>
           <div className="actions">
             <a className="reply" onClick={onReplyClick}>Reply</a>
-            <a className="quote">Quote</a>
+            <a className="quote" onClick={onQuoteClick}>Quote</a>
           </div>
         </div>
       </div>
