@@ -59,7 +59,7 @@ export class MessageBox extends React.Component<IMessageBoxProps, any> {
   }
   
   componentWillReceiveProps(nextProps) {
-    $('#chatText').val(nextProps.message + '¥n');
+    $('#chatText').val(nextProps.message + '\n');
   }
   
   render() {
