@@ -46,6 +46,8 @@ export class MessageBox extends React.Component<IMessageBoxProps, any> {
    var text = $('#chatText').val();
    if(text != null && text != '') {
      localStorage.setItem(this.getKey(), text);
+   } else {
+     localStorage.removeItem(this.getKey());
    }
    $('#chatText').val('');
   }
