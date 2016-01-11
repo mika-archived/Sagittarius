@@ -63,6 +63,15 @@ export class Root extends React.Component<IRootProps, IRoomState> {
               message: 'Unread messages in "' + r.name + '"',
               sound: 'Pop'
             });
+            var temp = this.state.rooms;
+            temp.some(w => {
+              if(w.roomId == r.roomId) {
+                w.unreadNum = r.unreadNum;
+                return true;
+              }
+              return false;
+            });
+            this.setState({ rooms: temp, selectedRoom: this.state.selectedRoom });
           }
         });
       }
@@ -97,10 +106,15 @@ export class Root extends React.Component<IRootProps, IRoomState> {
   render() {
     var rooms = this.state.rooms.map((room) => {
       var onClick = this.onItemClick.bind(this, room.roomId);
+      var unread = (<span></span>);
+      if(room.unreadNum > 0) {
+        unread = (<span className="ui grey circular label">{room.unreadNum}</span>)
+      }
       return (
         <a key={room.roomId} className="item" onClick={onClick} id={room.roomId.toString()}>
           <img className="ui avatar image" src={room.iconPath} />
           <span>{room.name}</span>
+          {unread}
         </a>
       );
     });
