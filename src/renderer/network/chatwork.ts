@@ -122,6 +122,7 @@ export class Chatwork {
       json: true,
       form: params != null ? querystring.stringify(params) : ''
     };
+    console.log(options.url);
     return new Promise((resolve, reject) => {
       request.post(options, (error, response, body) => {
         console.log('X-RateLimit-Remaining: ' + response.headers['x-ratelimit-remaining']);
@@ -143,6 +144,7 @@ export class Chatwork {
       },
       json: true
     };
+    console.log(options.url);
     return new Promise((resolve, reject) => {
       request.get(options, (error, response, body) => {
         console.log('X-RateLimit-Remaining: ' + response.headers['x-ratelimit-remaining']);

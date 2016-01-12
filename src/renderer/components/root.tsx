@@ -46,6 +46,7 @@ export class Root extends React.Component<IRootProps, IRoomState> {
     Rx.Observable.timer(0, API.status).subscribe(() => {
       Global.Chatwork.myStatus().then((w) => {
         console.log('Unread check: ' + w.unreadNum);
+        // Chatwork.com で見ないかぎり、未読数は変更されない
         if(w.unreadNum != this.oldNotice.unreadNum && w.unreadNum > 0) {
           this.notify();
         };
@@ -79,10 +80,18 @@ export class Root extends React.Component<IRootProps, IRoomState> {
   }
   
   onItemClick(id: number): React.EventHandler<React.MouseEvent> {
-    this.setState({ rooms: this.state.rooms, selectedRoom: id});
     this.state.rooms.forEach((r) => {
       if(r.roomId == id) {
         $('#' + r.roomId).addClass('active');
+        var temp = this.state.rooms;
+        temp.some(w => {
+          if(w.roomId == r.roomId) {
+            w.unreadNum = 0;
+            return true;
+          }
+          return false;
+        });
+        this.setState({ rooms: temp, selectedRoom: id });
       } else {
         $('#' + r.roomId).removeClass('active');
       }
