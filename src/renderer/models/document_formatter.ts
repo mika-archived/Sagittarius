@@ -257,7 +257,8 @@ export class DocumentFormatter {
     'file_uploaded'              : 'ファイルをアップロードしました。',
     'task_added'                 : 'タスクを追加しました。',
     'task_done'                  : 'タスクを完了しました。',
-    'task_edited'                : 'タスクを編集しました。'
+    'task_edited'                : 'タスクを編集しました。',
+    'task_reverted'              : 'タスクを未完了に戻しました。'
   };
   
   // [dtext:~~]
