@@ -2,6 +2,7 @@
 
 import {Message} from './message';
 import {Room} from './room';
+import texts from './language';
 
 var punycode = require('punycode');
 
@@ -242,29 +243,10 @@ export class DocumentFormatter {
   // Chatwork dtext: translation
   // ---------------------------------------------
   
-  private texts = {
-    'chatroom_added'             : '」を追加しました。',
-    'chatroom_chatname_is'       : 'チャット名を「',
-    'chatroom_chat_edited'       : 'チャット情報を変更しました。',
-    'chatroom_contact_added'     : 'コンタクトを追加しました。',
-    'chatroom_description_is'    : '概要を「',
-    'chatroom_groupchat_created' : '新しくグループチャットを作成しました。', 
-    'chatroom_icon_updated'      : 'グループチャットのアイコンを変更しました。',
-    'chatroom_member_is'         : 'メンバー「',
-    'chatroom_mychat_created'    : 'マイチャットを作成しました。',
-    'chatroom_set'               : '」に設定しました。',
-    'file_edited'                : 'ファイル名を編集しました。',
-    'file_uploaded'              : 'ファイルをアップロードしました。',
-    'task_added'                 : 'タスクを追加しました。',
-    'task_done'                  : 'タスクを完了しました。',
-    'task_edited'                : 'タスクを編集しました。',
-    'task_reverted'              : 'タスクを未完了に戻しました。'
-  };
-  
   // [dtext:~~]
   private parseChatworkDocumentDtext(raw: string): string {
-    for(var prop in this.texts) {
-      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), this.texts[prop]);
+    for(var prop in texts['ja-jp']) {
+      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), texts['en-us'][prop]);
     }
     return raw;
   }
