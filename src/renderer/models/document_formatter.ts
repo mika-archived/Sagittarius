@@ -3,6 +3,7 @@
 import {Message} from './message';
 import {Room} from './room';
 import texts from './language';
+import emojis from './emoji';
 
 var punycode = require('punycode');
 
@@ -27,7 +28,7 @@ export class DocumentFormatter {
     // TODO: いい感じに
     raw = this.parseChatworkDocumentCode(raw);
     raw = this.parseChatworkDocumentUrl(raw);
-    raw = this.parseChatworkDocumentInfo(raw);
+    // raw = this.parseChatworkDocumentInfo(raw);
     raw = this.parseChatworkDocumentQuote(raw);
     raw = this.parseChatworkDocumentTo(raw);
     raw = this.parseChatworkDocumentReply(raw);
@@ -37,6 +38,7 @@ export class DocumentFormatter {
     raw = this.parseChatworkDocumentHr(raw);
     raw = this.parseChatworkDocumentDeleted(raw);
     raw = this.parseChatworkDocumentDtext(raw);
+    raw = this.parseChatworkDocumentEmoji(raw);
     return raw.trim();
   }
   
@@ -65,8 +67,10 @@ export class DocumentFormatter {
   
   // [info]hoge[/info], [info][title]foo[/title]bar[/info], [info][title]foo[/title][download:{file_id}]...[/download][/info]
   private parseChatworkDocumentInfo(raw: string): string {
+    console.log(raw);
     var regex = new RegExp('\\[info\\](.*)?\\[/info\\]');
     while(regex.test(raw)) {
+      console.log('1');
       var match = regex.exec(raw);
       var html = '';
       var title = '', task = '', text = '';
@@ -246,7 +250,7 @@ export class DocumentFormatter {
   // [dtext:~~]
   private parseChatworkDocumentDtext(raw: string): string {
     for(var prop in texts['ja-jp']) {
-      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), texts['en-us'][prop]);
+      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), texts['ja-jp'][prop]);
     }
     return raw;
   }
@@ -266,6 +270,18 @@ export class DocumentFormatter {
             '" data-variation="very wide" class="jq-popup">' + punycode.toUnicode($3) + '</a>';
         }
       );
+    }
+    return raw;
+  }
+  
+  // =============================================
+  // Chatwork Emoji Parse
+  // ---------------------------------------------
+  
+  private parseChatworkDocumentEmoji(raw: string): string {
+    for(var prop in emojis) {
+      console.log(emojis[prop]);
+      raw = raw.replace(new RegExp(prop, 'g'), emojis[prop]);
     }
     return raw;
   }
