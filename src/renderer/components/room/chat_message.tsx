@@ -34,8 +34,6 @@ export class ChatMessage extends React.Component<IChatMessagsProps, any> {
   }
 
   render() {
-    console.log('Rendering Message :');
-    console.log(this.props.message);
     var onReplyClick = this.onReplyClick.bind(this, this.props.message.messageId);
     var onQuoteClick = this.onQuoteClick.bind(this, this.props.message.messageId);
     return (

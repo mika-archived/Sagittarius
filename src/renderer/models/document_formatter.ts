@@ -28,7 +28,7 @@ export class DocumentFormatter {
     // TODO: いい感じに
     raw = this.parseChatworkDocumentCode(raw);
     raw = this.parseChatworkDocumentUrl(raw);
-    // raw = this.parseChatworkDocumentInfo(raw);
+    raw = this.parseChatworkDocumentInfo(raw);
     raw = this.parseChatworkDocumentQuote(raw);
     raw = this.parseChatworkDocumentTo(raw);
     raw = this.parseChatworkDocumentReply(raw);
@@ -67,10 +67,8 @@ export class DocumentFormatter {
   
   // [info]hoge[/info], [info][title]foo[/title]bar[/info], [info][title]foo[/title][download:{file_id}]...[/download][/info]
   private parseChatworkDocumentInfo(raw: string): string {
-    console.log(raw);
     var regex = new RegExp('\\[info\\](.*)?\\[/info\\]');
     while(regex.test(raw)) {
-      console.log('1');
       var match = regex.exec(raw);
       var html = '';
       var title = '', task = '', text = '';
