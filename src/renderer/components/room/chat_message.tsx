@@ -6,9 +6,9 @@ import * as React from 'react';
 import * as $ from 'jquery';
 
 import {DocumentFormatter} from '../../models/document_formatter';
-import {Global} from '../../global';
 import {Message} from '../../models/message';
 import {Room} from '../../models/room';
+import {i18n} from '../../models/i18n';
 
 interface IChatMessagsProps {
   message: Message;
@@ -49,8 +49,8 @@ export class ChatMessage extends React.Component<IChatMessagsProps, any> {
           <div className="text" dangerouslySetInnerHTML={{__html: new DocumentFormatter(this.props.message, this.props.room).format()}}>
           </div>
           <div className="actions">
-            <a className="reply" onClick={onReplyClick}>Reply</a>
-            <a className="quote" onClick={onQuoteClick}>Quote</a>
+            <a className="reply" onClick={onReplyClick}>{i18n.t('app_chat_reply')}</a>
+            <a className="quote" onClick={onQuoteClick}>{i18n.t('app_chat_quote')}</a>
           </div>
         </div>
       </div>

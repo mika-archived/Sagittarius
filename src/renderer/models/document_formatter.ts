@@ -3,6 +3,7 @@
 import {Global} from '../global';
 import {Message} from './message';
 import {Room} from './room';
+import {i18n} from './i18n';
 import texts from './language';
 import emojis from './emoji';
 
@@ -94,9 +95,9 @@ export class DocumentFormatter {
         }
         var date = new Date(+match3[3] * 1000).toLocaleDateString() + 'まで';
         if(+match3[3] == 0) {
-          date = '未設定';
+          date = i18n.t('app_chat_info_unset');
         }
-        task = '<div class="' + clas + '">期限:' + date + '</div>';
+        task = '<div class="' + clas + '">' + i18n.t('app_chat_info_deadline') + ':' + date + '</div>';
         match[1] = match[1].replace(match3[0], '');
       } else {
         text = '<div class="ui attached segment">' + match[1] + '</div>';
@@ -224,9 +225,9 @@ export class DocumentFormatter {
     var regex = new RegExp('\\[preview id=([0-9]+)(.*)\\]');
     while(regex.test(raw)) {
       var match = regex.exec(raw);
-      var html = '<i>Preview unavailable: ';
+      var html = '<i>' + i18n.t('app_chat_download_preview') + ': ';
       html += '<a href="#" onClick="openLink(\'https://www.chatwork.com/gateway.php?cmd=download_file&bin=1&file_id=' + match[1] + '\');">';
-      html += 'Download Link</a></i>';
+      html += i18n.t('app_chat_download_link') + '</a></i>';
       raw = raw.replace(match[0], html);
     }
     return raw;
@@ -239,7 +240,7 @@ export class DocumentFormatter {
   
   // [deleted]
   private parseChatworkDocumentDeleted(raw: string): string {
-    return raw.replace(/\[deleted\]/g, '<i>Deleted message</i>');
+    return raw.replace(/\[deleted\]/g, '<i>' + i18n.t('app_chat_deleted') + '</i>');
   };
   
   // =============================================
@@ -249,7 +250,7 @@ export class DocumentFormatter {
   // [dtext:~~]
   private parseChatworkDocumentDtext(raw: string): string {
     for(var prop in texts[Global.ChatworkAccount.config.lang]) {
-      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), texts[Global.ChatworkAccount.config.lang][prop]);
+      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), i18n.t(prop));
     }
     return raw;
   }
@@ -279,7 +280,6 @@ export class DocumentFormatter {
   
   private parseChatworkDocumentEmoji(raw: string): string {
     for(var prop in emojis) {
-      console.log(emojis[prop]);
       raw = raw.replace(new RegExp(prop, 'g'), emojis[prop]);
     }
     return raw;

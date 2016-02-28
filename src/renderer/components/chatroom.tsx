@@ -6,10 +6,10 @@ import * as React from 'react';
 import * as $ from 'jquery';
 
 import {ChatContents} from './room/chat_contents';
-import {Global} from '../global';
 import {MessageBox} from './room/message_box';
 import {Room, DummyRoom} from '../models/room';
 import {RoomInfo} from './room/room_info';
+import {i18n} from '../models/i18n';
 
 
 interface IChatroomProps {
@@ -43,7 +43,7 @@ export class Chatroom extends React.Component<IChatroomProps, IChatroomState> {
           <div className="content">
             <div className="center">
               <h2 className="ui header">
-                Not chatroom selected.
+                {i18n.t('app_chatroom_not_select')}
               </h2>
             </div>
           </div>

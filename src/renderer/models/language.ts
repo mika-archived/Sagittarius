@@ -5,6 +5,15 @@
 
 const texts = {
   'ja-jp': {
+    'app_chat_deleted'           : '削除されたメッセージ',
+    'app_chat_download_link'     : 'ダウンロードリンク',
+    'app_chat_download_preview'  : 'プレビューは利用できません',
+    'app_chat_info_deadline'     : '期限',
+    'app_chat_info_unset'        : '未設定',
+    'app_chat_quote'             : '引用',
+    'app_chat_reply'             : '返信',
+    'app_chatrooms'              : 'チャットルーム',
+    'app_chatroom_not_select'    : 'チャットルームを選択してください。',
     'chatroom_added'             : '」を追加しました。',
     'chatroom_chatname_is'       : 'チャット名を「',
     'chatroom_chat_edited'       : 'チャット情報を変更しました。',
@@ -23,6 +32,13 @@ const texts = {
     'task_reverted'              : 'タスクを未完了に戻しました。'
   },
   'en-us': {
+    'app_chat_deleted'           : 'Deleted message',
+    'app_chat_download_link'     : 'Download link',
+    'app_chat_download_preview'  : 'Preview unavailable',
+    'app_chat_quote'             : 'Reply',
+    'app_chat_reply'             : 'Quote',
+    'app_chatrooms'              : 'Chatrooms',
+    'app_chatroom_not_select'    : 'Please select a chatroom.',
     'chatroom_added'             : 'has been added.',
     'chatroom_chatname_is'       : 'Group Chat Name: ',
     'chatroom_chat_edited'       : 'Chat info updated.',

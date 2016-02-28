@@ -15,7 +15,7 @@ import {Global} from '../global';
 import {LoginUser} from './login_user';
 import {Room, DummyRoom} from '../models/room';
 import {Status} from '../models/status';
-import texts from '../models/language';
+import {i18n} from '../models/i18n';
 
 var ipc = require('ipc');
 
@@ -134,7 +134,7 @@ export class Root extends React.Component<IRootProps, IRoomState> {
           <LoginUser avatarImageUrl={this.props.user.avatarImageUrl} name={this.props.user.name} />
           <div className="item">
             <div className="active header">
-              Chatrooms
+              {i18n.t('app_chatrooms')}
             </div>
             <div className="menu">
               {rooms}
