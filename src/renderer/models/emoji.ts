@@ -31,7 +31,7 @@ const emojis = {
   '\\(roger\\)': '🙋', // Roger, TODO: Replace?
   '\\(flex\\)': '💪', // Muscle
   '\\(dance\\)': '💃', // Dance
-  ':/': '🤘', // Wath?, Rock
+  // ':/': '🤘', // Wath?, Rock
   '\\(devil\\)': '👿', // Devil
   '\\(\\*\\)': '⭐', // Star
   '\\(h\\)': '💝', // Heart
