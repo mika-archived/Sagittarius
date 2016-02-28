@@ -1,11 +1,13 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
 import {Chatwork} from '../network/chatwork';
+import {Configuration} from './configuration';
 import {Global} from '../global';
 import {User} from './user';
 
 export class Account extends User{
   token: string;
+  config: Configuration;
   
   constructor(token, json?) {
     super(json);
@@ -13,6 +15,7 @@ export class Account extends User{
     if(!localStorage.getItem('chatwork-token')) {
       localStorage.setItem('chatwork-token', this.token);
     }
+    this.config = new Configuration();
   }
   
   merge(json) {

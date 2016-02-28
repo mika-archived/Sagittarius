@@ -15,6 +15,7 @@ import {Global} from '../global';
 import {LoginUser} from './login_user';
 import {Room, DummyRoom} from '../models/room';
 import {Status} from '../models/status';
+import texts from '../models/language';
 
 var ipc = require('ipc');
 

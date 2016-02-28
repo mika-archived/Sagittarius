@@ -1,5 +1,6 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
+import {Global} from '../global';
 import {Message} from './message';
 import {Room} from './room';
 import texts from './language';
@@ -247,8 +248,8 @@ export class DocumentFormatter {
   
   // [dtext:~~]
   private parseChatworkDocumentDtext(raw: string): string {
-    for(var prop in texts['ja-jp']) {
-      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), texts['ja-jp'][prop]);
+    for(var prop in texts[Global.ChatworkAccount.config.lang]) {
+      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), texts[Global.ChatworkAccount.config.lang][prop]);
     }
     return raw;
   }
