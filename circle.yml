@@ -4,13 +4,14 @@ machine:
     version: 4.2.1
 test:
   override:
-    - echo 'Tests does not exists yet.'
+    - mocha
 dependencies:
   override:
     - npm install
     - npm install -g gulp
     - npm install -g typescript
     - npm install -g tsd
+    - npm install -g mocha
     - npm install -g electron-packager
 deployment:
   master:
