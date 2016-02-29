@@ -35,13 +35,15 @@
   "homepage": "https://github.com/fuyuno/Sagittarius#readme",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "blanket": "^1.2.2",
     "jquery": "^2.1.4",
     "node-notifier": "^4.4.0",
     "punycode": "^1.4.0",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
     "rx": "^4.0.7",
-    "semantic-ui": "^2.1.7"
+    "semantic-ui": "^2.1.7",
+    "should": "^8.2.2"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
