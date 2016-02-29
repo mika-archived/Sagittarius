@@ -12,6 +12,7 @@ dependencies:
     - npm install -g typescript
     - npm install -g tsd
     - npm install -g mocha
+    - npm install -g blanket
     - npm install -g electron-packager
 deployment:
   master:
