@@ -28,7 +28,7 @@ node_modules
 
 # tsc compiled files
 *.js
-*.js.map
+!test/**/*.js
 
 # Distribution file
 dist

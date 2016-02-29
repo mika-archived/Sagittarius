@@ -4,7 +4,7 @@ machine:
     version: 4.2.1
 test:
   override:
-    - mocha
+    - npm run test
 dependencies:
   override:
     - npm install
