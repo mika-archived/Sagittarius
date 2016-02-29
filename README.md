@@ -1,5 +1,7 @@
 Sagittarius
 ----
+[![Circle CI](https://circleci.com/gh/fuyuno/Sagittarius/tree/develop.svg?style=svg)](https://circleci.com/gh/fuyuno/Sagittarius/tree/develop)
+  
 Slack ぽい UI の [Chatwork](http://www.chatwork.com/) デスクトップアプリ。
 
 ### スクリーン
