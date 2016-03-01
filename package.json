@@ -5,23 +5,13 @@
   "main": "app/main.js",
   "private": true,
   "scripts": {
-    "pretest": "gulp ts:testCompile; grep -l 'src' ./test/*.js | xargs sed -i.bak -e 's/src/app/g'",
-    "test": "NODE_ENV=test YOURPACKAGE_COVERAGE=1 mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js",
+    "pretest": "gulp ts:testCompile; grep -l 'src' ./test/*.js | xargs sed -i.bak -e 's/src/app/g'; rm ./test/*.bak",
+    "test": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "build": "gulp build",
     "prestart": "npm run build",
     "start": "electron .",
     "prepack": "npm run build",
     "pack": "electron-packager . Sagittarius --platform=all --arch=x64 --version=0.36.1 --out=dist --ignore={.vscode,bin,dist,src,screenshots}/* --prune=true --asar=true"
-  },
-  "config": {
-    "blanket": {
-      "pattern": [
-        ""
-      ],
-      "data-cover-never": [
-        "node_modules"
-      ]
-    }
   },
   "repository": {
     "type": "git",
@@ -36,7 +26,6 @@
   "homepage": "https://github.com/fuyuno/Sagittarius#readme",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
-    "blanket": "^1.2.2",
     "jquery": "^2.1.4",
     "node-notifier": "^4.4.0",
     "punycode": "^1.4.0",

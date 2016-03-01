@@ -4,8 +4,8 @@ import {Global} from '../global';
 import {Message} from './message';
 import {Room} from './room';
 import {i18n} from './i18n';
-import texts from './language';
-import emojis from './emoji';
+import {texts} from './language';
+import {emojis} from './emoji';
 
 var punycode = require('punycode');
 

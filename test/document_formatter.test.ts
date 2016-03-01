@@ -2,12 +2,9 @@
 
 var should = require('should');
 
-import {Account} from '../src/renderer/models/account';
 import {DocumentFormatter} from '../src/renderer/models/document_formatter';
-import {Global} from '../src/renderer/global';
 import {Message} from '../src/renderer/models/message';
 import {Room} from '../src/renderer/models/room';
-import {User} from '../src/renderer/models/user';
 
 // Pre
 var user1 = {

@@ -1,7 +1,7 @@
 // Chatwork Emoji Parse
 // \\(beer\\) -> U+1F37A
 
-const emojis = {
+export const emojis = {
   ':\\(': '😔', // Sad
   ':D': '😄', // Laugh
   '8-\\)': '😎', // Nice
@@ -46,5 +46,3 @@ const emojis = {
   ':\\)': '😃', // Smile
   ';\\)': '😉', // Wink
 };
-
-export default emojis;

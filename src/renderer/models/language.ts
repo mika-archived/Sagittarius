@@ -3,7 +3,7 @@
 // en-us: English
 // zh-tw: Traditional Chinese (TODO)
 
-const texts = {
+export const texts = {
   'ja-jp': {
     'app_chat_deleted'           : '削除されたメッセージ',
     'app_chat_download_link'     : 'ダウンロードリンク',
@@ -57,5 +57,3 @@ const texts = {
     'task_reverted'              : 'Task re-assigned.'
   }
 };
-
-export default texts;
