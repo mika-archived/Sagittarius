@@ -14,13 +14,16 @@ var runSequence = require('run-sequence');
 var electron = require('electron-connect').server.create();
 
 var tsProject = typescript.createProject('./src/tsconfig.json');
+var tsTestProject = typescript.createProject('./test/tsconfig.json');
 var srcDir = 'src';
+var testDir = 'test';
 var appDir = 'app';
 var distDir = 'dist';
 
 var tsFiles = './src/**/*.{ts,tsx}';
 var ssFiles = './src/**/*.{sass,scss}';
 var rsFiles = './src/**/*.{png,otf,html,css}';
+var tsTestFiles = './test/**/*.ts';
 
 // Clean project
 gulp.task('clean', function() {
@@ -47,6 +50,14 @@ gulp.task('ts:compile', function() {
     tsResult.dts
       .pipe(gulp.dest('./src/'))
   ]);
+});
+
+gulp.task('ts:testCompile', ['clean', 'ts:compile'], function() {
+  gulp.src(tsTestFiles)
+    .pipe(plumber())
+    .pipe(typescript(tsTestProject))
+    .pipe(babel())
+    .pipe(gulp.dest('./test/'));
 });
 
 // SASS -> CSS

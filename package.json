@@ -5,6 +5,7 @@
   "main": "app/main.js",
   "private": true,
   "scripts": {
+    "pretest": "gulp ts:testCompile; grep -l 'src' ./test/*.js | xargs sed -i.bak -e 's/src/app/g'",
     "test": "NODE_ENV=test YOURPACKAGE_COVERAGE=1 mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js",
     "build": "gulp build",
     "prestart": "npm run build",

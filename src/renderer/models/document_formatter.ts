@@ -14,10 +14,13 @@ var punycode = require('punycode');
  */
 export class DocumentFormatter {
   
+  private lang: string;
+  
   constructor(private message: Message, private room: Room) {
   }
   
-  format(): string {
+  format(lang?: string): string {
+    this.lang = lang ? lang : Global.ChatworkAccount.config.lang;
     var html = this.message.body;
     html = html.replace(/&/g, '&amp;');
     html = html.replace(/</g, '&lt;');
@@ -95,9 +98,9 @@ export class DocumentFormatter {
         }
         var date = new Date(+match3[3] * 1000).toLocaleDateString() + 'まで';
         if(+match3[3] == 0) {
-          date = i18n.t('app_chat_info_unset');
+          date = i18n.t('app_chat_info_unset', this.lang);
         }
-        task = '<div class="' + clas + '">' + i18n.t('app_chat_info_deadline') + ':' + date + '</div>';
+        task = '<div class="' + clas + '">' + i18n.t('app_chat_info_deadline', this.lang) + ':' + date + '</div>';
         match[1] = match[1].replace(match3[0], '');
       } else {
         text = '<div class="ui attached segment">' + match[1] + '</div>';
@@ -225,9 +228,9 @@ export class DocumentFormatter {
     var regex = new RegExp('\\[preview id=([0-9]+)(.*)\\]');
     while(regex.test(raw)) {
       var match = regex.exec(raw);
-      var html = '<i>' + i18n.t('app_chat_download_preview') + ': ';
+      var html = '<i>' + i18n.t('app_chat_download_preview', this.lang) + ': ';
       html += '<a href="#" onClick="openLink(\'https://www.chatwork.com/gateway.php?cmd=download_file&bin=1&file_id=' + match[1] + '\');">';
-      html += i18n.t('app_chat_download_link') + '</a></i>';
+      html += i18n.t('app_chat_download_link', this.lang) + '</a></i>';
       raw = raw.replace(match[0], html);
     }
     return raw;
@@ -240,7 +243,7 @@ export class DocumentFormatter {
   
   // [deleted]
   private parseChatworkDocumentDeleted(raw: string): string {
-    return raw.replace(/\[deleted\]/g, '<i>' + i18n.t('app_chat_deleted') + '</i>');
+    return raw.replace(/\[deleted\]/g, '<i>' + i18n.t('app_chat_deleted', this.lang) + '</i>');
   };
   
   // =============================================
@@ -249,8 +252,8 @@ export class DocumentFormatter {
   
   // [dtext:~~]
   private parseChatworkDocumentDtext(raw: string): string {
-    for(var prop in texts[Global.ChatworkAccount.config.lang]) {
-      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), i18n.t(prop));
+    for(var prop in texts[this.lang]) {
+      raw = raw.replace(new RegExp('\\[dtext:' + prop + '\\]', 'g'), i18n.t(prop, this.lang));
     }
     return raw;
   }

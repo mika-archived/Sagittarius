@@ -28,7 +28,6 @@ node_modules
 
 # tsc compiled files
 *.js
-!test/**/*.js
 
 # Distribution file
 dist

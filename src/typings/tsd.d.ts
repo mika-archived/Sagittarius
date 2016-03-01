@@ -26,4 +26,5 @@
 /// <reference path="rx/rx.virtualtime.d.ts" />
 /// <reference path="node-notifier/node-notifier.d.ts" />
 /// <reference path="mocha/mocha.d.ts" />
+/// <reference path="should/should.d.ts" />
 
