@@ -11,6 +11,7 @@ dependencies:
     - npm install -g gulp
     - npm install -g typescript
     - npm install -g tsd
+    - npm install -g mocha
     - npm install -g istanbul
     - npm install -g electron-packager
 deployment:
