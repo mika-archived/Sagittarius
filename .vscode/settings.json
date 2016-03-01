@@ -5,7 +5,8 @@
         "**/.DS_Store": true,
         "app/**": true,
         "src/js/**": true,
-        "dist/**": true
+        "dist/**": true,
+        "test/*.js": true
     },
     "editor.insertSpaces": true,
     "editor.tabSize": 2
