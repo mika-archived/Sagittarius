@@ -96,7 +96,7 @@ export class DocumentFormatter {
         if(match3[2] == 'done') {
           clas += ' secondary';
         }
-        var date = new Date(+match3[3] * 1000).toLocaleDateString() + 'まで';
+        var date = new Date(+match3[3] * 1000).toLocaleDateString(this.lang);
         if(+match3[3] == 0) {
           date = i18n.t('app_chat_info_unset', this.lang);
         }
@@ -131,7 +131,7 @@ export class DocumentFormatter {
         });
         cite = '<br><cite>' + name;
         if(match1[3] != null) {
-          cite += ' - ' + new Date(+match1[3] * 1000).toLocaleDateString();
+          cite += ' - ' + new Date(+match1[3] * 1000).toLocaleDateString(this.lang);
         }
         cite += '</cite>'; 
         match[1] = match[1].replace(match1[0], '');

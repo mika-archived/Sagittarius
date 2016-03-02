@@ -35,6 +35,8 @@ export const texts = {
     'app_chat_deleted'           : 'Deleted message',
     'app_chat_download_link'     : 'Download link',
     'app_chat_download_preview'  : 'Preview unavailable',
+    'app_chat_info_deadline'     : 'Due',
+    'app_chat_info_unset'        : 'unset',
     'app_chat_quote'             : 'Reply',
     'app_chat_reply'             : 'Quote',
     'app_chatrooms'              : 'Chatrooms',
