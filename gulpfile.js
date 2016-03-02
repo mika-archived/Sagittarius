@@ -27,7 +27,7 @@ var tsTestFiles = './test/**/*.ts';
 
 // Clean project
 gulp.task('clean', function() {
-  del.bind(null, ['app', 'dist']);
+  del(['app', 'dist', 'coverage']);
 });
 
 // Copy to app
