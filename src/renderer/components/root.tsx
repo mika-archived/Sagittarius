@@ -42,11 +42,15 @@ export class Root extends React.Component<IRootProps, IRoomState> {
     Global.Chatwork.rooms().then((r) => {
       this.setState({ rooms: r, selectedRoom: 0 });
     });
+    Global.Chatwork.myStatus().then((r) => {
+      this.oldNotice = r;
+    });
     this.getRoom.bind(this);
     
     Rx.Observable.timer(0, API.status).subscribe(() => {
       Global.Chatwork.myStatus().then((w) => {
-        console.log('Unread check: ' + w.unreadNum);
+        console.log('unreadNum:' + w.unreadNum);
+        console.log('status:' + this.oldNotice.unreadNum);
         // Chatwork.com で見ないかぎり、未読数は変更されない
         if(w.unreadNum != this.oldNotice.unreadNum && w.unreadNum > 0) {
           this.notify();
@@ -57,14 +61,15 @@ export class Root extends React.Component<IRootProps, IRoomState> {
   
   private notify() {
     this.state.rooms.forEach((w) => {
-      if(w.roomId != this.state.selectedRoom) {
         Global.Chatwork.roomInfo(w.roomId).then((r) => {
           if(r.unreadNum > 0) {
+            console.log('#### Notification??? ####');
             ipc.send('desktop-notification', {
               title: 'New Messages!',
               message: 'Unread messages in "' + r.name + '"',
               sound: 'Pop'
             });
+            /*
             var temp = this.state.rooms;
             temp.some(w => {
               if(w.roomId == r.roomId) {
@@ -74,9 +79,9 @@ export class Root extends React.Component<IRootProps, IRoomState> {
               return false;
             });
             this.setState({ rooms: temp, selectedRoom: this.state.selectedRoom });
+            */
           }
         });
-      }
     });
   }
   

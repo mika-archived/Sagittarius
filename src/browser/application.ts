@@ -8,7 +8,7 @@ import * as Notifier from 'node-notifier';
 
 import {Global} from '../renderer/global';
 
-var ipc = require('ipc');
+var ipc = require("electron").ipcMain;
 
 export class Application {
   
