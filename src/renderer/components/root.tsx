@@ -17,7 +17,7 @@ import {Room, DummyRoom} from '../models/room';
 import {Status} from '../models/status';
 import {i18n} from '../models/i18n';
 
-var ipc = require('ipc');
+var ipc = require("electron").ipcRenderer;
 
 interface IRootProps {
   user: Account;
