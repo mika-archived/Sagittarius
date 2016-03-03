@@ -12,7 +12,7 @@
       "commit": "40c60850ad6c8175a62d5ab48c4e016ea5b3dffe"
     },
     "react/react.d.ts": {
-      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+      "commit": "24635d778d7ff1f7665f04239563b2ef2684ee1c"
     },
     "react/react-dom.d.ts": {
       "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
@@ -82,6 +82,15 @@
     },
     "should/should.d.ts": {
       "commit": "4d2d0653003a4d1df4d7c68054cce4f4ace58bdf"
+    },
+    "redux/redux.d.ts": {
+      "commit": "24635d778d7ff1f7665f04239563b2ef2684ee1c"
+    },
+    "redux-thunk/redux-thunk.d.ts": {
+      "commit": "24635d778d7ff1f7665f04239563b2ef2684ee1c"
+    },
+    "react-redux/react-redux.d.ts": {
+      "commit": "24635d778d7ff1f7665f04239563b2ef2684ee1c"
     }
   }
 }
