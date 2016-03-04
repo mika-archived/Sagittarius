@@ -6,97 +6,97 @@
   "bundle": "src/typings/tsd.d.ts",
   "installed": {
     "github-electron/github-electron.d.ts": {
-      "commit": "40c60850ad6c8175a62d5ab48c4e016ea5b3dffe"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "node/node.d.ts": {
-      "commit": "40c60850ad6c8175a62d5ab48c4e016ea5b3dffe"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "react/react.d.ts": {
-      "commit": "24635d778d7ff1f7665f04239563b2ef2684ee1c"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "react/react-dom.d.ts": {
-      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "lodash/lodash.d.ts": {
-      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx-lite.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "jquery/jquery.d.ts": {
-      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.all.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.time.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.async.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.time-lite.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.aggregates.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.async-lite.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.binding.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.binding-lite.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.coincidence-lite.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.coincidence.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.joinpatterns.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.experimental.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.virtualtime.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.testing.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.backpressure.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "rx/rx.backpressure-lite.d.ts": {
-      "commit": "f11e49cfb77f99678657ddfe5d43017849675c64"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "mocha/mocha.d.ts": {
-      "commit": "b10e5ade29708bb0a7d21916a9fe289973520e89"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "should/should.d.ts": {
-      "commit": "4d2d0653003a4d1df4d7c68054cce4f4ace58bdf"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "redux/redux.d.ts": {
-      "commit": "24635d778d7ff1f7665f04239563b2ef2684ee1c"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "redux-thunk/redux-thunk.d.ts": {
-      "commit": "24635d778d7ff1f7665f04239563b2ef2684ee1c"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "react-redux/react-redux.d.ts": {
-      "commit": "24635d778d7ff1f7665f04239563b2ef2684ee1c"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "ix.js/ix.d.ts": {
-      "commit": "ba4c4fc6c9ec3d1b9b7e26437d6e0f4f8337c948"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     },
     "ix.js/l2o.d.ts": {
-      "commit": "ba4c4fc6c9ec3d1b9b7e26437d6e0f4f8337c948"
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     }
   }
 }
