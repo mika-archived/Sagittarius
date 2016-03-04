@@ -2,54 +2,46 @@
 
 var gulp = require('gulp');
 var babel = require('gulp-babel');
-var rename = require('gulp-rename');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var typescript = require('gulp-typescript');
 var watch = require('gulp-watch');
 
 var del = require('del');
-var merge = require('event-stream').merge;
 var runSequence = require('run-sequence');
 var electron = require('electron-connect').server.create();
 
 var tsProject = typescript.createProject('./src/tsconfig.json');
 var tsTestProject = typescript.createProject('./test/tsconfig.json');
-var srcDir = 'src';
-var testDir = 'test';
-var appDir = 'app';
-var distDir = 'dist';
 
-var tsFiles = './src/**/*.{ts,tsx}';
-var ssFiles = './src/**/*.{sass,scss}';
-var rsFiles = './src/**/*.{png,otf,html,css}';
-var tsTestFiles = './test/**/*.ts';
+var appDir = './app';
+var distDir = './dist';
+var srcDir = './src';
+var testDir = './test';
+
+var tsFiles = srcDir + '/**/*.{ts,tsx}';
+var ssFiles = srcDir + '/**/*.{sass,scss}';
+var rsFiles = srcDir + '/**/*.{png,otf,html,css}';
+var tsTestFiles = testDir + '/**/*.ts';
 
 // Clean project
 gulp.task('clean', function() {
-  del(['app', 'dist', 'coverage']);
+  del([appDir, distDir, 'coverage']);
 });
 
 // Copy to app
 gulp.task('copy', function() {
   gulp.src(rsFiles, {base: 'src'})
-    .pipe(gulp.dest('./app'));
+    .pipe(gulp.dest(appDir));
 });
 
 // TypeScript -> ES6 -> ES5
 gulp.task('ts:compile', function() {
-  var tsResult = gulp.src(tsFiles)
-                   .pipe(plumber())
-                   .pipe(typescript(tsProject));
-
-  return merge([
-    tsResult.pipe(babel())
-      .pipe(rename(function(path) { path.dirname = path.dirname.replace('typescripts', 'javascripts')}))
-      .pipe(gulp.dest('./app/')),
-      
-    tsResult.dts
-      .pipe(gulp.dest('./src/'))
-  ]);
+  gulp.src(tsFiles)
+    .pipe(plumber())
+    .pipe(typescript(tsProject))
+    .pipe(babel())
+    .pipe(gulp.dest(appDir));
 });
 
 gulp.task('ts:testCompile', ['clean', 'ts:compile'], function() {
@@ -57,7 +49,7 @@ gulp.task('ts:testCompile', ['clean', 'ts:compile'], function() {
     .pipe(plumber())
     .pipe(typescript(tsTestProject))
     .pipe(babel())
-    .pipe(gulp.dest('./test/'));
+    .pipe(gulp.dest(testDir));
 });
 
 // SASS -> CSS
@@ -65,7 +57,7 @@ gulp.task('sass:compile', function() {
   gulp.src(ssFiles)
     .pipe(plumber())
     .pipe(sass())
-    .pipe(gulp.dest('./app'));
+    .pipe(gulp.dest(appDir));
 });
 
 // Auto compile
