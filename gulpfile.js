@@ -26,7 +26,7 @@ var tsTestFiles = testDir + '/**/*.ts';
 
 // Clean project
 gulp.task('clean', function() {
-  del([appDir, distDir, 'coverage']);
+  del(['app', 'dist', 'coverage']);
 });
 
 // Copy to app
@@ -37,7 +37,7 @@ gulp.task('copy', function() {
 
 // TypeScript -> ES6 -> ES5
 gulp.task('ts:compile', function() {
-  gulp.src(tsFiles)
+  return gulp.src(tsFiles)
     .pipe(plumber())
     .pipe(typescript(tsProject))
     .pipe(babel())
