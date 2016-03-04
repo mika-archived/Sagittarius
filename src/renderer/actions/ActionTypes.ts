@@ -1,7 +1,7 @@
 export enum ActionTypes {
   /* API CALL - /me */
   RequestMe,
-  ResponseME,
+  ResponseMe,
   
   /* API CALL - /my/status */
   RequestMyStatus,
