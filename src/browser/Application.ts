@@ -24,6 +24,7 @@ export default class Application {
       minWidth: 500,
       height: 600
     });
-    this.mainWindow.loadURL();
+    this.mainWindow.loadURL('file://' + __dirname + '/../index.html');
+    this.mainWindow.on('closed', () => this.mainWindow = null);
   }
 }
