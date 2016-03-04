@@ -19,7 +19,7 @@ export default class Application {
   }
   
   private onReady(): void {
-    this.mainWindow = new Electron.BrowserWindow({
+    this.mainWindow = new electron.BrowserWindow({
       width: 800,
       minWidth: 500,
       height: 600
