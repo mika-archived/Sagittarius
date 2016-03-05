@@ -5,3 +5,14 @@ body{
   overflow-y: hidden;
   overflow-x: hidden;
 }
+
+#contents {
+  width: calc(100% - 260px);
+  height: 100%!important;
+  max-height: 100%;
+  position: fixed;
+}
+
+.ui.item.menu .item.custom.spaced {
+  padding: 13px 10px!important;
+}
