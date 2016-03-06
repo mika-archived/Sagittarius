@@ -3,6 +3,8 @@
 import * as React from 'react';
 import {Footer} from './contents/Footer';
 import {Header} from './contents/Header';
+import {InfoSideBar} from './contents/InfoSideBar';
+import {Timeline} from './contents/Timeline';
 
 interface ContentsProps {
   
@@ -14,9 +16,10 @@ export class Contents extends React.Component<ContentsProps, {}> {
       <div className="pusher" id="contents">
         <Header />
         <Footer />
-        <div className="">
-          Contents Area.
+        <div className="timeline">
+          <Timeline />
         </div>
+        <InfoSideBar />
       </div>
     )
   }
