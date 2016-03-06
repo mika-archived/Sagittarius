@@ -1,3 +1,22 @@
-@import "common.scss";
-@import "override.scss";
-@import "extend.scss";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic);
+
+body{
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#contents {
+  width: calc(100% - 260px);
+  height: 100%!important;
+  max-height: 100%;
+  position: fixed;
+}
+
+.timeline {
+  padding-top: 50px;
+}
+
+.ui.item.menu .item.custom.spaced {
+  padding: 13px 10px!important;
+}

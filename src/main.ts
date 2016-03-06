@@ -1,3 +1,3 @@
-import {Application} from './browser/application';
+import Application from './browser/Application';
 
 var application = new Application();

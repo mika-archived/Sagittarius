@@ -27,4 +27,10 @@
 /// <reference path="node-notifier/node-notifier.d.ts" />
 /// <reference path="mocha/mocha.d.ts" />
 /// <reference path="should/should.d.ts" />
+/// <reference path="redux/redux.d.ts" />
+/// <reference path="redux-thunk/redux-thunk.d.ts" />
+/// <reference path="react-redux/react-redux.d.ts" />
+/// <reference path="ix.js/ix.d.ts" />
+/// <reference path="ix.js/l2o.d.ts" />
+/// <reference path="redux-logger/redux-logger.d.ts" />
 

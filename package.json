@@ -10,7 +10,7 @@
     "build": "gulp build",
     "prestart": "npm run build",
     "start": "electron .",
-    "prepack": "npm run build",
+    "prepack": "npm run build; browserify ./app/main.js --im --no-detect-globals --node -o ./app/main.js",
     "pack": "electron-packager . Sagittarius --platform=all --arch=x64 --version=0.36.1 --out=dist --ignore={.vscode,bin,dist,src,screenshots}/* --prune=true --asar=true"
   },
   "repository": {
@@ -26,11 +26,16 @@
   "homepage": "https://github.com/fuyuno/Sagittarius#readme",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "ix": "^1.0.6",
     "jquery": "^2.1.4",
     "node-notifier": "^4.4.0",
     "punycode": "^1.4.0",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^1.0.3",
     "rx": "^4.0.7",
     "semantic-ui": "^2.1.7",
     "should": "^8.2.2"
