@@ -67,7 +67,7 @@ export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
               <div className="form inverted ui">
                 <div className="field">
                   <div className="ui checkbox">
-                    <input className="hidden" type="checkbox" tabindex="0" />
+                    <input className="hidden" type="checkbox" tabIndex="0" />
                     <label>Enable Desktop Notification</label>
                   </div>
                 </div>
