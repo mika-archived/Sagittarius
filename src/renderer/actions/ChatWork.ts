@@ -1,6 +1,7 @@
 import {Action} from '../models/actions/Action';
 import {AsyncAction} from '../models/actions/AsyncAction';
 import {MeAction} from '../models/actions/MeAction';
+import {DummyMe} from '../models/DummyMe';
 import {Me} from '../models/Me';
 import {ActionTypes} from './ActionTypes';
 
@@ -11,7 +12,7 @@ function requestMe(): MeAction {
   return {
     type: ActionTypes.RequestMe,
     isFetching: true,
-    me: null
+    me: new DummyMe()
   } as MeAction;
 }
 

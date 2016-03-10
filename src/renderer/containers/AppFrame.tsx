@@ -30,7 +30,7 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
 
 function mapStateToProps(state: any): any {
   return {
-    me: state.fetchMe.me
+    me: state.fetchMe
   } as AppFrameProps;
 }
 

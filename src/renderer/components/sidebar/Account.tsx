@@ -9,18 +9,11 @@ interface AccountProps {
 
 export class Account extends React.Component<AccountProps, {}> {
   render(): JSX.Element {
-    var me  = this.props.me;
-    if(me == null) {
-      me = new Me({
-        avatar_image_url: "",
-        name: ""
-      });
-    }
     return (
       <div className="item">
         <img className="ui mini middle aligned rounded right spaced image" 
-          src={me.avatarImageUrl} />
-        <b>{me.name}</b>
+          src={this.props.me.avatarImageUrl} />
+        <b>{this.props.me.name}</b>
       </div>
     );
   }
