@@ -15,7 +15,7 @@ export class Room extends Serializable {
   iconPath: string;
   lastUpdateTime: number;
   description: string;
-  
+
   constructor(json: any) {
     super();
     this.fromJson(json);

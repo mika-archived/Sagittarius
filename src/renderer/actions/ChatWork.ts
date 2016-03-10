@@ -1,66 +1,72 @@
 import {Action} from '../models/Action';
 import {AsyncAction} from '../models/AsyncAction';
+import {MeAction} from '../models/MeAction';
+import {Me} from '../models/Me';
 import {ActionTypes} from './ActionTypes';
 
 var request = require('request');
 var querystring = require('querystring');
 
-function requestMe(): AsyncAction {
+function requestMe(): MeAction {
   return {
     type: ActionTypes.RequestMe,
-    isFetching: true
-  } as AsyncAction;
+    isFetching: true,
+    me: null
+  } as MeAction;
 }
 
-function responseMe(json: any) {
+function responseMe(json: any): MeAction {
   return {
     type: ActionTypes.ResponseMe,
     isFetching: false,
-    me: json
-  }
+    me: new Me(json)
+  } as MeAction;
 }
 
 export function fetchMe(): (dispatch) => Promise<any> {
   return (dispatch) => {
     dispatch(requestMe());
     return get('me', '')
-      .then(response => response.json())
       .then(json => dispatch(responseMe(json)));
   };
 }
 
-function get(endPoint: string, token: string, params: any = null): Promise<any> {
+function get(endPoint: string, params: any = null): Promise<any> {
   return new Promise((resolve, reject) => {
     request.get({
       url: 'https://api.chatwork.com/v1/' + endPoint + (params != null ? '?' + querystring.stringify(params) : ''),
       headers: {
-        'X-ChatWorkToken': token
+        'X-ChatWorkToken': localStorage.getItem('chatwork-token')
       },
-      json: true,
+      json: true
     }, (error, response, body) => {
       if(!error && response.statusCode == 200) {
+        console.log('%c HTTP 200 OK', 'color: #00cc99; font-weight: bold', body);
         resolve(body);
       } else {
-        reject(body);
+        console.log('%c HTTP ERROR', 'color: #cc0066; font-weight: bold', body);
+        reject();
       }
     });
   });
 }
 
-function post(endPoint: string, token: string, params: any = null): Promise<any> {
+function post(endPoint: string, params: any = null): Promise<any> {
   return new Promise((resolve, reject) => {
     request.post({
       url: 'https://api.chatwork.com/v1/' + endPoint,
       headers: {
-        'X-ChatWorkToken': token
+        'X-ChatWorkToken': localStorage.getItem('chatwork-token')
       },
       json: true,
       form: params != null ? querystring.stringify(params) : ''
     }, (error, response, body) => {
       if(!error && response.statusCode == 200) {
+        console.log('%c HTTP 200 OK', 'color: #00cc99; font-weight: bold', body);
         resolve(body);
       } else {
-        reject(body);
+        console.log('%c HTTP ERROR', 'color: #cc0066; font-weight: bold', body);
+        reject();
       }
     });
   });

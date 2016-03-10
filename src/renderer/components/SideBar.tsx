@@ -1,18 +1,19 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
 import * as React from 'react';
-import {Me} from './sidebar/Me';
+import {Account} from './sidebar/Account';
 import {RoomList} from './sidebar/RoomList';
+import {Me} from '../models/Me';
 
 interface SideBarProps {
-  
+  me?: Me;
 }
 
 export class SideBar extends React.Component<SideBarProps, {}> {
   render(): JSX.Element {
     return (
       <div className="ui visible inverted left vertical sidebar menu">
-        <Me />
+        <Account me={this.props.me} />
         <RoomList />
       </div>
     );
