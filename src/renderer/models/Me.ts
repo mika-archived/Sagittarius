@@ -1,13 +1,6 @@
-import {Serializable} from './Serializable';
+import {Contact} from './Contact';
 
-export class Me extends Serializable {
-  accountId: number;
-  roomId: number;
-  name: string;
-  chatworkId: string;
-  organizationId: number;
-  organizationName: string;
-  department: string;
+export class Me extends Contact {
   title: string;
   url: string;
   introduction: string;
@@ -18,10 +11,8 @@ export class Me extends Serializable {
   skype: string;
   facebook: string;
   twitter: string;
-  avatarImageUrl: string;
   
   constructor(json: any) {
-    super();
-    this.fromJson(json);
+    super(json);
   }
 }

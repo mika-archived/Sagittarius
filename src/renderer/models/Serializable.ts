@@ -1,7 +1,12 @@
 export class Serializable {
   public fromJson(json: any): void {
     for(var propName in json) {
-      this[this.toCamelCase(propName)] = json[propName];
+      if(this[this.toCamelCase(propName)] instanceof Serializable) {
+        // ↓こういうのをしたかった。
+        // this[this.toCamelCase(propName)] = Activator.CreateInstance(typeof(this[this.toCamelCase(propName)]), {json[PropName]})
+      } else {
+        this[this.toCamelCase(propName)] = json[propName];
+      }
     }
   }
   
