@@ -41,11 +41,10 @@ function get(endPoint: string, params: any = null): Promise<any> {
       },
       json: true
     }, (error, response, body) => {
+      printHTTPResult(error, response, body);
       if(!error && response.statusCode == 200) {
-        console.log('%c HTTP 200 OK', 'color: #00cc99; font-weight: bold', body);
         resolve(body);
       } else {
-        console.log('%c HTTP ERROR', 'color: #cc0066; font-weight: bold', body);
         reject();
       }
     });
@@ -62,13 +61,30 @@ function post(endPoint: string, params: any = null): Promise<any> {
       json: true,
       form: params != null ? querystring.stringify(params) : ''
     }, (error, response, body) => {
+      printHTTPResult(error, response, body);
       if(!error && response.statusCode == 200) {
-        console.log('%c HTTP 200 OK', 'color: #00cc99; font-weight: bold', body);
         resolve(body);
       } else {
-        console.log('%c HTTP ERROR', 'color: #cc0066; font-weight: bold', body);
         reject();
       }
     });
   });
+}
+
+function printHTTPResult(error: any, response: any, body: any) {
+  console.group('HTTP Response');
+  if(!error && response.statusCode == 200) {
+    console.log('%c HTTP 200 OK', 'color: #00cc99; font-weight: bold', body);
+  } else {
+    console.log('%c HTTP ERROR', 'color: #cc0066; font-weight: bold', body);
+  }
+  var rate = response.headers['x-ratelimit-remaining'];
+  if(rate <= 0) {
+    console.log('%c RateLimit-Remaining', 'color: #ff9966; font-weight: bold', rate);
+  } else {
+    console.log('%c RateLimit-Remaining', 'color: #660099; font-weight: bold', rate);
+  }
+  console.log('%c ReteLimit-Reset', 'color: #660099; font-weight: bold',  new Date(+response.headers['x-ratelimit-reset'] * 1000).toLocaleString());
+  
+  console.groupEnd();
 }
