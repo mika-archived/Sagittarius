@@ -10,6 +10,11 @@ interface AppFrameProps {
 }
 
 class AppFrame extends React.Component<AppFrameProps, {}> {
+  
+  componentDidMount(): void {
+    
+  }
+  
   render(): JSX.Element {
     return (
       <div>
