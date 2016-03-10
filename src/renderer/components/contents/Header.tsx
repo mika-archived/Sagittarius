@@ -2,12 +2,21 @@
 
 import * as $ from 'jquery';
 import * as React from 'react';
+import {Contact} from '../../models/Contact';
+import {DummyRoom} from '../../models/DummyRoom';
+import {DummyMe} from '../../models/DummyMe';
+import {Room} from '../../models/Room';
 
 interface HeaderProps {
-  
+  room?: Room;
+  users?: Contact[];
 }
 
 export class Header extends React.Component<HeaderProps, {}> {
+
+  constructor() {
+    super();
+  }
 
   componentDidMount(): void {
     $('.dropdown.basic.button').dropdown();
@@ -19,15 +28,17 @@ export class Header extends React.Component<HeaderProps, {}> {
   }
   
   render(): JSX.Element {
+    var room = new DummyRoom();
+    var users = [new DummyMe(), new DummyMe()];
     return (
       <div className="ui top borderless fixed menu">
         <div className="header item">
-          Room Metro #1
+          {room.name}
         </div>
         <div className="right menu">
           <div className="horizontally fitted item">
             <i className="user icon"></i>
-            10
+            {users.length}
           </div>
           <div className="item">
             <div className="circular ui icon toggleinfo basic button">

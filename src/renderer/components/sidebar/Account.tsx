@@ -12,7 +12,7 @@ export class Account extends React.Component<AccountProps, {}> {
     var me  = this.props.me;
     if(me == null) {
       me = new Me({
-        avatar_image_url: "https://tky-chat-work-appdata.s3.amazonaws.com/avatar/ico_default_violet.png",
+        avatar_image_url: "",
         name: ""
       });
     }

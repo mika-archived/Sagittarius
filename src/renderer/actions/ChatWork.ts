@@ -1,6 +1,6 @@
-import {Action} from '../models/Action';
-import {AsyncAction} from '../models/AsyncAction';
-import {MeAction} from '../models/MeAction';
+import {Action} from '../models/actions/Action';
+import {AsyncAction} from '../models/actions/AsyncAction';
+import {MeAction} from '../models/actions/MeAction';
 import {Me} from '../models/Me';
 import {ActionTypes} from './ActionTypes';
 

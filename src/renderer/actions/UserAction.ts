@@ -1,5 +1,5 @@
-import {Action} from '../models/Action';
-import {RoomAction} from '../models/RoomAction';
+import {Action} from '../models/actions/Action';
+import {RoomAction} from '../models/actions/RoomAction';
 import {ActionTypes} from './ActionTypes';
 
 function selectChatRoom(roomId: number): RoomAction {
