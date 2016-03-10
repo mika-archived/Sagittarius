@@ -26,7 +26,7 @@ function responseMe(json: any): MeAction {
 export function fetchMe(): (dispatch) => Promise<any> {
   return (dispatch) => {
     dispatch(requestMe());
-    return get('me', '')
+    return get('me')
       .then(json => dispatch(responseMe(json)));
   };
 }
