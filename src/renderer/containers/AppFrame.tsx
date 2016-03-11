@@ -2,14 +2,16 @@
 
 import * as React from 'react';
 import {connect} from 'react-redux'
-import {fetchMe} from '../actions/Chatwork';
+import {fetchMe, fetchRooms} from '../actions/Chatwork';
 import {Contents} from '../components/Contents';
 import {SideBar} from '../components/SideBar';
 import {Me} from '../models/Me';
+import {Room} from '../models/Room';
 
 interface AppFrameProps {
   dispatch?: Redux.Dispatch;
   me?: Me;
+  rooms: Room[];
   selectChatRoom?: number;
 }
 
@@ -17,12 +19,14 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   
   componentDidMount(): void {
     this.props.dispatch(fetchMe());
+    this.props.dispatch(fetchRooms());
   }
   
   render(): JSX.Element {
     return (
       <div>
-        <SideBar me={this.props.me} selectedChatRoom={this.props.selectChatRoom} />
+        <SideBar me={this.props.me} selectedChatRoom={this.props.selectChatRoom}
+          rooms={this.props.rooms} />
         <Contents />
       </div>
     );
@@ -32,6 +36,7 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
 function mapStateToProps(state: any): any {
   return {
     me: state.fetchMe,
+    rooms: state.fetchRooms,
     selectChatRoom: state.selectChatRoom
   } as AppFrameProps;
 }

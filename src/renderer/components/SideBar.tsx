@@ -4,9 +4,11 @@ import * as React from 'react';
 import {Account} from './sidebar/Account';
 import {RoomList} from './sidebar/RoomList';
 import {Me} from '../models/Me';
+import {Room} from '../models/Room';
 
 interface SideBarProps {
   me?: Me;
+  rooms: Room[];
   selectedChatRoom: number;
 }
 
@@ -15,7 +17,7 @@ export class SideBar extends React.Component<SideBarProps, {}> {
     return (
       <div className="ui visible inverted left vertical sidebar menu">
         <Account me={this.props.me} />
-        <RoomList selectedChatRoom={this.props.selectedChatRoom} />
+        <RoomList selectedChatRoom={this.props.selectedChatRoom} rooms={this.props.rooms}/>
       </div>
     );
   }

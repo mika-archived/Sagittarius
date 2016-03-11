@@ -7,25 +7,49 @@ export enum ActionTypes {
   RequestMyStatus,
   ResponseMyStatus,
   
+  /* API CALL - /my/tasks */
+  RequestMyTasks,
+  ResponseMyTasks,
+  
+  /* API CALL - /contacts */
+  RequestContacts,
+  ResponseContacts,
+  
   /* API CALL - /rooms */
   RequestRooms,
   ResponseRooms,
   
   /* API CALL - /rooms/:id */
-  RequestRoomsId,
-  ResponseRoomsId,
+  RequestRoom,
+  ResponseRoom,
   
   /* API CALL - /rooms/:id/members */
-  RequestRoomsMembers,
-  ResponseRoomsMembers,
+  RequestRoomMembers,
+  ResponseRoomMembers,
   
   /* API CALL - /rooms/:id/messages */
-  RequestRoomsMessages,
-  ResponseRoomsMessages,
+  RequestRoomMessages,
+  ResponseRoomMessages,
   
-  /* API CALL - /rooms/:id/messages (POST) */
-  PostRoomMessage,
-  ResponseRoomMessage,
+  /* API CALL - /rooms/:id/messages/:id */
+  RequestRoomMessageDetails,
+  ResponseRoomMessageDetails,
+  
+  /* API CALL - /rooms/:id/tasks */
+  RequestRoomTasks,
+  ResponseRoomTasks,
+  
+  /* API CALL - /rooms/:id/tasks/:id */
+  RequestRoomTaskDetails,
+  ResponseRoomTaskDetails,
+  
+  /* API CALL - /rooms/:id/files */
+  RequestRoomFiles,
+  ResponseRoomFiles,
+  
+  /* API CALL - /rooms/:id/files/:id */
+  RequestRoomFileDetails,
+  ResponseRoomFileDetails,
   
   /* User Actions */
   SelectRoom,
