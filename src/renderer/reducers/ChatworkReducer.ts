@@ -18,7 +18,6 @@ export function fetchRooms(state: any = {}, action: RoomsAction) {
   switch (action.type) {
     case ActionTypes.RequestRooms:
     case ActionTypes.ResponseRooms:
-      console.log(action.rooms);
       return action.rooms;
     default:
       return state;
