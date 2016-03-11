@@ -11,7 +11,7 @@ import {Room} from '../models/Room';
 interface AppFrameProps {
   dispatch?: Redux.Dispatch;
   me?: Me;
-  rooms: Room[];
+  rooms?: Room[];
   selectChatRoom?: number;
 }
 

@@ -5,6 +5,6 @@ import {ActionTypes} from './ActionTypes';
 function selectChatRoom(roomId: number): RoomAction {
   return {
     type: ActionTypes.SelectRoom,
-    roomId: roomId
+    selectedRoomId: roomId
   } as RoomAction;
 }
