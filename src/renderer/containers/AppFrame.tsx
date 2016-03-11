@@ -3,6 +3,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux'
 import {fetchMe, fetchRooms} from '../actions/Chatwork';
+import {selectChatRoom} from '../actions/UserAction';
 import {Contents} from '../components/Contents';
 import {SideBar} from '../components/SideBar';
 import {Me} from '../models/Me';
@@ -17,16 +18,28 @@ interface AppFrameProps {
 
 class AppFrame extends React.Component<AppFrameProps, {}> {
   
+  constructor() {
+    super();
+  }
+  
+  /* Handlers */
+  onRoomChanged(id: number): void {
+    this.props.dispatch(selectChatRoom(id));
+  }
+  
   componentDidMount(): void {
     this.props.dispatch(fetchMe());
     this.props.dispatch(fetchRooms());
   }
   
   render(): JSX.Element {
+    var onRoomChanged = this.onRoomChanged.bind(this);
     return (
       <div>
-        <SideBar me={this.props.me} selectedChatRoom={this.props.selectChatRoom}
-          rooms={this.props.rooms} />
+        <SideBar me={this.props.me} 
+                 selectedChatRoom={this.props.selectChatRoom}
+                 rooms={this.props.rooms}
+                 onRoomChanged={onRoomChanged} />
         <Contents />
       </div>
     );
