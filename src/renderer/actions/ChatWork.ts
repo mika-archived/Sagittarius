@@ -8,6 +8,7 @@ import {ActionTypes} from './ActionTypes';
 var request = require('request');
 var querystring = require('querystring');
 
+// ~/me
 function requestMe(): MeAction {
   return {
     type: ActionTypes.RequestMe,
@@ -31,6 +32,20 @@ export function fetchMe(): (dispatch) => Promise<any> {
       .then(json => dispatch(responseMe(json)));
   };
 }
+
+// ~/my/status
+// ~/my/tasks
+// ~/contacts
+// ~/rooms
+// ~/rooms/:id
+// ~/rooms/:id/members
+// ~/rooms/:id/messages
+// ~/rooms/:id/messages/:message_id
+// ~/rooms/:id/tasks
+// ~/rooms/:id/tasks/:task_id
+// ~/rooms/:id/files
+// ~/rooms/:id/files/:file_id
+
 
 function get(endPoint: string, params: any = null): Promise<any> {
   return new Promise((resolve, reject) => {

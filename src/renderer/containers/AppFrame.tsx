@@ -10,6 +10,7 @@ import {Me} from '../models/Me';
 interface AppFrameProps {
   dispatch?: Redux.Dispatch;
   me?: Me;
+  selectChatRoom?: number;
 }
 
 class AppFrame extends React.Component<AppFrameProps, {}> {
@@ -21,7 +22,7 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   render(): JSX.Element {
     return (
       <div>
-        <SideBar me={this.props.me} />
+        <SideBar me={this.props.me} selectedChatRoom={this.props.selectChatRoom} />
         <Contents />
       </div>
     );
@@ -30,7 +31,8 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
 
 function mapStateToProps(state: any): any {
   return {
-    me: state.fetchMe
+    me: state.fetchMe,
+    selectChatRoom: state.selectChatRoom
   } as AppFrameProps;
 }
 
