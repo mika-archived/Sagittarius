@@ -33,13 +33,12 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   }
   
   render(): JSX.Element {
-    var onRoomChanged = this.onRoomChanged.bind(this);
     return (
       <div>
         <SideBar me={this.props.me} 
                  selectedChatRoom={this.props.selectChatRoom}
                  rooms={this.props.rooms}
-                 onRoomChanged={onRoomChanged} />
+                 onRoomChanged={this.onRoomChanged.bind(this)} />
         <Contents />
       </div>
     );

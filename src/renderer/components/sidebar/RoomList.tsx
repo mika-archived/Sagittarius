@@ -43,7 +43,10 @@ export class RoomList extends React.Component<RoomListProps, {}> {
       rooms = this.props.rooms.map((room) => {
         var onClick = this.onClick.bind(this, room.roomId);
         return (
-          <a className="item" key={room.roomId.toString()} id={room.roomId.toString()} onClick={onClick}>
+          <a className="item" 
+             key={room.roomId.toString()} 
+             id={room.roomId.toString()} 
+             onClick={onClick}>
             <img className="ui avatar right spaced image" src={room.iconPath} />
             {room.name}
           </a>

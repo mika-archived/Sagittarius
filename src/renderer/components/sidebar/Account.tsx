@@ -12,7 +12,7 @@ export class Account extends React.Component<AccountProps, {}> {
     return (
       <div className="item">
         <img className="ui mini middle aligned rounded right spaced image" 
-          src={this.props.me.avatarImageUrl} />
+             src={this.props.me.avatarImageUrl} />
         <b>{this.props.me.name}</b>
       </div>
     );
