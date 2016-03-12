@@ -16,7 +16,7 @@ interface AppFrameProps {
   me?: Me;
   rooms?: Room[];
   selectChatRoom?: number;
-  counter: number;
+  counter?: number;
 }
 
 class AppFrame extends React.Component<AppFrameProps, {}> {

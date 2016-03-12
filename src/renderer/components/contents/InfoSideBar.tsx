@@ -18,7 +18,7 @@ export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
   
   render(): JSX.Element {
     return (
-      <div id="infoSideBar" className="ui right sidebar vertical inverted menu overlay">
+      <div>
         <div className="header item">
           <h3>About {this.props.room.name}</h3>
         </div>

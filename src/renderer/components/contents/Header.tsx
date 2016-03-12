@@ -20,7 +20,7 @@ export class Header extends React.Component<HeaderProps, {}> {
   componentDidMount(): void {
     $('.dropdown.basic.button').dropdown();
     $('.toggleinfo.basic.button').click(() => {
-      $('#infoSideBar')
+      $('#side')
         .sidebar('setting', 'transition', 'overlay')
         .sidebar('toggle');
     });

@@ -1,6 +1,7 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {Footer} from './contents/Footer';
 import {Header} from './contents/Header';
 import {InfoSideBar} from './contents/InfoSideBar';
@@ -13,7 +14,10 @@ interface ContentsProps {
 
 export class Contents extends React.Component<ContentsProps, {}> {
   render(): JSX.Element {
-    console.log('aaa');
+    var side = (
+      <InfoSideBar room={this.props.room} />
+    );
+    ReactDOM.render(side, document.getElementById("side"));
     return (
       <div className="pusher" id="contents">
         <Header room={this.props.room} />
@@ -21,7 +25,6 @@ export class Contents extends React.Component<ContentsProps, {}> {
         <div className="timeline">
           <Timeline />
         </div>
-        <InfoSideBar room={this.props.room} />
       </div>
     )
   }
