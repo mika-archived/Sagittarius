@@ -8,8 +8,8 @@ import {DummyMe} from '../../models/DummyMe';
 import {Room} from '../../models/Room';
 
 interface HeaderProps {
-  room?: Room;
-  users?: Contact[];
+  room: Room;
+  users: Contact[];
 }
 
 export class Header extends React.Component<HeaderProps, {}> {
@@ -28,17 +28,15 @@ export class Header extends React.Component<HeaderProps, {}> {
   }
   
   render(): JSX.Element {
-    var room = new DummyRoom();
-    var users = [new DummyMe(), new DummyMe()];
     return (
       <div className="ui top borderless fixed menu">
         <div className="header item">
-          {room.name}
+          {this.props.room.name}
         </div>
         <div className="right menu">
           <div className="horizontally fitted item">
             <i className="user icon"></i>
-            {users.length}
+            {this.props.users.length}
           </div>
           <div className="item">
             <div className="circular ui icon toggleinfo basic button">
