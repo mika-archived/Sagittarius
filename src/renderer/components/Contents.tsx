@@ -21,7 +21,7 @@ export class Contents extends React.Component<ContentsProps, {}> {
         <div className="timeline">
           <Timeline />
         </div>
-        <InfoSideBar />
+        <InfoSideBar room={this.props.room} />
       </div>
     )
   }

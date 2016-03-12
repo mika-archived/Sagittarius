@@ -2,9 +2,11 @@
 
 import * as $ from 'jquery';
 import * as React from 'react';
+import {MemberList} from './MemberList';
+import {Room} from '../../models/Room';
 
 interface InfoSideBarProps {
-  
+  room: Room;
 }
 
 export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
@@ -46,16 +48,7 @@ export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
                 Members
               </h4>
             </div>
-            <div className="content">
-              <div className="ui middle aligned inverted list">
-                <div className="item">
-                  <img className="ui avatar image" src="https://tky-chat-work-appdata.s3.amazonaws.com/avatar/969/969476.rsz.png" />
-                  <div className="content">
-                    <div className="ui sub header">Mika</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MemberList members={this.props.room.members} />
             <div className="title">
               <h4>
                 <i className="dropdown icon"></i>
