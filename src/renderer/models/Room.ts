@@ -26,6 +26,7 @@ export class Room extends Serializable {
     super();
     this.fromJson(json);
     
+    this.description = "";
     this.members = [];
     this.messages = [];
   }
