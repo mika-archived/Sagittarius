@@ -45,7 +45,7 @@ export class RoomList extends React.Component<RoomListProps, {}> {
         return (
           <a className="item" 
              key={room.roomId.toString()} 
-             id={room.roomId.toString()} 
+             id={room.roomId.toString()}
              onClick={onClick}>
             <img className="ui avatar right spaced image" src={room.iconPath} />
             {room.name}

@@ -1,7 +1,9 @@
 import {Action} from '../models/actions/Action';
 import {AsyncAction} from '../models/actions/AsyncAction';
 import {MeAction} from '../models/actions/MeAction';
+import {MembersAction} from '../models/actions/MembersAction';
 import {RoomsAction} from '../models/actions/RoomsAction';
+import {Contact} from '../models/Contact';
 import {DummyMe} from '../models/DummyMe';
 import {Me} from '../models/Me';
 import {Room} from '../models/Room';
@@ -77,6 +79,31 @@ export function fetchRooms(requestType: RequestTypes = RequestTypes.Get, params:
 // ~/rooms/:id (PUT)
 // ~/rooms/:id (DELETE)
 // ~/rooms/:id/members
+function requestRoomMembers(): MembersAction {
+  return {
+    type: ActionTypes.RequestRoomMembers,
+    isFetching: true,
+    roomId: -1,
+    members: []
+  } as MembersAction;
+}
+
+function responseRoomMembers(id: number, json: any): MembersAction {
+  return {
+    type: ActionTypes.ResponseRoomMembers,
+    isFetching: false,
+    roomId: id,
+    members: json.map(w => new Contact(w))
+  } as MembersAction;
+}
+
+export function fetchMembers(id: number): (dispatch) => Promise<any> {
+  return (dispatch) => {
+    dispatch(requestRoomMembers());
+    return get('rooms/' + id + '/members')
+      .then(json => dispatch(responseRoomMembers(id, json)));
+  };
+}
 // ~/rooms/:id/messages
 // ~/rooms/:id/messages/:message_id
 // ~/rooms/:id/tasks

@@ -3,7 +3,7 @@
 import * as Ix from 'ix';
 import * as React from 'react';
 import {connect} from 'react-redux'
-import {fetchMe, fetchRooms} from '../actions/Chatwork';
+import {fetchMe, fetchRooms, fetchMembers} from '../actions/Chatwork';
 import {selectChatRoom} from '../actions/UserAction';
 import {Contents} from '../components/Contents';
 import {SideBar} from '../components/SideBar';
@@ -16,6 +16,7 @@ interface AppFrameProps {
   me?: Me;
   rooms?: Room[];
   selectChatRoom?: number;
+  counter: number;
 }
 
 class AppFrame extends React.Component<AppFrameProps, {}> {
@@ -27,6 +28,7 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   /* Handlers */
   onRoomChanged(id: number): void {
     this.props.dispatch(selectChatRoom(id));
+    this.props.dispatch(fetchMembers(id));
   }
   
   componentDidMount(): void {
@@ -37,7 +39,6 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   render(): JSX.Element {
     var room = new DummyRoom();
     if(this.props.rooms.length > 0 && this.props.selectChatRoom != -1) {
-      console.log(this.props.rooms);
       room = Ix.Enumerable.fromArray(this.props.rooms)
         .single(w => w.roomId == this.props.selectChatRoom);
     }
@@ -54,11 +55,21 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
 }
 
 function mapStateToProps(state: any): any {
-  return {
+  var _ = {
     me: state.fetchMe,
     rooms: state.fetchRooms,
-    selectChatRoom: state.selectChatRoom
+    selectChatRoom: state.selectChatRoom,
+    counter: Math.floor(Math.random() * 101)
   } as AppFrameProps;
+  if(_.rooms.length > 0) {
+    _.rooms.some((w, index, array) => {
+      if(w.roomId == state.fetchRoomMembers.id) {
+        w.members = state.fetchRoomMembers.members;
+        return true;
+      }
+    });
+  }
+  return _;
 }
 
 /*

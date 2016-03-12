@@ -13,9 +13,10 @@ interface ContentsProps {
 
 export class Contents extends React.Component<ContentsProps, {}> {
   render(): JSX.Element {
+    console.log('aaa');
     return (
       <div className="pusher" id="contents">
-        <Header room={this.props.room} users={[]}/>
+        <Header room={this.props.room} />
         <Footer />
         <div className="timeline">
           <Timeline />

@@ -1,3 +1,5 @@
+import {Contact} from './Contact';
+import {Message} from './Message';
 import {Serializable} from './Serializable';
 
 export class Room extends Serializable {
@@ -15,9 +17,16 @@ export class Room extends Serializable {
   iconPath: string;
   lastUpdateTime: number;
   description: string;
+  
+  /* extend */
+  members: Contact[];
+  messages: Message[];
 
   constructor(json: any) {
     super();
     this.fromJson(json);
+    
+    this.members = [];
+    this.messages = [];
   }
 }
