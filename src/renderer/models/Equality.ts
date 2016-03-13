@@ -20,6 +20,6 @@ export function equalsTo(obj1: any, obj2: any): boolean {
       }
     }
   } else {
-    return obj1 == obj2;
+    return obj1 === obj2;
   }
 }
