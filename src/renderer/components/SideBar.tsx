@@ -21,7 +21,8 @@ export class SideBar extends React.Component<SideBarProps, {}> {
         <Account me={this.props.me} />
         <RoomList selectedChatRoom={this.props.selectedChatRoom} 
                   rooms={this.props.rooms}
-                  onRoomChanged={this.props.onRoomChanged}/>
+                  onRoomChanged={this.props.onRoomChanged}
+                  me={this.props.me} />
       </div>
     );
   }

@@ -4,11 +4,13 @@ import * as $ from 'jquery';
 import * as React from 'react';
 import {RoomChangedCallback} from '../../delegates/RoomChangedCallback';
 import {equalsTo} from '../../models/ArrayUtils';
+import {Me} from '../../models/Me';
 import {Room} from '../../models/Room';
 
 interface RoomListProps {
   selectedChatRoom: number;
   rooms: Room[];
+  me: Me;
   onRoomChanged: RoomChangedCallback;
 }
 
@@ -50,12 +52,14 @@ export class RoomList extends React.Component<RoomListProps, {}> {
     if(this.props.rooms.length > 0) {
       rooms = this.props.rooms.map((room) => {
         var onClick = this.onClick.bind(this, room.roomId);
+        console.log(room.type);
+        var path = room.type == "my" ? this.props.me.avatarImageUrl : room.iconPath;
         return (
           <a className="item" 
              key={room.roomId.toString()} 
              id={room.roomId.toString()}
              onClick={onClick}>
-            <img className="ui avatar right spaced image" src={room.iconPath} />
+            <img className="ui avatar right spaced image" src={path} />
             {room.name}
           </a>
         );
