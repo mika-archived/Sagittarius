@@ -11,7 +11,7 @@ export class MemberList extends React.Component<MemberListProps, {}> {
   render(): JSX.Element {
     var users = this.props.members.map(w => {
       return (
-        <div className="item">
+        <div className="item" key={w.accountId}>
           <img className="ui avatar image" src={w.avatarImageUrl} />
           <div className="content">
             <div className="ui sub header">{w.name}</div>
