@@ -5,7 +5,10 @@
   "main": "app/main.js",
   "private": true,
   "scripts": {
-    "pretest": "gulp ts:testCompile; grep -l '..\\/src' ./test/*.js | xargs sed -i.bak -e 's/..\\/src/..\\/app/g'; rm ./test/*.bak",
+    "testCompile": "gulp ts:testCompile; grep -l '..\\/src' ./test/*.js | xargs sed -i.bak -e 's/..\\/src/..\\/app/g'; rm ./test/*.bak",
+    "prelocaltest": "npm run testCompile",
+    "localtest": "istanbul test _mocha -- test",
+    "pretest": "npm run testCompile",
     "test": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "build": "gulp build",
     "prestart": "npm run build",
