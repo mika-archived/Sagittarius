@@ -64,6 +64,10 @@ describe('Equality', () => {
     equalsToArray(array1, array2).should.equal(true);
     array2[2] = 13;
     equalsToArray(array1, array2).should.equal(false);
+    var array3 = [10, 11, 12, 13];
+    equalsToArray(array1, array3).should.equal(false);
+    var array4 = [10, 11];
+    equalsToArray(array1, array4).should.equal(false);
   });
 
   it('equalsToArray - case 2 (object)', () => {
