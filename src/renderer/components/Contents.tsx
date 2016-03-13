@@ -13,11 +13,16 @@ interface ContentsProps {
 }
 
 export class Contents extends React.Component<ContentsProps, {}> {
-  render(): JSX.Element {
+  
+  /* React Lifecycle */
+  componentDidUpdate(prevProps: ContentsProps, prevState: any): void {
     var side = (
       <InfoSideBar room={this.props.room} />
     );
     ReactDOM.render(side, document.getElementById("side"));
+  }
+  
+  render(): JSX.Element {
     return (
       <div className="pusher" id="contents">
         <Header room={this.props.room} />

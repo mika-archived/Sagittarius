@@ -35,7 +35,7 @@ export class RoomList extends React.Component<RoomListProps, {}> {
   
   /* React Lifecycle */
   componentDidUpdate(prevProps: RoomListProps, prevState: any): void {
-    if(this.props.selectedChatRoom == -1) {
+    if(this.props.selectedChatRoom == -1 && this.props.rooms.length > 0) {
       this.onClick(this.props.rooms[0].roomId);
     }
   }
@@ -52,7 +52,6 @@ export class RoomList extends React.Component<RoomListProps, {}> {
     if(this.props.rooms.length > 0) {
       rooms = this.props.rooms.map((room) => {
         var onClick = this.onClick.bind(this, room.roomId);
-        console.log(room.type);
         var path = room.type == "my" ? this.props.me.avatarImageUrl : room.iconPath;
         return (
           <a className="item" 
