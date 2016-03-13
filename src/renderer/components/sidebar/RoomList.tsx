@@ -3,7 +3,7 @@
 import * as $ from 'jquery';
 import * as React from 'react';
 import {RoomChangedCallback} from '../../delegates/RoomChangedCallback';
-import {equalsTo} from '../../models/ArrayUtils';
+import {equalsTo, equalsToArray} from '../../models/Equality';
 import {Me} from '../../models/Me';
 import {Room} from '../../models/Room';
 
@@ -41,7 +41,7 @@ export class RoomList extends React.Component<RoomListProps, {}> {
   }
 
   shouldComponentUpdate(nextProps: RoomListProps, nextState: any): boolean {
-    if(equalsTo(nextProps.rooms, this.props.rooms)) {
+    if(equalsToArray(nextProps.rooms, this.props.rooms) && equalsTo(nextProps.me, this.props.me)) {
       return false;
     }
     return true;
@@ -52,7 +52,7 @@ export class RoomList extends React.Component<RoomListProps, {}> {
     if(this.props.rooms.length > 0) {
       rooms = this.props.rooms.map((room) => {
         var onClick = this.onClick.bind(this, room.roomId);
-        var path = room.type == "my" ? this.props.me.avatarImageUrl : room.iconPath;
+        var path = room.type === "my" ? this.props.me.avatarImageUrl : room.iconPath;
         return (
           <a className="item" 
              key={room.roomId.toString()} 
