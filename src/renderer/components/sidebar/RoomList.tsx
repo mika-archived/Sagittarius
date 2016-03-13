@@ -18,6 +18,7 @@ export class RoomList extends React.Component<RoomListProps, {}> {
     super();
   }
   
+  /* Event Handlers */
   onClick(id: number): React.EventHandler<React.MouseEvent> {
     this.props.onRoomChanged(id);
     this.props.rooms.forEach(w => {
@@ -30,6 +31,13 @@ export class RoomList extends React.Component<RoomListProps, {}> {
     return null;
   }
   
+  /* React Lifecycle */
+  componentDidUpdate(prevProps: RoomListProps, prevState: any): void {
+    if(this.props.selectedChatRoom == -1) {
+      this.onClick(this.props.rooms[0].roomId);
+    }
+  }
+
   shouldComponentUpdate(nextProps: RoomListProps, nextState: any): boolean {
     if(equalsTo(nextProps.rooms, this.props.rooms)) {
       return false;
