@@ -35,7 +35,9 @@ export class Header extends React.Component<HeaderProps, {}> {
         <div className="right menu">
           <div className="horizontally fitted item">
             <i className="user icon"></i>
-            {this.props.room.members.length}
+            {
+              this.props.room.members.length > 0 ? this.props.room.members.length : "Loading"
+            }
           </div>
           <div className="item">
             <div className="circular ui icon toggleinfo basic button">
