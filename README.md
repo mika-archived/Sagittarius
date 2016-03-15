@@ -1,12 +1,14 @@
 Sagittarius
 ----
-[![Circle CI](https://circleci.com/gh/fuyuno/Sagittarius/tree/develop.svg?style=svg)](https://circleci.com/gh/fuyuno/Sagittarius/tree/develop)
-[![Coverage Status](https://coveralls.io/repos/github/fuyuno/Sagittarius/badge.svg?branch=develop)](https://coveralls.io/github/fuyuno/Sagittarius?branch=develop)
+[![GitHub license](https://img.shields.io/github/license/fuyuno/Sagittarius.svg?style=flat-square)](https://github.com/fuyuno/Sagittarius/blob/develop/LICENSE)
+[![CircleCI/develop](https://img.shields.io/circleci/project/fuyuno/Sagittarius/develop.svg?style=flat-square)](https://circleci.com/gh/fuyuno/Sagittarius/tree/develop)
+[![Coveralls branch](https://img.shields.io/coveralls/fuyuno/Sagittarius/develop.svg?style=flat-square)](https://coveralls.io/github/fuyuno/Sagittarius?branch=develop)
+
 
 ChatWork Client for Desktop.  
 Available on OS X, Linux and Windows.
 
-
+ 
 ### ScreenShot
 ![alt](./screenshots/aa1e5ba.png)
 
