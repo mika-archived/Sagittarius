@@ -1,13 +1,21 @@
 {
   "application": {
+    "chat_create_task": "Create a task",
     "chat_deleted": "Message deleted.",
+    "chat_description": "Description",
+    "chat_details": "Room details",
     "chat_download_link": "Download",
     "chat_download_preview": "Preview",
-    "chat_task_deadline": "Due",
-    "chat_task_unset": "unset",
+    "chat_enable_notify": "Enable desktop notification",
+    "chat_files": "Files",
+    "chat_members": "Members",
+    "chat_preferences": "Preferences",
     "chat_quote": "Quote",
     "chat_reply": "Reply",
-    "chat_rooms": "Chat lists"
+    "chat_rooms": "Chat lists",
+    "chat_tasks": "Tasks",
+    "chat_task_deadline": "Due",
+    "chat_task_unset": "unset"
   },
   "dtext": {
     "chatroom_added": "has been added.",
