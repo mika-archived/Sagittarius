@@ -2,6 +2,7 @@
 
 import * as $ from 'jquery';
 import * as React from 'react';
+import {t} from '../../models/I18N';
 
 interface FooterProps {
   
@@ -22,7 +23,7 @@ export class Footer extends React.Component<FooterProps, {}> {
               <i className="plus icon"></i>
               <div className="menu">
                 <div className="item">
-                  <i className="tasks icon"></i> Create a Task
+                  <i className="tasks icon"></i> {t('application', "chat_create_task")}
                 </div>
               </div>
             </div>

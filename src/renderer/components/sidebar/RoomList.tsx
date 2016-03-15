@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import * as React from 'react';
 import {RoomChangedCallback} from '../../delegates/RoomChangedCallback';
 import {equalsTo, equalsToArray} from '../../models/Equality';
+import {t} from '../../models/I18N';
 import {Me} from '../../models/Me';
 import {Room} from '../../models/Room';
 
@@ -67,7 +68,7 @@ export class RoomList extends React.Component<RoomListProps, {}> {
     return (
       <div className="item">
         <div className="header">
-          Chat Lists
+          {t('application', 'chat_rooms')}
         </div>
         <div className="menu">
           {rooms}

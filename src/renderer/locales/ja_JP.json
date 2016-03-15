@@ -1,0 +1,41 @@
+{
+  "application": {
+    "chat_create_task": "タスクを作成",
+    "chat_deleted": "メッセージは削除されました。",
+    "chat_description": "概要",
+    "chat_details": "チャット詳細",
+    "chat_download_link": "ダウンロード",
+    "chat_download_preview": "プレビュー",
+    "chat_enable_notify": "デスクトップ通知を有効にする",
+    "chat_files": "ファイル",
+    "chat_members": "メンバー",
+    "chat_preferences": "設定",
+    "chat_quote": "引用",
+    "chat_reply": "返信",
+    "chat_rooms": "チャットリスト",
+    "chat_tasks": "タスク",
+    "chat_task_deadline": "期限",
+    "chat_task_unset": "未設定"
+  },
+  "dtext": {
+    "chatroom_added": "」を追加しました。",
+    "chatroom_chatname_is": "チャット名を「",
+    "chatroom_chat_edited": "チャット情報を変更しました。",
+    "chatroom_contact_added": "コンタクトを追加しました。",
+    "chatroom_description_is": "概要を「",
+    "chatroom_groupchat_created": "新しくグループチャットを作成しました。",
+    "chatroom_icon_updated": "グループチャットのアイコンを変更しました。",
+    "chatroom_member_is": "メンバー「",
+    "chatroom_mychat_created": "マイチャットを作成しました。",
+    "chatroom_set": "」に設定しました。",
+    "file_edited": "ファイル名を編集しました。",
+    "file_uploaded": "ファイルをアップロードしました。",
+    "task_added": "タスクを追加しました。",
+    "task_done": "タスクを完了しました。",
+    "task_edited": "タスクを編集しました。",
+    "task_reverted": "タスクを未完了に戻しました。"
+  },
+  "emoji": {
+    
+  }
+}

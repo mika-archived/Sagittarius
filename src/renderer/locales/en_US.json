@@ -1,0 +1,33 @@
+{
+  "application": {
+    "chat_deleted": "Message deleted.",
+    "chat_download_link": "Download",
+    "chat_download_preview": "Preview",
+    "chat_task_deadline": "Due",
+    "chat_task_unset": "unset",
+    "chat_quote": "Quote",
+    "chat_reply": "Reply",
+    "chat_rooms": "Chat lists"
+  },
+  "dtext": {
+    "chatroom_added": "has been added.",
+    "chatroom_chatname_is": "Group Chat Name: ",
+    "chatroom_chat_edited": "Chat info updated.",
+    "chatroom_contact_added": "New contact added.",
+    "chatroom_description_is": "Group Chat Description: ",
+    "chatroom_groupchat_created": "New group chat created.",
+    "chatroom_icon_updated": "Group chat icon updated.",
+    "chatroom_member_is": "Member:",
+    "chatroom_mychat_created": "My Chat created.",
+    "chatroom_set": "was edited.",
+    "file_edited": "File name edited.",
+    "file_uploaded": "New file uploaded.",
+    "task_added": "Task assigned.",
+    "task_done": "Task completed.",
+    "task_edited": "Task edited.",
+    "task_reverted": "Task re-assigned."
+  },
+  "emoji": {
+    
+  }
+}

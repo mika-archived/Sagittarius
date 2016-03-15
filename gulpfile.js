@@ -21,7 +21,7 @@ var testDir = './test';
 
 var tsFiles = srcDir + '/**/*.{ts,tsx}';
 var ssFiles = srcDir + '/**/*.{sass,scss}';
-var rsFiles = srcDir + '/**/*.{png,otf,html,css}';
+var rsFiles = srcDir + '/**/*.{png,otf,html,css,json}';
 var tsTestFiles = testDir + '/**/*.ts';
 
 // Clean project
@@ -100,7 +100,7 @@ gulp.task('serve', function () {
   });
 
   // RendererProcessが読み込むリソースが変更されたら, RendererProcessにreloadさせる
-  watch(['./app/renderer/**/*.css', './app/renderer/**/*.js', './app/**/*.html', './app/**/*.png', './app/**/*.otf'], electron.reload);
+  watch(['./app/renderer/**/*.css', './app/renderer/**/*.js', './app/**/*.html', './app/**/*.png', './app/**/*.otf', './app/**/*.json'], electron.reload);
 });
 
 gulp.task('default', function(callback) {

@@ -5,6 +5,7 @@ import * as React from 'react';
 import {Contact} from '../../models/Contact';
 import {DummyRoom} from '../../models/DummyRoom';
 import {DummyMe} from '../../models/DummyMe';
+import {t} from '../../models/I18N';
 import {Room} from '../../models/Room';
 
 interface HeaderProps {
@@ -55,10 +56,10 @@ export class Header extends React.Component<HeaderProps, {}> {
               <i className="ellipsis horizontal icon"></i>
               <div className="menu">
                 <div className="item">
-                  <i className="tasks icon"></i> Tasks
+                  <i className="tasks icon"></i> {t("application", "chat_tasks")}
                 </div>
                 <div className="item">
-                  <i className="file outline icon"></i> Files
+                  <i className="file outline icon"></i> {t("application", "chat_files")}
                 </div>
               </div>
             </div>
