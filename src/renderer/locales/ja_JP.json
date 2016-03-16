@@ -1,6 +1,6 @@
 {
   "application": {
-    "chat_about": "About",
+    "chat_about": "{0} について",
     "chat_create_task": "タスクを作成",
     "chat_deleted": "メッセージは削除されました。",
     "chat_description": "概要",

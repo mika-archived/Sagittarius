@@ -3,6 +3,7 @@
 import * as $ from 'jquery';
 import * as React from 'react';
 import {MemberList} from './MemberList';
+import '../../extensions/StringExt';
 import {t} from '../../models/I18N';
 import {Room} from '../../models/Room';
 
@@ -21,7 +22,7 @@ export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
     return (
       <div>
         <div className="header item">
-          <h3>{t('application', 'chat_about')} {this.props.room.name}</h3>
+          <h3>{t('application', 'chat_about').format(this.props.room.name)}</h3>
         </div>
         <div className="item">
           <div className="ui inverted fluid accordion">
