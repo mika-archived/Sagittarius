@@ -21,7 +21,7 @@ export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
     return (
       <div>
         <div className="header item">
-          <h3>About {this.props.room.name}</h3>
+          <h3>{t('application', 'chat_about')} {this.props.room.name}</h3>
         </div>
         <div className="item">
           <div className="ui inverted fluid accordion">
@@ -37,7 +37,7 @@ export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
                 <div className="item">
                   <div className="header">{t("application", "chat_description")}</div>
                   <p>
-                    .NET Developer Group
+                    {this.props.room.description}
                   </p>
                 </div>
               </div>

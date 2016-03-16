@@ -1,5 +1,6 @@
 {
   "application": {
+    "chat_about": "About",
     "chat_create_task": "Create a task",
     "chat_deleted": "Message deleted.",
     "chat_description": "Description",
