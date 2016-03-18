@@ -15,7 +15,7 @@
     "chat_reply": "Reply",
     "chat_rooms": "Chat lists",
     "chat_tasks": "Tasks",
-    "chat_task_deadline": "Due",
+    "chat_task_deadline": "Due by",
     "chat_task_unset": "unset"
   },
   "dtext": {
