@@ -4,11 +4,13 @@ import * as $ from 'jquery';
 import * as React from 'react';
 import {MemberList} from './MemberList';
 import '../../extensions/StringExt';
+import {Contact} from '../../models/Contact';
 import {t} from '../../models/I18N';
 import {Room} from '../../models/Room';
 
 interface InfoSideBarProps {
   room: Room;
+  members: Contact[];
 }
 
 export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
@@ -50,7 +52,7 @@ export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
                 {t("application", "chat_members")}
               </h4>
             </div>
-            <MemberList members={this.props.room.members} />
+            <MemberList members={this.props.members} />
             <div className="title">
               <h4>
                 <i className="dropdown icon"></i>

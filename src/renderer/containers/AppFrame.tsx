@@ -7,14 +7,21 @@ import {fetchMe, fetchRooms, fetchMembers} from '../actions/Chatwork';
 import {selectChatRoom} from '../actions/UserAction';
 import {Contents} from '../components/Contents';
 import {SideBar} from '../components/SideBar';
+import {Contact} from '../models/Contact';
 import {DummyRoom} from '../models/DummyRoom';
 import {Me} from '../models/Me';
 import {Room} from '../models/Room';
+
+/* inner */
+interface RoomMembers {
+  members: Contact[];
+}
 
 interface AppFrameProps {
   dispatch?: Redux.Dispatch;
   me?: Me;
   rooms?: Room[];
+  roomMembers?: RoomMembers[];
   selectChatRoom?: number;
   counter?: number;
 }
@@ -38,9 +45,11 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   
   render(): JSX.Element {
     var room = new DummyRoom();
+    var members = [];
     if(this.props.rooms.length > 0 && this.props.selectChatRoom != -1) {
       room = Ix.Enumerable.fromArray(this.props.rooms)
         .single(w => w.roomId == this.props.selectChatRoom);
+      members = this.props.roomMembers[room.roomId].members;
     }
     return (
       <div>
@@ -48,28 +57,20 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
                  selectedChatRoom={this.props.selectChatRoom}
                  rooms={this.props.rooms}
                  onRoomChanged={this.onRoomChanged.bind(this)} />
-        <Contents room={room}/>
+        <Contents room={room} members={members}/>
       </div>
     );
   }
 }
 
 function mapStateToProps(state: any): any {
-  var _ = {
+  return {
     me: state.fetchMe,
     rooms: state.fetchRooms,
+    roomMembers: state.fetchRoomMembers,
     selectChatRoom: state.selectChatRoom,
     counter: Math.floor(Math.random() * 101)
   } as AppFrameProps;
-  if(_.rooms.length > 0) {
-    _.rooms.some((w, index, array) => {
-      if(w.roomId == state.fetchRoomMembers.id) {
-        w.members = state.fetchRoomMembers.members;
-        return true;
-      }
-    });
-  }
-  return _;
 }
 
 /*

@@ -10,6 +10,7 @@ import {Room} from '../../models/Room';
 
 interface HeaderProps {
   room: Room;
+  members: Contact[];
 }
 
 export class Header extends React.Component<HeaderProps, {}> {
@@ -37,7 +38,7 @@ export class Header extends React.Component<HeaderProps, {}> {
           <div className="horizontally fitted item">
             <i className="user icon"></i>
             {
-              this.props.room.members.length > 0 ? this.props.room.members.length : "Loading"
+              this.props.members.length > 0 ? this.props.members.length : "Loading"
             }
           </div>
           <div className="item">

@@ -29,10 +29,11 @@ export function fetchRoomMembers(state: any = {}, action: MembersAction) {
   switch (action.type) {
     case ActionTypes.RequestRoomMembers:
     case ActionTypes.ResponseRoomMembers:
-      return {
-        id: action.roomId,
-        members: action.members
-      };
+      return Object.assign({}, state, {
+        [action.roomId]: {
+          members: action.members
+        }
+      });
     default:
       return state;
   }
