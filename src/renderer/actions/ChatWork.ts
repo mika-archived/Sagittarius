@@ -2,10 +2,12 @@ import {Action} from '../models/actions/Action';
 import {AsyncAction} from '../models/actions/AsyncAction';
 import {MeAction} from '../models/actions/MeAction';
 import {MembersAction} from '../models/actions/MembersAction';
+import {MessagesAction} from '../models/actions/MessagesAction';
 import {RoomsAction} from '../models/actions/RoomsAction';
 import {Contact} from '../models/Contact';
 import {DummyMe} from '../models/DummyMe';
 import {Me} from '../models/Me';
+import {Message} from '../models/Message';
 import {Room} from '../models/Room';
 import {ActionTypes} from './ActionTypes';
 import {RequestTypes} from './RequestTypes';
@@ -103,8 +105,35 @@ export function fetchMembers(id: number): (dispatch) => Promise<any> {
     return get('rooms/' + id + '/members')
       .then(json => dispatch(responseRoomMembers(id, json)));
   };
-}
+} 
+
 // ~/rooms/:id/messages
+function requestRoomMessages(): MessagesAction {
+  return {
+    type: ActionTypes.RequestRoomMessages,
+    isFetching: true,
+    roomId: -1,
+    messages: []
+  } as MessagesAction;
+}
+
+function responseRoomMessages(id: number, json: any): MessagesAction {
+  return {
+    type: ActionTypes.ResponseRoomMessages,
+    isFetching: false,
+    roomId: id,
+    messages: json.map(w => new Message(w))
+  } as MessagesAction;
+}
+
+export function fetchMessages(id: number, isForce: boolean = false): (dispatch) => Promise<any> {
+  return (dispatch) => {
+    dispatch(requestRoomMessages());
+    return get('rooms/' + id + '/messages', {force: isForce ? 1 : 0})
+      .then(json => dispatch(responseRoomMessages(id, json)));
+  };
+}
+
 // ~/rooms/:id/messages/:message_id
 // ~/rooms/:id/tasks
 // ~/rooms/:id/tasks/:task_id

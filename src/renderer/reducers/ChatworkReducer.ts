@@ -1,5 +1,6 @@
 import {AsyncAction} from '../models/actions/AsyncAction';
 import {MeAction} from '../models/actions/MeAction';
+import {MessagesAction} from '../models/actions/MessagesAction';
 import {MembersAction} from '../models/actions/MembersAction';
 import {RoomsAction} from '../models/actions/RoomsAction';
 import {DummyMe} from '../models/DummyMe';
@@ -32,6 +33,20 @@ export function fetchRoomMembers(state: any = {}, action: MembersAction) {
       return Object.assign({}, state, {
         [action.roomId]: {
           members: action.members
+        }
+      });
+    default:
+      return state;
+  }
+}
+
+export function fetchRoomMessages(state: any = {}, action: MessagesAction) {
+  switch (action.type) {
+    case ActionTypes.RequestRoomMessages:
+    case ActionTypes.ResponseRoomMessages:
+      return Object.assign({}, state, {
+        [action.roomId]: {
+          messages: action.messages
         }
       });
     default:

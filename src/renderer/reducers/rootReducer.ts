@@ -4,7 +4,8 @@ import {combineReducers} from 'redux'
 import {
   fetchMe, 
   fetchRooms,
-  fetchRoomMembers
+  fetchRoomMembers,
+  fetchRoomMessages
 } from './ChatworkReducer';
 import {selectChatRoom} from './UserActionReducer';
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   fetchMe,
   fetchRooms,
   fetchRoomMembers,
+  fetchRoomMessages,
   selectChatRoom
 });
 

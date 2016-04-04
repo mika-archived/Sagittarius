@@ -3,13 +3,14 @@
 import * as Ix from 'ix';
 import * as React from 'react';
 import {connect} from 'react-redux'
-import {fetchMe, fetchRooms, fetchMembers} from '../actions/Chatwork';
+import {fetchMe, fetchRooms, fetchMembers, fetchMessages} from '../actions/Chatwork';
 import {selectChatRoom} from '../actions/UserAction';
 import {Contents} from '../components/Contents';
 import {SideBar} from '../components/SideBar';
 import {Contact} from '../models/Contact';
 import {DummyRoom} from '../models/DummyRoom';
 import {Me} from '../models/Me';
+import {Message} from '../models/Message';
 import {Room} from '../models/Room';
 
 /* inner */
@@ -17,11 +18,16 @@ interface RoomMembers {
   members: Contact[];
 }
 
+interface RoomMessages {
+  messages: Message[];
+}
+
 interface AppFrameProps {
   dispatch?: Redux.Dispatch;
   me?: Me;
   rooms?: Room[];
   roomMembers?: RoomMembers[];
+  roomMessages?: RoomMessages[];
   selectChatRoom?: number;
   counter?: number;
 }
@@ -36,6 +42,11 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   onRoomChanged(id: number): void {
     this.props.dispatch(selectChatRoom(id));
     this.props.dispatch(fetchMembers(id));
+    this.props.dispatch(fetchMessages(id, true));
+  }
+  
+  onRoomMessageUpdated(id: number): void {
+    this.props.dispatch(fetchMessages(id));
   }
   
   componentDidMount(): void {
@@ -68,6 +79,7 @@ function mapStateToProps(state: any): any {
     me: state.fetchMe,
     rooms: state.fetchRooms,
     roomMembers: state.fetchRoomMembers,
+    roomMessages: state.fetchRoomMessages,
     selectChatRoom: state.selectChatRoom,
     counter: Math.floor(Math.random() * 101)
   } as AppFrameProps;
