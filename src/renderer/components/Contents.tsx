@@ -7,11 +7,13 @@ import {Header} from './contents/Header';
 import {InfoSideBar} from './contents/InfoSideBar';
 import {Timeline} from './contents/Timeline';
 import {Contact} from '../models/Contact';
+import {Message} from '../models/Message';
 import {Room} from '../models/Room';
 
 interface ContentsProps {
   room: Room;
   members: Contact[];
+  messages: Message[];
 }
 
 export class Contents extends React.Component<ContentsProps, {}> {
@@ -30,7 +32,7 @@ export class Contents extends React.Component<ContentsProps, {}> {
         <Header room={this.props.room} members={this.props.members} />
         <Footer />
         <div className="timeline">
-          <Timeline />
+          <Timeline messages={this.props.messages} />
         </div>
       </div>
     )

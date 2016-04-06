@@ -57,7 +57,7 @@ function responseRooms(json: any): RoomsAction {
     type: ActionTypes.ResponseRooms,
     isFetching: false,
     rooms: json.map(element => new Room(element))
-  }
+  } as RoomsAction;
 }
 
 // TODO: 作成後に、再度 GET したほうがいいかも

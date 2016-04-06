@@ -56,11 +56,12 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   
   render(): JSX.Element {
     var room = new DummyRoom();
-    var members = [];
+    var members = [], messages = [];
     if(this.props.rooms.length > 0 && this.props.selectChatRoom != -1) {
       room = Ix.Enumerable.fromArray(this.props.rooms)
         .single(w => w.roomId == this.props.selectChatRoom);
       members = this.props.roomMembers[room.roomId].members;
+      messages = this.props.roomMessages[room.roomId].messages;
     }
     return (
       <div>
@@ -68,7 +69,7 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
                  selectedChatRoom={this.props.selectChatRoom}
                  rooms={this.props.rooms}
                  onRoomChanged={this.onRoomChanged.bind(this)} />
-        <Contents room={room} members={members}/>
+        <Contents room={room} members={members} messages={messages} />
       </div>
     );
   }
