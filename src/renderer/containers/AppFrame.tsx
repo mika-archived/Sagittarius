@@ -24,6 +24,7 @@ interface RoomMessages {
 
 interface AppFrameProps {
   dispatch?: Redux.Dispatch;
+  error?: string;
   me?: Me;
   rooms?: Room[];
   roomMembers?: RoomMembers[];
@@ -77,6 +78,7 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
 
 function mapStateToProps(state: any): any {
   return {
+    error: state.handleError,
     me: state.fetchMe,
     rooms: state.fetchRooms,
     roomMembers: state.fetchRoomMembers,

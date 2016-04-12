@@ -1,10 +1,20 @@
 import {AsyncAction} from '../models/actions/AsyncAction';
+import {ErrorAction} from '../models/actions/ErrorAction';
 import {MeAction} from '../models/actions/MeAction';
 import {MessagesAction} from '../models/actions/MessagesAction';
 import {MembersAction} from '../models/actions/MembersAction';
 import {RoomsAction} from '../models/actions/RoomsAction';
 import {DummyMe} from '../models/DummyMe';
 import {ActionTypes} from '../actions/ActionTypes';
+
+export function handleError(state: any = {}, action: ErrorAction) {
+  switch (action.type) {
+    case ActionTypes.ResponseError:
+      return action.message;
+    default:
+      return state;
+  }
+}
 
 export function fetchMe(state: any = {}, action: MeAction) {
   switch (action.type) {

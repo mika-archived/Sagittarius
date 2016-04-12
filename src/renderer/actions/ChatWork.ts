@@ -1,5 +1,6 @@
 import {Action} from '../models/actions/Action';
 import {AsyncAction} from '../models/actions/AsyncAction';
+import {ErrorAction} from '../models/actions/ErrorAction';
 import {MeAction} from '../models/actions/MeAction';
 import {MembersAction} from '../models/actions/MembersAction';
 import {MessagesAction} from '../models/actions/MessagesAction';
@@ -14,6 +15,15 @@ import {RequestTypes} from './RequestTypes';
 
 var request = require('request');
 var querystring = require('querystring');
+
+// global
+function responseError(json: any): ErrorAction {
+  return {
+    type: ActionTypes.ResponseError,
+    isFetching: false,
+    message: json.errors[0]
+  } as ErrorAction;
+}
 
 // ~/me
 function requestMe(): MeAction {
@@ -36,7 +46,8 @@ export function fetchMe(): (dispatch) => Promise<any> {
   return (dispatch) => {
     dispatch(requestMe());
     return get('me')
-      .then(json => dispatch(responseMe(json)));
+      .then(json => dispatch(responseMe(json)))
+      .catch(json => dispatch(responseError(json)));
   };
 }
 
@@ -66,10 +77,12 @@ export function fetchRooms(requestType: RequestTypes = RequestTypes.Get, params:
     dispatch(requestRooms());
     if(requestType == RequestTypes.Get) {
       return get('rooms')
-        .then(json => dispatch(responseRooms(json)));
+        .then(json => dispatch(responseRooms(json)))
+        .catch(json => dispatch(responseError(json)));
     } else if (requestType == RequestTypes.Post) {
       return post('rooms', params)
-        .then(json => dispatch(responseRooms(json)));
+        .then(json => dispatch(responseRooms(json)))
+        .catch(json => dispatch(responseError(json)));
     } else {
       throw "TypeErrpr";
     }
@@ -103,7 +116,8 @@ export function fetchMembers(id: number): (dispatch) => Promise<any> {
   return (dispatch) => {
     dispatch(requestRoomMembers());
     return get('rooms/' + id + '/members')
-      .then(json => dispatch(responseRoomMembers(id, json)));
+      .then(json => dispatch(responseRoomMembers(id, json)))
+      .catch(json => dispatch(responseError(json)));
   };
 } 
 
@@ -130,7 +144,8 @@ export function fetchMessages(id: number, isForce: boolean = false): (dispatch) 
   return (dispatch) => {
     dispatch(requestRoomMessages());
     return get('rooms/' + id + '/messages', {force: isForce ? 1 : 0})
-      .then(json => dispatch(responseRoomMessages(id, json)));
+      .then(json => dispatch(responseRoomMessages(id, json)))
+      .catch(json => dispatch(responseError(json)));
   };
 }
 
@@ -154,7 +169,7 @@ function get(endPoint: string, params: any = null): Promise<any> {
       if(!error && response.statusCode == 200) {
         resolve(body);
       } else {
-        reject();
+        reject(body);
       }
     });
   });
@@ -174,7 +189,7 @@ function post(endPoint: string, params: any = null): Promise<any> {
       if(!error && response.statusCode == 200) {
         resolve(body);
       } else {
-        reject();
+        reject(body);
       }
     });
   });
@@ -193,7 +208,7 @@ function _delete(endPoint: string, params: any = null): Promise<any> {
       if(!error && response.statusCode == 200) {
         resolve(body);
       } else {
-        reject();
+        reject(body);
       }
     });
   });
@@ -213,7 +228,7 @@ function put(endPoint: string, params: any = null): Promise<any> {
       if(!error && response.statusCode == 200) {
         resolve(body);
       } else {
-        reject();
+        reject(body);
       }
     });
   });

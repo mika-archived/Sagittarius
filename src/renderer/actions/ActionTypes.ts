@@ -51,6 +51,9 @@ export enum ActionTypes {
   RequestRoomFileDetails,
   ResponseRoomFileDetails,
   
+  /* API CALL - Error */
+  ResponseError,
+  
   /* User Actions */
   SelectRoom,
   ReplyMessage,

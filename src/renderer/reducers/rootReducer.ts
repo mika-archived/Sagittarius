@@ -2,6 +2,7 @@
 
 import {combineReducers} from 'redux'
 import {
+  handleError,
   fetchMe, 
   fetchRooms,
   fetchRoomMembers,
@@ -10,6 +11,7 @@ import {
 import {selectChatRoom} from './UserActionReducer';
 
 const rootReducer = combineReducers({
+  handleError,
   fetchMe,
   fetchRooms,
   fetchRoomMembers,
