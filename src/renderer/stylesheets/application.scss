@@ -1,7 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic);
 
+$font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
+$header-font-family: Lato,'Helvetica Neue', Arial, Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
 body{
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
+  font-family: $font-family;
   overflow-y: hidden;
   overflow-x: hidden;
 }
@@ -19,4 +21,16 @@ body{
 
 .ui.item.menu .item.custom.spaced {
   padding: 13px 10px!important;
+}
+
+.ui.menu {
+  font-family: $font-family !important;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: $header-font-family !important;
+}
+
+.ui.list .list>.item .header, .ui.list>.item .header {
+  font-family: $font-family !important;
 }
