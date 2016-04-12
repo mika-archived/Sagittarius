@@ -12,7 +12,7 @@ export function handleError(state: any = {}, action: ErrorAction) {
     case ActionTypes.ResponseError:
       return action.message;
     default:
-      return state;
+      return "";
   }
 }
 

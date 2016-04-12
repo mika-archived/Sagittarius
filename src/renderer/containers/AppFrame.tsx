@@ -1,10 +1,13 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
+import * as $ from 'jquery';
 import * as Ix from 'ix';
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {connect} from 'react-redux'
 import {fetchMe, fetchRooms, fetchMembers, fetchMessages} from '../actions/Chatwork';
 import {selectChatRoom} from '../actions/UserAction';
+import {Authenticate} from '../components/Authenticate';
 import {Contents} from '../components/Contents';
 import {SideBar} from '../components/SideBar';
 import {Contact} from '../models/Contact';
@@ -53,6 +56,25 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
   componentDidMount(): void {
     this.props.dispatch(fetchMe());
     this.props.dispatch(fetchRooms());
+  }
+  
+  componentDidUpdate(prevProps: AppFrameProps, prevState: {}): void {
+    if(this.props.error != 'Invalid API token') {
+      return;
+    }
+    var auth = (
+      <Authenticate />
+    );
+    ReactDOM.render(auth, document.getElementById("diag"));
+    $('.ui.modal').modal({
+      closable: false,
+      blurring: true,
+      onApprove: () => {
+        localStorage.setItem('chatwork-token', $('#form_apitoken').val());
+        this.props.dispatch(fetchMe());
+        this.props.dispatch(fetchRooms());
+      }
+    }).modal('show');
   }
   
   render(): JSX.Element {

@@ -1,5 +1,9 @@
 {
   "application": {
+    "api_token": "API token",
+    "api_token_sample": "e46a1f5dbb9a45681f26992fc8754a49",
+    "authenticate": "Authenticate",
+    "chatwork_auth": "Authenticate Chatwork",
     "chat_about": "About {0}",
     "chat_create_task": "Create a task",
     "chat_deleted": "Message deleted.",

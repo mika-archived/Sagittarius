@@ -1,5 +1,9 @@
 {
   "application": {
+    "api_token": "API トークン",
+    "api_token_sample": "e46a1f5dbb9a45681f26992fc8754a49",
+    "authenticate": "認証",
+    "chatwork_auth": "チャットワークの認証",
     "chat_about": "{0} について",
     "chat_create_task": "タスクを作成",
     "chat_deleted": "メッセージは削除されました。",
