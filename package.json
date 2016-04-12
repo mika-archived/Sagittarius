@@ -40,7 +40,7 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.0",
     "rx": "^4.0.7",
-    "semantic-ui": "^2.1.7",
+    "semantic-ui": "^2.1.8",
     "should": "^8.2.2"
   },
   "devDependencies": {
