@@ -6,6 +6,11 @@ var locales = {
   'en-us': en_us
 }
 
-export function t(kind: string, key: string, lang: string = localStorage.getItem('chatwork-config.lang')) {
+export function t(kind: string, key: string, lang: string = 'no-np') {
+  if(lang == 'no-np') {
+    lang = localStorage.getItem('chatwork-config.lang') == null ? 'en-us' : localStorage.getItem('chatwork-config.lang');
+  }
+  console.log(lang);
+  console.log(locales[lang]);
   return locales[lang][kind][key];
 }
