@@ -22,7 +22,11 @@ var testDir = './test';
 var tsFiles = srcDir + '/**/*.{ts,tsx}';
 var ssFiles = srcDir + '/**/*.{sass,scss}';
 var rsFiles = srcDir + '/**/*.{png,otf,html,css,json}';
+var cpFiles = appDir + '/renderer/**/*.{js,css}';
+var crFiles = appDir + '/**/*.{png,otf,html,json}';
 var tsTestFiles = testDir + '/**/*.ts';
+
+var served = false;
 
 // Clean project
 gulp.task('clean', function() {
@@ -64,12 +68,18 @@ gulp.task('sass:compile', function() {
 gulp.task('watch', function() {
   // *.ts, *.tsx(TypeScript React) -> compile
   watch(tsFiles, function() {
-    gulp.run('ts:compile'); 
+    return runSequence(
+      'ts:compile',
+      'serve:reload'
+    );
   });
   
   // *.sass, *.scss -> compile
   watch(ssFiles, function() {
-    gulp.run('sass:compile');
+    return runSequence(
+      'sass:compile',
+      'serve:reload'
+    );
   });
   
   // *.html, *.css -> copy
@@ -92,15 +102,13 @@ gulp.task('build', function(callback) {
 gulp.task('serve', function () {
   // http://qiita.com/Quramy/items/90d61ff37ca1b95a7f6d#livereload
   electron.start();
+  served = true;
+});
 
-  // BrowserProcess(MainProcess)が読み込むリソースが変更されたら, Electron自体を再起動
-  watch(['./app/main.js', './app/browser/*.js'], function() {
-    // 再起動せずに増える
-    // electron.restart();
-  });
-
-  // RendererProcessが読み込むリソースが変更されたら, RendererProcessにreloadさせる
-  watch(['./app/renderer/**/*.css', './app/renderer/**/*.js', './app/**/*.html', './app/**/*.png', './app/**/*.otf', './app/**/*.json'], electron.reload);
+gulp.task('serve:reload', function() {
+  if(served) {
+    electron.reload();
+  }
 });
 
 gulp.task('default', function(callback) {
