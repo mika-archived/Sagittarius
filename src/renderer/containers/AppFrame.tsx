@@ -87,7 +87,7 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
         .single(w => w.roomId == this.props.selectChatRoom);
       members = this.props.roomMembers[room.roomId].members;
       messages = this.props.roomMessages[room.roomId].messages;
-      BrowserWindow.getFocusedWindow().setTitle("Sagittarius - {0}".format(room.name));
+      // BrowserWindow.getFocusedWindow().setTitle("Sagittarius - {0}".format(room.name));
     }
     return (
       <div>

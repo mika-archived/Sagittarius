@@ -10,13 +10,20 @@ body{
 
 #contents {
   width: calc(100% - 260px);
-  height: 100%!important;
+  height: 100% !important;
   max-height: 100%;
   position: fixed;
 }
 
 .timeline {
   padding-top: 50px;
+  padding-bottom: 50px;
+  max-height:  100%;
+}
+
+.srcollable {
+  height: calc(100vh - 98px);
+  overflow-y: scroll;
 }
 
 .ui.item.menu .item.custom.spaced {
