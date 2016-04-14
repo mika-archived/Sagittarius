@@ -11,10 +11,10 @@ interface TimelineProps {
 export class Timeline extends React.Component<TimelineProps, {}> {
   render(): JSX.Element {
     var messages = this.props.messages.map(w => {
-      return <ChatMessage message={w} />
+      return <ChatMessage message={w} key={w.messageId} />
     });
     return (
-      <div className="srcollable">
+      <div className="ui comments srcollable">
         {messages}
       </div>
     );

@@ -22,8 +22,14 @@ body{
 }
 
 .srcollable {
+  padding-left: 10px;
+  padding-right: 10px;
   height: calc(100vh - 98px);
   overflow-y: scroll;
+}
+
+.ui.comments {
+  max-width: inherit;
 }
 
 .ui.item.menu .item.custom.spaced {
