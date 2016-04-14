@@ -11,16 +11,15 @@ export class ChatMessage extends React.Component<ChatMessageProps, {}> {
   render(): JSX.Element {
     return (
       <div className="comment">
-        <a className="avatar">
+        <span className="avatar">
           <img src={this.props.message.account.avatarImageUrl} />
-        </a>
+        </span>
         <div className="content">
-          <a className="author">{this.props.message.account.name}</a>
+          <span className="author">{this.props.message.account.name}</span>
           <div className="metadata">
-            <div className="date">{this.props.message.sendTime}</div>
+            <span className="date">{this.props.message.createdAt.toLocaleString()}</span>
           </div>
-          <div className="text">
-            {this.props.message.body}
+          <div className="text" dangerouslySetInnerHTML={{__html: this.props.message.formattedText()}}>
           </div>
         </div>
       </div>
