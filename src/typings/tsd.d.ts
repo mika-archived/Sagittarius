@@ -33,4 +33,7 @@
 /// <reference path="ix.js/ix.d.ts" />
 /// <reference path="ix.js/l2o.d.ts" />
 /// <reference path="redux-logger/redux-logger.d.ts" />
+/// <reference path="gulp/gulp.d.ts" />
+/// <reference path="orchestrator/orchestrator.d.ts" />
+/// <reference path="q/Q.d.ts" />
 

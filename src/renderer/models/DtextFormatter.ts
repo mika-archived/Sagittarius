@@ -19,7 +19,7 @@ export class DtextFormatter {
     this.body = this.formatNewLine(this.body);
     
     this.formattedText = this.body;
-    return this.body;
+    return this.formattedText;
   }
   
   private preventXSS(body: string): string {

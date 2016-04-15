@@ -9,7 +9,7 @@
       "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
     },
     "node/node.d.ts": {
-      "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
     },
     "react/react.d.ts": {
       "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
@@ -100,6 +100,15 @@
     },
     "redux-logger/redux-logger.d.ts": {
       "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
+    },
+    "orchestrator/orchestrator.d.ts": {
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+    },
+    "gulp/gulp.d.ts": {
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+    },
+    "q/Q.d.ts": {
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
     }
   }
 }

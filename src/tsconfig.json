@@ -1,5 +1,5 @@
 {
-    "compilerOptions": {
+	"compilerOptions": {
 		"module": "commonjs",
 		"noImplicitAny": false,
 		"removeComments": false,
@@ -7,6 +7,6 @@
 		"target": "es2015",
 		"sourceMap": false,
 		"experimentalDecorators": true,
-    "jsx": "react"
-    }
+		"jsx": "react"
+   }
 }
