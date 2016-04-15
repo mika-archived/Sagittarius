@@ -6,6 +6,7 @@ const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const stringify = require('stringify')
 const typescript = require('gulp-typescript');
+const useref = require('gulp-useref');
 const watch = require('gulp-watch');
 
 const browserify = require('browserify')
@@ -31,7 +32,8 @@ const testDir = './test';
 
 const tsFiles = srcDir + '/**/*.{ts,tsx}';    // TypeScript(*.ts) + TypeScript React(*.tsx)
 const ssFiles = srcDir + '/**/*.{sass,scss}'; // SASS(*.sass, *.scss)
-const rsFiles = srcDir + '/**/*.{html,json}'; // Resource Files
+const htFiles = srcDir + '/**/*.html';        // HTML Files
+const rsFiles = srcDir + '/**/*.json';        // Resource Files
 const ttFiles = testDir + '/**/*.ts';         // TypeScript Test
 
 var served = false;
@@ -65,6 +67,13 @@ gulp.task('sass:compile', () => {
   return gulp.src(ssFiles)
     .pipe(plumber())
     .pipe(sass())
+    .pipe(gulp.dest(appDir));
+});
+
+// HTML Compile
+gulp.task('html:compile', () => {
+  return gulp.src(htFiles, {base: 'src'})
+    .pipe(useref())
     .pipe(gulp.dest(appDir));
 });
 
@@ -111,6 +120,11 @@ gulp.task('browserify:renderer', (done) => {
 });
 
 // Copy assets
+gulp.task('html:copy', () => {
+  return gulp.src(htFiles, {base: 'src'})
+    .pipe(gulp.dest(appDir));
+});
+
 gulp.task('assets:copy', () => {
   return gulp.src(rsFiles, {base: 'src'})
     .pipe(gulp.dest(appDir));
@@ -147,11 +161,20 @@ gulp.task('serve:reload', () => {
   }
 });
 
+gulp.task('package:osx', () => {
+
+});
+
+gulp.task('package:linux', () => {
+  
+});
+
 gulp.task('build:main', (done) => {
   return runSequence(
     'clean',
     'ts:compile:main',
     'sass:compile',
+    'html:compile',
     'assets:copy',
     'browserify:browser',
     'browserify:renderer',
@@ -173,6 +196,7 @@ gulp.task('default', (done) => {
     'clean',
     'ts:compile:main',
     'sass:compile',
+    'html:copy',
     'assets:copy',
     'watch',
     'serve',

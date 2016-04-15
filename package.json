@@ -5,16 +5,13 @@
   "main": "app/main.js",
   "private": true,
   "scripts": {
-    "testCompile": "gulp ts:testCompile && grep -l '..\\/src' ./test/*.js | xargs sed -i.bak -e 's/..\\/src/..\\/app/g' && rm ./test/*.bak",
+    "testCompile": "gulp build:test && grep -l '..\\/src' ./test/*.js | xargs sed -i.bak -e 's/..\\/src/..\\/app/g' && rm ./test/*.bak",
     "prelocaltest": "npm run testCompile",
     "localtest": "istanbul test _mocha -- test",
     "pretest": "npm run testCompile",
     "test": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "build": "gulp build",
-    "prestart": "npm run build",
-    "start": "electron .",
-    "prepack": "npm run build && browserify ./app/main.js --im --no-detect-globals --node -o ./app/main.js",
-    "pack": "NODE_ENV=production && electron-packager . Sagittarius --platform=all --arch=x64 --version=0.36.1 --out=dist --ignore={.vscode,bin,dist,src,screenshots}/* --prune=true --asar=true"
+    "prepack": "set NODE_ENV=production && gulp build:main",
+    "pack": "set NODE_ENV=production && electron-packager . Sagittarius --platform=all --arch=x64 --version=0.36.1 --out=dist --ignore={.vscode,bin,dist,src,screenshots,test,tmp}/* --prune=true --asar=true"
   },
   "repository": {
     "type": "git",
@@ -59,6 +56,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-sass": "^2.1.1",
     "gulp-typescript": "^2.10.0",
+    "gulp-useref": "^3.0.8",
     "gulp-watch": "^4.3.5",
     "mocha-lcov-reporter": "^1.2.0",
     "run-sequence": "^1.1.5",
