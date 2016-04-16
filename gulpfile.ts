@@ -161,14 +161,6 @@ gulp.task('serve:reload', () => {
   }
 });
 
-gulp.task('package:osx', () => {
-
-});
-
-gulp.task('package:linux', () => {
-  
-});
-
 gulp.task('build:main', (done) => {
   return runSequence(
     'clean',
