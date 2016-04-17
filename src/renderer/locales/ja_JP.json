@@ -1,5 +1,7 @@
 {
   "application": {
+    "action_reply": "返信",
+    "action_quote": "引用",
     "api_token": "API トークン",
     "api_token_sample": "e46a1f5dbb9a45681f26992fc8754a49",
     "authenticate": "認証",

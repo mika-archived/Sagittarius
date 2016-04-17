@@ -1,5 +1,7 @@
 {
   "application": {
+    "action_reply": "Reply",
+    "action_quote": "Quote",
     "api_token": "API token",
     "api_token_sample": "e46a1f5dbb9a45681f26992fc8754a49",
     "authenticate": "Authenticate",
