@@ -1,51 +1,51 @@
 /// <reference path="src/typings/tsd.d.ts" />
 
-import gulp = require('gulp');
-const babel = require('gulp-babel');
-const plumber = require('gulp-plumber');
-const sass = require('gulp-sass');
-const stringify = require('stringify')
-const typescript = require('gulp-typescript');
-const useref = require('gulp-useref');
-const watch = require('gulp-watch');
+import * as gulp from "gulp";
+const babel = require("gulp-babel");
+const plumber = require("gulp-plumber");
+const sass = require("gulp-sass");
+const stringify = require("stringify");
+const typescript = require("gulp-typescript");
+const useref = require("gulp-useref");
+const watch = require("gulp-watch");
 
-const browserify = require('browserify')
-const childProcess = require('child_process')
-const del = require('del');
-const runSequence = require('run-sequence');
-const electron = require('electron-connect').server.create();
-const packager = require('electron-packager');
-const config = require('./package.json');
-const tsfiles = require('./tsfiles.json');
-const buffer = require('vinyl-buffer')
-const source = require('vinyl-source-stream')
+const browserify = require("browserify");
+const childProcess = require("child_process");
+const del = require("del");
+const runSequence = require("run-sequence");
+const electron = require("electron-connect").server.create();
+const packager = require("electron-packager");
+const config = require("./package.json");
+const tsfiles = require("./tsfiles.json");
+const buffer = require("vinyl-buffer");
+const source = require("vinyl-source-stream");
 
-const gitHash = childProcess.execSync('git rev-parse HEAD').toString().trim();
+const gitHash: string = childProcess.execSync("git rev-parse HEAD").toString().trim();
 
-const tsMainProject = typescript.createProject('./src/tsconfig.json');
-const tsTestProject = typescript.createProject('./test/tsconfig.json');
+const tsMainProject: any = typescript.createProject("./src/tsconfig.json");
+const tsTestProject: any = typescript.createProject("./test/tsconfig.json");
 
-const appDir = './app';
-const distDir = './dist';
-const srcDir = './src';
-const testDir = './test';
+const appDir: string = "./app";
+const distDir: string = "./dist";
+const srcDir: string = "./src";
+const testDir: string = "./test";
 
-const tsFiles = srcDir + '/**/*.{ts,tsx}';    // TypeScript(*.ts) + TypeScript React(*.tsx)
-const ssFiles = srcDir + '/**/*.{sass,scss}'; // SASS(*.sass, *.scss)
-const htFiles = srcDir + '/**/*.html';        // HTML Files
-const rsFiles = srcDir + '/**/*.json';        // Resource Files
-const ttFiles = testDir + '/**/*.ts';         // TypeScript Test
+const tsFiles: string = srcDir + "/**/*.{ts,tsx}";    // TypeScript(*.ts) + TypeScript React(*.tsx)
+const ssFiles: string = srcDir + "/**/*.{sass,scss}"; // SASS(*.sass, *.scss)
+const htFiles: string = srcDir + "/**/*.html";        // HTML Files
+const rsFiles: string = srcDir + "/**/*.json";        // Resource Files
+const ttFiles: string = testDir + "/**/*.ts";         // TypeScript Test
 
-var served = false;
+let served: boolean = false;
 
 // Clean project
-gulp.task('clean', (done) => {
-  del(['app', 'dist', 'coverage', 'test/**/*.js']);
+gulp.task("clean", (done: any) => {
+  del(["app", "dist", "coverage", "test/**/*.js"]);
   done();
 });
 
 // TypeScript Compile (Main)
-gulp.task('ts:compile:main', () => {
+gulp.task("ts:compile:main", () => {
   return gulp.src(tsFiles)
     .pipe(plumber())
     .pipe(typescript(tsMainProject))
@@ -54,7 +54,7 @@ gulp.task('ts:compile:main', () => {
 });
 
 // TypeScript Compile (Test)
-gulp.task('ts:compile:test', () => {
+gulp.task("ts:compile:test", () => {
   return gulp.src(ttFiles)
     .pipe(plumber())
     .pipe(typescript(tsTestProject))
@@ -63,7 +63,7 @@ gulp.task('ts:compile:test', () => {
 });
 
 // SASS Compile
-gulp.task('sass:compile', () => {
+gulp.task("sass:compile", () => {
   return gulp.src(ssFiles)
     .pipe(plumber())
     .pipe(sass())
@@ -71,39 +71,39 @@ gulp.task('sass:compile', () => {
 });
 
 // HTML Compile
-gulp.task('html:compile', () => {
-  return gulp.src(htFiles, {base: 'src'})
+gulp.task("html:compile", () => {
+  return gulp.src(htFiles, {base: "src"})
     .pipe(useref())
     .pipe(gulp.dest(appDir));
 });
 
-gulp.task('browserify:browser', (done) => {
+gulp.task("browserify:browser", (done: any) => {
 	browserify({
-		entries: ['app/browser/Application.js'],
-		extensions: ['.js'],
-    ignoreMissing: true,
-    detectGlobals: false,
     builtins: [],
     debug: true,
+    detectGlobals: false,
+		entries: ["app/browser/Application.js"],
+		extensions: [".js"],
+    ignoreMissing: true,
 	})
     .transform({
-      NODE_ENV: 'production',
+      NODE_ENV: "production",
       GIT_HASH: gitHash,
       NAME: config.name,
       VERSION: config.version,
       ROOT: __dirname,
-    }, 'envify')
+    }, "envify")
     .bundle()
-    .pipe(source('Application.js'))
+    .pipe(source("Application.js"))
     .pipe(buffer())
-    .pipe(gulp.dest('app/browser'));
+    .pipe(gulp.dest("app/browser"));
   done();
 });
 
-gulp.task('browserify:renderer', (done) => {
+gulp.task("browserify:renderer", (done: any) => {
 	browserify({
 		transform: stringify({
-			extensions: ['.html'],
+			extensions: [".html"],
 			minify: true,
 		}),
 		entries: tsfiles,
@@ -113,85 +113,85 @@ gulp.task('browserify:renderer', (done) => {
 	  debug: true,
 	})
     .bundle()
-    .pipe(source('Application.js'))
+    .pipe(source("Application.js"))
     .pipe(buffer())
-    .pipe(gulp.dest('app/renderer'));
+    .pipe(gulp.dest("app/renderer"));
   done();
 });
 
 // Copy assets
-gulp.task('html:copy', () => {
-  return gulp.src(htFiles, {base: 'src'})
+gulp.task("html:copy", () => {
+  return gulp.src(htFiles, {base: "src"})
     .pipe(gulp.dest(appDir));
 });
 
-gulp.task('assets:copy', () => {
-  return gulp.src(rsFiles, {base: 'src'})
+gulp.task("assets:copy", () => {
+  return gulp.src(rsFiles, {base: "src"})
     .pipe(gulp.dest(appDir));
 });
 
-gulp.task('watch', () => {
+gulp.task("watch", () => {
   watch(tsFiles, () => {
     return runSequence(
-      'ts:compile:main',
-      'serve:reload'
+      "ts:compile:main",
+      "serve:reload"
     );
   });
   
   watch(ssFiles, () => {
     return runSequence(
-      'sass:compile',
-      'serve:reload'
+      "sass:compile",
+      "serve:reload"
     );
   });
   
   watch(rsFiles, () => {
-    gulp.start(['assets:copy']);
+    gulp.start(["assets:copy"]);
   });
 });
 
-gulp.task('serve', () => {
+gulp.task("serve", () => {
   electron.start();
   served = true;
 });
 
-gulp.task('serve:reload', () => {
-  if(served) {
+gulp.task("serve:reload", () => {
+  if (served) {
     electron.reload();
   }
 });
 
-gulp.task('build:main', (done) => {
+gulp.task("build:main", (done) => {
   return runSequence(
-    'clean',
-    'ts:compile:main',
-    'sass:compile',
-    'html:compile',
-    'assets:copy',
-    'browserify:browser',
-    'browserify:renderer',
+    "clean",
+    "ts:compile:main",
+    "sass:compile",
+    "html:compile",
+    "assets:copy",
+    "browserify:browser",
+    "browserify:renderer",
     done
   );
 });
 
-gulp.task('build:test', (done) => {
+gulp.task("build:test", (done) => {
   return runSequence(
-    'clean',
-    'ts:compile:main',
-    'ts:compile:test',
+    "clean",
+    "ts:compile:main",
+    "ts:compile:test",
     done
   );
 });
 
-gulp.task('default', (done) => {
+gulp.task("default", (done) => {
   return runSequence(
-    'clean',
-    'ts:compile:main',
-    'sass:compile',
-    'html:copy',
-    'assets:copy',
-    'watch',
-    'serve',
+    "clean",
+    "ts:compile:main",
+    "sass:compile",
+    "html:copy",
+    "assets:copy",
+    "watch",
+    "serve",
     done
   );
 });
