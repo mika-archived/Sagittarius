@@ -1,30 +1,30 @@
 /// <reference path="../typings/tsd.d.ts" />
 
-import * as electron from 'electron';
-import {app} from 'electron';
+import * as electron from "electron";
+import {app} from "electron";
 
 export default class Application {
-  
+
   private mainWindow: Electron.BrowserWindow;
-  
+
   constructor() {
-    app.on('window-all-closed', this.onWindowAllClosed);
-    app.on('ready', this.onReady);
+    app.on("window-all-closed", this.onWindowAllClosed);
+    app.on("ready", this.onReady);
   }
-  
+
   private onWindowAllClosed(): void {
-    if(process.platform != 'darwin') {
+    if (process.platform !== "darwin") {
       app.quit();
     }
   }
-  
+
   private onReady(): void {
     this.mainWindow = new electron.BrowserWindow({
-      width: 1000,
+      height: 600,
       minWidth: 500,
-      height: 600
+      width: 1000
     });
-    this.mainWindow.loadURL('file://' + __dirname + '/../index.html');
-    this.mainWindow.on('closed', () => this.mainWindow = null);
+    this.mainWindow.loadURL("file://" + __dirname + "/../index.html");
+    this.mainWindow.on("closed", () => this.mainWindow = null);
   }
 }

@@ -1,15 +1,15 @@
-import {Contact} from './Contact';
-import {Serializable} from './Serializable';
+import {Contact} from "./Contact";
+import {Serializable} from "./Serializable";
 
 export class Task extends Serializable {
-  taskId: number;
-  account: Contact;
-  assignedByAccount: Contact;
-  messageId: number;
-  body: string;
-  limitTime: number;
-  status: string;
-  
+  public taskId: number;
+  public account: Contact;
+  public assignedByAccount: Contact;
+  public messageId: number;
+  public body: string;
+  public limitTime: number;
+  public status: string;
+
   constructor(json: any) {
     super();
     this.fromJson(json);

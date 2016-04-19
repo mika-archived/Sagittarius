@@ -36,4 +36,17 @@
 /// <reference path="gulp/gulp.d.ts" />
 /// <reference path="orchestrator/orchestrator.d.ts" />
 /// <reference path="q/Q.d.ts" />
+/// <reference path="gulp-babel/gulp-babel.d.ts" />
+/// <reference path="gulp-plumber/gulp-plumber.d.ts" />
+/// <reference path="gulp-sass/gulp-sass.d.ts" />
+/// <reference path="gulp-typescript/gulp-typescript.d.ts" />
+/// <reference path="gulp-useref/gulp-useref.d.ts" />
+/// <reference path="gulp-watch/gulp-watch.d.ts" />
+/// <reference path="browserify/browserify.d.ts" />
+/// <reference path="minimatch/minimatch.d.ts" />
+/// <reference path="run-sequence/run-sequence.d.ts" />
+/// <reference path="vinyl-buffer/vinyl-buffer.d.ts" />
+/// <reference path="vinyl-source-stream/vinyl-source-stream.d.ts" />
+/// <reference path="form-data/form-data.d.ts" />
+/// <reference path="request/request.d.ts" />
 

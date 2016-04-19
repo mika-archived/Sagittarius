@@ -1,15 +1,15 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-import * as React from 'react';
-import {Contact} from '../../models/Contact';
+import * as React from "react";
+import {Contact} from "../../models/Contact";
 
 interface MemberListProps {
   members: Contact[];
 }
 
 export class MemberList extends React.Component<MemberListProps, {}> {
-  render(): JSX.Element {
-    var users = this.props.members.map(w => {
+  public render(): JSX.Element {
+    const users: JSX.Element[] = this.props.members.map(w => {
       return (
         <div className="item" key={w.accountId}>
           <img className="ui avatar image" src={w.avatarImageUrl} />

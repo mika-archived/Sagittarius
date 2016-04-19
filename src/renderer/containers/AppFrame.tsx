@@ -1,22 +1,25 @@
 /// <reference path="../../typings/tsd.d.ts" />
+import * as $ from "jquery";
+import * as Ix from "ix";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {connect} from "react-redux";
+import {remote} from "electron";
 
-import * as $ from 'jquery';
-import * as Ix from 'ix';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import {connect} from 'react-redux'
-import {fetchMe, fetchRooms, fetchMembers, fetchMessages} from '../actions/Chatwork';
-import {selectChatRoom} from '../actions/UserAction';
-import {Authenticate} from '../components/Authenticate';
-import {Contents} from '../components/Contents';
-import {SideBar} from '../components/SideBar';
-import {Contact} from '../models/Contact';
-import {DummyRoom} from '../models/DummyRoom';
-import {Me} from '../models/Me';
-import {Message} from '../models/Message';
-import {Room} from '../models/Room';
+import {fetchMe, fetchRooms, fetchMembers, fetchMessages} from "../actions/Chatwork";
+import {selectChatRoom} from "../actions/UserAction";
+import {Authenticate} from "../components/Authenticate";
+import {Contents} from "../components/Contents";
+import {SideBar} from "../components/SideBar";
+import {Contact} from "../models/Contact";
+import {DummyRoom} from "../models/DummyRoom";
+import {Me} from "../models/Me";
+import {Message} from "../models/Message";
+import {Room} from "../models/Room";
 
-const BrowserWindow = require('electron').remote.BrowserWindow;
+/* tslint:disable */
+const BrowserWindow = remote.BrowserWindow;
+/* tslint:enable */
 
 /* inner */
 interface RoomMembers {
@@ -39,52 +42,41 @@ interface AppFrameProps {
 }
 
 class AppFrame extends React.Component<AppFrameProps, {}> {
-  
+
   constructor() {
     super();
   }
-  
-  /* Handlers */
-  onRoomChanged(id: number): void {
-    this.props.dispatch(selectChatRoom(id));
-    this.props.dispatch(fetchMembers(id));
-    this.props.dispatch(fetchMessages(id, true));
-  }
-  
-  onRoomMessageUpdated(id: number): void {
-    this.props.dispatch(fetchMessages(id));
-  }
-  
-  componentDidMount(): void {
+
+  public componentDidMount(): void {
     this.props.dispatch(fetchMe());
     this.props.dispatch(fetchRooms());
   }
-  
-  componentDidUpdate(prevProps: AppFrameProps, prevState: {}): void {
-    if(this.props.error != 'Invalid API token') {
+
+  public componentDidUpdate(prevProps: AppFrameProps, prevState: {}): void {
+    if (this.props.error !== "Invalid API token") {
       return;
     }
-    var auth = (
+    const auth: JSX.Element = (
       <Authenticate />
     );
     ReactDOM.render(auth, document.getElementById("diag"));
-    $('.ui.modal').modal({
-      closable: false,
+    $(".ui.modal").modal({
       blurring: true,
+      closable: false,
       onApprove: () => {
-        localStorage.setItem('chatwork-token', $('#form_apitoken').val());
+        localStorage.setItem("chatwork-token", $("#form_apitoken").val());
         this.props.dispatch(fetchMe());
         this.props.dispatch(fetchRooms());
       }
-    }).modal('show');
+    }).modal("show");
   }
-  
-  render(): JSX.Element {
-    var room = new DummyRoom();
-    var members = [], messages = [];
-    if(this.props.rooms.length > 0 && this.props.selectChatRoom != -1) {
+
+  public render(): JSX.Element {
+    let room: DummyRoom = new DummyRoom();
+    let members: Contact[] = [], messages: Message[] = [];
+    if (this.props.rooms.length > 0 && this.props.selectChatRoom !== -1) {
       room = Ix.Enumerable.fromArray(this.props.rooms)
-        .single(w => w.roomId == this.props.selectChatRoom);
+        .single(w => w.roomId === this.props.selectChatRoom);
       members = this.props.roomMembers[room.roomId].members;
       messages = this.props.roomMessages[room.roomId].messages;
       // BrowserWindow.getFocusedWindow().setTitle("Sagittarius - {0}".format(room.name));
@@ -99,17 +91,28 @@ class AppFrame extends React.Component<AppFrameProps, {}> {
       </div>
     );
   }
+
+  /* Handlers */
+  private onRoomChanged(id: number): void {
+    this.props.dispatch(selectChatRoom(id));
+    this.props.dispatch(fetchMembers(id));
+    this.props.dispatch(fetchMessages(id, true));
+  }
+
+  private onRoomMessageUpdated(id: number): void {
+    this.props.dispatch(fetchMessages(id));
+  }
 }
 
 function mapStateToProps(state: any): any {
   return {
+    counter: Math.floor(Math.random() * 101),
     error: state.handleError,
     me: state.fetchMe,
-    rooms: state.fetchRooms,
     roomMembers: state.fetchRoomMembers,
     roomMessages: state.fetchRoomMessages,
-    selectChatRoom: state.selectChatRoom,
-    counter: Math.floor(Math.random() * 101)
+    rooms: state.fetchRooms,
+    selectChatRoom: state.selectChatRoom
   } as AppFrameProps;
 }
 

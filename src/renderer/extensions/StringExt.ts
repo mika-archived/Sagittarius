@@ -3,11 +3,11 @@ interface String {
 }
 
 if (!String.prototype.format) {
-  String.prototype.format = function() {
-    var args = arguments;
-    return this.replace(/{(\d+)}/g, function(match, number) { 
-      return typeof args[number] != 'undefined'
-        ? args[number]
+  String.prototype.format = () => {
+    let args: any = arguments;
+    return this.replace(/{(\d+)}/g, (match, index) => {
+      return typeof args[index] !== "undefined"
+        ? args[index]
         : match
       ;
     });

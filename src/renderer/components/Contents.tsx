@@ -1,14 +1,14 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import {Footer} from './contents/Footer';
-import {Header} from './contents/Header';
-import {InfoSideBar} from './contents/InfoSideBar';
-import {Timeline} from './contents/Timeline';
-import {Contact} from '../models/Contact';
-import {Message} from '../models/Message';
-import {Room} from '../models/Room';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {Footer} from "./contents/Footer";
+import {Header} from "./contents/Header";
+import {InfoSideBar} from "./contents/InfoSideBar";
+import {Timeline} from "./contents/Timeline";
+import {Contact} from "../models/Contact";
+import {Message} from "../models/Message";
+import {Room} from "../models/Room";
 
 interface ContentsProps {
   room: Room;
@@ -17,16 +17,16 @@ interface ContentsProps {
 }
 
 export class Contents extends React.Component<ContentsProps, {}> {
-  
+
   /* React Lifecycle */
-  componentDidUpdate(prevProps: ContentsProps, prevState: any): void {
-    var side = (
+  public componentDidUpdate(prevProps: ContentsProps, prevState: any): void {
+    const side: JSX.Element = (
       <InfoSideBar room={this.props.room} members={this.props.members} />
     );
     ReactDOM.render(side, document.getElementById("side"));
   }
-  
-  render(): JSX.Element {
+
+  public render(): JSX.Element {
     return (
       <div className="pusher" id="contents">
         <Header room={this.props.room} members={this.props.members} />
@@ -35,6 +35,6 @@ export class Contents extends React.Component<ContentsProps, {}> {
           <Timeline messages={this.props.messages} />
         </div>
       </div>
-    )
+    );
   }
 }

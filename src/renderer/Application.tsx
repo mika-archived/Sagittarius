@@ -1,13 +1,14 @@
-/// <reference path="../typings/tsd.d.ts" />
+/* tslint:disable */
 
-import 'babel-polyfill';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import Root from './containers/Root';
+/// <reference path="../typings/tsd.d.ts" />
+import "babel-polyfill";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import Root from "./containers/Root";
 
 class Application {
   constructor() {
-    ReactDOM.render(<Root />, document.getElementById('root'));
+    ReactDOM.render(<Root />, document.getElementById("root"));
   }
 }
 

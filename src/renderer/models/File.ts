@@ -1,14 +1,14 @@
-import {Contact} from './Contact';
-import {Serializable} from './Serializable';
+import {Contact} from "./Contact";
+import {Serializable} from "./Serializable";
 
 export class File extends Serializable {
-  fileId: number;
-  account: Contact;
-  messageId: number;
-  filename: string;
-  filesize: number;
-  uploadTime: number;
-  
+  public fileId: number;
+  public account: Contact;
+  public messageId: number;
+  public filename: string;
+  public filesize: number;
+  public uploadTime: number;
+
   constructor(json: any) {
     super();
     this.fromJson(json);

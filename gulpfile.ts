@@ -1,24 +1,27 @@
 /// <reference path="src/typings/tsd.d.ts" />
 
 import * as gulp from "gulp";
-const babel = require("gulp-babel");
-const plumber = require("gulp-plumber");
-const sass = require("gulp-sass");
-const stringify = require("stringify");
-const typescript = require("gulp-typescript");
-const useref = require("gulp-useref");
-const watch = require("gulp-watch");
+import * as babel from "gulp-babel";
+import * as plumber from "gulp-plumber";
+import * as sass from "gulp-sass";
+import * as typescript from "gulp-typescript";
+import * as useref from "gulp-useref";
+import * as watch from "gulp-watch";
 
-const browserify = require("browserify");
-const childProcess = require("child_process");
+import * as browserify from "browserify";
+import * as buffer from "vinyl-buffer";
+import * as childProcess from "child_process";
+import * as runSequence from "run-sequence";
+import * as source from "vinyl-source-stream";
+
+/* tslint:disable - typings is not defined. */
 const del = require("del");
-const runSequence = require("run-sequence");
+const stringify = require("stringify");
 const electron = require("electron-connect").server.create();
 const packager = require("electron-packager");
 const config = require("./package.json");
 const tsfiles = require("./tsfiles.json");
-const buffer = require("vinyl-buffer");
-const source = require("vinyl-source-stream");
+/* tslint:enable */
 
 const gitHash: string = childProcess.execSync("git rev-parse HEAD").toString().trim();
 
@@ -26,7 +29,6 @@ const tsMainProject: any = typescript.createProject("./src/tsconfig.json");
 const tsTestProject: any = typescript.createProject("./test/tsconfig.json");
 
 const appDir: string = "./app";
-const distDir: string = "./dist";
 const srcDir: string = "./src";
 const testDir: string = "./test";
 
@@ -39,7 +41,7 @@ const ttFiles: string = testDir + "/**/*.ts";         // TypeScript Test
 let served: boolean = false;
 
 // Clean project
-gulp.task("clean", (done: any) => {
+gulp.task("clean", (done) => {
   del(["app", "dist", "coverage", "test/**/*.js"]);
   done();
 });
@@ -77,22 +79,22 @@ gulp.task("html:compile", () => {
     .pipe(gulp.dest(appDir));
 });
 
-gulp.task("browserify:browser", (done: any) => {
-	browserify({
+gulp.task("browserify:browser", (done) => {
+  browserify({
     builtins: [],
     debug: true,
     detectGlobals: false,
-		entries: ["app/browser/Application.js"],
-		extensions: [".js"],
-    ignoreMissing: true,
-	})
-    .transform({
-      NODE_ENV: "production",
+    entries: ["app/browser/Application.js"],
+    extensions: [".js"],
+    ignoreMissing: true
+  })
+    .transform("envify", {
       GIT_HASH: gitHash,
       NAME: config.name,
-      VERSION: config.version,
+      NODE_ENV: "production",
       ROOT: __dirname,
-    }, "envify")
+      VERSION: config.version
+    })
     .bundle()
     .pipe(source("Application.js"))
     .pipe(buffer())
@@ -100,18 +102,18 @@ gulp.task("browserify:browser", (done: any) => {
   done();
 });
 
-gulp.task("browserify:renderer", (done: any) => {
-	browserify({
-		transform: stringify({
-			extensions: [".html"],
-			minify: true,
-		}),
-		entries: tsfiles,
-    ignoreMissing: true,
-    detectGlobals: false,
+gulp.task("browserify:renderer", (done) => {
+  browserify({
     builtins: [],
-	  debug: true,
-	})
+    debug: true,
+    detectGlobals: false,
+    entries: tsfiles,
+    ignoreMissing: true,
+    transform: stringify({
+      extensions: [".html"],
+      minify: true
+    })
+  })
     .bundle()
     .pipe(source("Application.js"))
     .pipe(buffer())
@@ -137,14 +139,14 @@ gulp.task("watch", () => {
       "serve:reload"
     );
   });
-  
+
   watch(ssFiles, () => {
     return runSequence(
       "sass:compile",
       "serve:reload"
     );
   });
-  
+
   watch(rsFiles, () => {
     gulp.start(["assets:copy"]);
   });

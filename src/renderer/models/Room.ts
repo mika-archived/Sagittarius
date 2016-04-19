@@ -1,33 +1,25 @@
-import {Contact} from './Contact';
-import {Message} from './Message';
-import {Serializable} from './Serializable';
+import {Serializable} from "./Serializable";
 
 export class Room extends Serializable {
-  roomId: number;
-  name: string;
-  type: string;
-  role: string;
-  sticky: boolean;
-  unreadNum: number;
-  mentionNum: number;
-  mytaskNum: number;
-  messageNum: number;
-  fileNum: number;
-  taskNum: number;
-  iconPath: string;
-  lastUpdateTime: number;
-  description: string;
-  
-  /* extend */
-  members: Contact[];
-  messages: Message[];
+  public roomId: number;
+  public name: string;
+  public type: string;
+  public role: string;
+  public sticky: boolean;
+  public unreadNum: number;
+  public mentionNum: number;
+  public mytaskNum: number;
+  public messageNum: number;
+  public fileNum: number;
+  public taskNum: number;
+  public iconPath: string;
+  public lastUpdateTime: number;
+  public description: string;
 
   constructor(json: any) {
     super();
     this.fromJson(json);
-    
+
     this.description = "";
-    this.members = [];
-    this.messages = [];
   }
 }

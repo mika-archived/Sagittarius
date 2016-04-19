@@ -1,20 +1,20 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-import * as $ from 'jquery';
-import * as React from 'react';
-import {t} from '../../models/I18N';
+import * as $ from "jquery";
+import * as React from "react";
+import {t} from "../../models/I18N";
 
 interface FooterProps {
-  
+
 }
 
 export class Footer extends React.Component<FooterProps, {}> {
-  
-  componentDidMount(): void {
-    $('.dropdown.button').dropdown();
+
+  public componentDidMount(): void {
+    $(".dropdown.button").dropdown();
   }
-  
-  render(): JSX.Element {
+
+  public render(): JSX.Element {
     return (
       <div className="ui bottom fixed one item menu">
         <div className="item custom spaced">
@@ -23,7 +23,7 @@ export class Footer extends React.Component<FooterProps, {}> {
               <i className="plus icon"></i>
               <div className="menu">
                 <div className="item">
-                  <i className="tasks icon"></i> {t('application', "chat_create_task")}
+                  <i className="tasks icon"></i> {t("application", "chat_create_task")}
                 </div>
               </div>
             </div>

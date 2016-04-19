@@ -1,16 +1,16 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-import {combineReducers} from 'redux'
+import {combineReducers} from "redux";
 import {
   handleError,
-  fetchMe, 
+  fetchMe,
   fetchRooms,
   fetchRoomMembers,
   fetchRoomMessages
-} from './ChatworkReducer';
-import {selectChatRoom} from './UserActionReducer';
+} from "./ChatworkReducer";
+import {selectChatRoom} from "./UserActionReducer";
 
-const rootReducer = combineReducers({
+const rootReducer: Redux.Reducer = combineReducers({
   handleError,
   fetchMe,
   fetchRooms,

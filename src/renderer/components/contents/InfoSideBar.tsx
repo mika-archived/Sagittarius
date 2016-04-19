@@ -1,12 +1,12 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-import * as $ from 'jquery';
-import * as React from 'react';
-import {MemberList} from './MemberList';
-import '../../extensions/StringExt';
-import {Contact} from '../../models/Contact';
-import {t} from '../../models/I18N';
-import {Room} from '../../models/Room';
+import * as $ from "jquery";
+import * as React from "react";
+import {MemberList} from "./MemberList";
+import "../../extensions/StringExt";
+import {Contact} from "../../models/Contact";
+import {t} from "../../models/I18N";
+import {Room} from "../../models/Room";
 
 interface InfoSideBarProps {
   room: Room;
@@ -14,17 +14,17 @@ interface InfoSideBarProps {
 }
 
 export class InfoSideBar extends React.Component<InfoSideBarProps, {}> {
-  
-  componentDidMount(): void {
-    $('.ui.accordion').accordion();
-    $('.ui.checkbox').checkbox();
+
+  public componentDidMount(): void {
+    $(".ui.accordion").accordion();
+    $(".ui.checkbox").checkbox();
   }
-  
-  render(): JSX.Element {
+
+  public render(): JSX.Element {
     return (
       <div>
         <div className="header item">
-          <h3>{t('application', 'chat_about').format(this.props.room.name)}</h3>
+          <h3>{t("application", "chat_about").format(this.props.room.name)}</h3>
         </div>
         <div className="item">
           <div className="ui inverted fluid accordion">

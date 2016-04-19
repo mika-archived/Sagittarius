@@ -1,18 +1,18 @@
-import {Contact} from './Contact';
-import {DtextFormatter} from './DtextFormatter';
-import {Serializable} from './Serializable';
+import {Contact} from "./Contact";
+import {DtextFormatter} from "./DtextFormatter";
+import {Serializable} from "./Serializable";
 
 export class Message extends Serializable {
-  messageId: number;
-  account: Contact;
-  body: string;
-  createdAt: Date;
-  updatedAt: Date;
-  
+  public messageId: number;
+  public account: Contact;
+  public body: string;
+  public createdAt: Date;
+  public updatedAt: Date;
+
   private sendTime: number;
   private updateTime: number;
   private formatter: DtextFormatter;
-  
+
   constructor(json: any) {
     super();
     this.fromJson(json);
@@ -21,8 +21,8 @@ export class Message extends Serializable {
     this.updatedAt = new Date(this.updateTime * 1000);
     this.formatter = new DtextFormatter(this.body);
   }
-  
-  formattedText(): string {
+
+  public formattedText(): string {
     return this.formatter.format();
   }
 }

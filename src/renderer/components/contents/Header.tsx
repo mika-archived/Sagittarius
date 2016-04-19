@@ -1,12 +1,10 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-import * as $ from 'jquery';
-import * as React from 'react';
-import {Contact} from '../../models/Contact';
-import {DummyRoom} from '../../models/DummyRoom';
-import {DummyMe} from '../../models/DummyMe';
-import {t} from '../../models/I18N';
-import {Room} from '../../models/Room';
+import * as $ from "jquery";
+import * as React from "react";
+import {Contact} from "../../models/Contact";
+import {t} from "../../models/I18N";
+import {Room} from "../../models/Room";
 
 interface HeaderProps {
   room: Room;
@@ -19,16 +17,16 @@ export class Header extends React.Component<HeaderProps, {}> {
     super();
   }
 
-  componentDidMount(): void {
-    $('.dropdown.basic.button').dropdown();
-    $('.toggleinfo.basic.button').click(() => {
-      $('#side')
-        .sidebar('setting', 'transition', 'overlay')
-        .sidebar('toggle');
+  public componentDidMount(): void {
+    $(".dropdown.basic.button").dropdown();
+    $(".toggleinfo.basic.button").click(() => {
+      $("#side")
+        .sidebar("setting", "transition", "overlay")
+        .sidebar("toggle");
     });
   }
-  
-  render(): JSX.Element {
+
+  public render(): JSX.Element {
     return (
       <div className="ui top borderless fixed menu">
         <div className="header item">

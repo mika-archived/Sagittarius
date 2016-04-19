@@ -1,16 +1,16 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-import * as React from 'react';
-import {t} from '../../models/I18N';
-import {Message} from '../../models/Message';
+import * as React from "react";
+import {t} from "../../models/I18N";
+import {Message} from "../../models/Message";
 
 interface ChatMessageProps {
   message: Message;
 }
 
 export class ChatMessage extends React.Component<ChatMessageProps, {}> {
-  
-  render(): JSX.Element {
+
+  public render(): JSX.Element {
     return (
       <div className="comment">
         <span className="avatar">

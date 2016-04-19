@@ -1,17 +1,17 @@
-import {Contact} from './Contact';
+import {Contact} from "./Contact";
 
 export class Me extends Contact {
-  title: string;
-  url: string;
-  introduction: string;
-  mail: string;
-  telOrganization: string;
-  telExtension: string;
-  telMobile: string;
-  skype: string;
-  facebook: string;
-  twitter: string;
-  
+  public title: string;
+  public url: string;
+  public introduction: string;
+  public mail: string;
+  public telOrganization: string;
+  public telExtension: string;
+  public telMobile: string;
+  public skype: string;
+  public facebook: string;
+  public twitter: string;
+
   constructor(json: any) {
     super(json);
   }

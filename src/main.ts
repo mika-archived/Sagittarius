@@ -1,3 +1,4 @@
-import Application from './browser/Application';
+/* tslint:disable */
+import Application from "./browser/Application";
 
-var application = new Application();
+const app = new Application();

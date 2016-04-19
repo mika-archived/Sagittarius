@@ -1,8 +1,8 @@
-import {RoomAction} from '../models/actions/RoomAction';
-import {ActionTypes} from '../actions/ActionTypes';
+import {RoomAction} from "../models/actions/RoomAction";
+import {ActionTypes} from "../actions/ActionTypes";
 
 export function selectChatRoom(state: number = -1, action: RoomAction): number {
-  if(action.type == ActionTypes.SelectRoom) {
+  if (action.type === ActionTypes.SelectRoom) {
     return action.selectedRoomId;
   }
   return state;

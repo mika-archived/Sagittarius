@@ -9,7 +9,7 @@
       "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
     },
     "node/node.d.ts": {
-      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "react/react.d.ts": {
       "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
@@ -102,13 +102,52 @@
       "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
     },
     "orchestrator/orchestrator.d.ts": {
-      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "gulp/gulp.d.ts": {
-      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "q/Q.d.ts": {
-      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "gulp-babel/gulp-babel.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "gulp-plumber/gulp-plumber.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "gulp-sass/gulp-sass.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "gulp-typescript/gulp-typescript.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "gulp-useref/gulp-useref.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "gulp-watch/gulp-watch.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "browserify/browserify.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "minimatch/minimatch.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "run-sequence/run-sequence.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "vinyl-buffer/vinyl-buffer.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "vinyl-source-stream/vinyl-source-stream.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "request/request.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "form-data/form-data.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     }
   }
 }
