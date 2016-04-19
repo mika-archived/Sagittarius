@@ -1,9 +1,8 @@
 /// <reference path="../src/typings/tsd.d.ts" />
+var should = require("should");
 
-var should = require('should');
+import {DtextFormatter} from "../src/renderer/models/DtextFormatter";
 
-import {DtextFormatter} from '../src/renderer/models/DtextFormatter';
-
-describe('DtextFormatter', () => {
+describe("DtextFormatter", () => {
   
 });
