@@ -49,7 +49,7 @@
     "coveralls": "^2.11.8",
     "del": "^2.2.0",
     "electron-connect": "^0.3.4",
-    "electron-packager": "^6.0.0",
+    "electron-packager": "^7.0.0",
     "electron-prebuilt": "^0.37.6",
     "envify": "^3.4.0",
     "gulp": "^3.9.1",
